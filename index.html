@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rubi — главная</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #080c1a;
+            color: #e8edf5;
+            padding: 0.8rem 1rem 5rem;
+            min-height: 100vh;
+            background-image: radial-gradient(circle at 30% 20%, #0f1a3a 0%, #080c1a 80%);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* ШАПКА */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0 1rem;
+        }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: #00b4d8;
+            letter-spacing: -0.5px;
+        }
+        .logo span { color: #e8edf5; font-weight: 300; }
+        .header-icons {
+            display: flex;
+            gap: 1rem;
+            font-size: 1.3rem;
+            color: #7a8ba8;
+        }
+        .header-icons .cart { color: #00b4d8; position: relative; }
+        .header-icons .cart .count {
+            position: absolute;
+            top: -6px;
+            right: -8px;
+            background: #00b4d8;
+            color: #080c1a;
+            font-size: 0.55rem;
+            font-weight: 800;
+            padding: 0.05rem 0.4rem;
+            border-radius: 50%;
+        }
+
+        /* ПОИСК */
+        .search-bar {
+            background: #111827;
+            border-radius: 30px;
+            padding: 0.7rem 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid #1e3a5f;
+            margin-bottom: 1.2rem;
+        }
+        .search-bar i { color: #4a6a8a; font-size: 0.9rem; }
+        .search-bar input {
+            background: none;
+            border: none;
+            color: #e8edf5;
+            font-size: 0.9rem;
+            outline: none;
+            width: 100%;
+        }
+        .search-bar input::placeholder { color: #4a6a8a; }
+
+        /* КАТЕГОРИИ */
+        .categories {
+            display: flex;
+            gap: 0.6rem;
+            overflow-x: auto;
+            padding: 0.5rem 0 1rem;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+        }
+        .categories::-webkit-scrollbar { display: none; }
+        .categories a {
+            background: #111827;
+            color: #7a8ba8;
+            padding: 0.4rem 1rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 0.75rem;
+            font-weight: 600;
+            white-space: nowrap;
+            border: 1px solid #1e3a5f;
+            transition: 0.2s;
+        }
+        .categories a:hover, .categories a.active {
+            background: #00b4d8;
+            color: #080c1a;
+            border-color: #00b4d8;
+        }
+
+        /* РАЗДЕЛ "НОВОЕ" */
+        .section-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 1.2rem 0 0.8rem;
+        }
+        .section-title h2 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #e8edf5;
+        }
+        .section-title a {
+            color: #00b4d8;
+            font-size: 0.8rem;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .products-scroll {
+            display: flex;
+            gap: 0.8rem;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+        }
+        .products-scroll::-webkit-scrollbar { display: none; }
+
+        .product-card {
+            background: #111827;
+            border-radius: 1.2rem;
+            padding: 0.8rem;
+            min-width: 140px;
+            border: 1px solid #1e3a5f;
+            flex-shrink: 0;
+            transition: 0.2s;
+        }
+        .product-card:hover { border-color: #00b4d8; }
+        .product-card .img {
+            height: 80px;
+            background: #0a0e1a;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #00b4d8;
+            margin-bottom: 6px;
+        }
+        .product-card .name { font-size: 0.8rem; font-weight: 600; }
+        .product-card .game { font-size: 0.65rem; color: #7a8ba8; }
+        .product-card .price { font-size: 0.9rem; font-weight: 700; color: #00b4d8; margin-top: 4px; }
+
+        /* ПОПОЛНИТЬ БАЛАНС */
+        .balance-card {
+            background: #111827;
+            border-radius: 1.5rem;
+            padding: 1.2rem 1.2rem 1.5rem;
+            border: 1px solid #1e3a5f;
+            margin: 1.5rem 0;
+        }
+        .balance-card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #00b4d8;
+            margin-bottom: 0.8rem;
+        }
+        .balance-card .field {
+            background: #0a0e1a;
+            border-radius: 12px;
+            padding: 0.7rem 1rem;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid #1e3a5f;
+        }
+        .balance-card .field i { color: #4a6a8a; width: 18px; }
+        .balance-card .field input {
+            background: none;
+            border: none;
+            color: #e8edf5;
+            outline: none;
+            width: 100%;
+            font-size: 0.9rem;
+        }
+        .balance-card .field input::placeholder { color: #4a6a8a; }
+        .balance-card .row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 0.3rem;
+        }
+        .balance-card .commission {
+            color: #7a8ba8;
+            font-size: 0.8rem;
+        }
+        .balance-card .commission span { color: #00b4d8; font-weight: 700; }
+        .balance-card .promo {
+            color: #00b4d8;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .balance-card .btn {
+            width: 100%;
+            padding: 0.7rem;
+            border: none;
+            border-radius: 40px;
+            background: linear-gradient(135deg, #00b4d8, #0077b6);
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 0.8rem;
+        }
+        .balance-card .btn:hover { transform: scale(1.02); box-shadow: 0 0 30px rgba(0, 180, 216, 0.2); }
+
+        /* НИЖНЕЕ МЕНЮ */
+        .bottom-menu {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #0a0e1a;
+            border-top: 1px solid #1e3a5f;
+            display: flex;
+            justify-content: space-around;
+            padding: 0.6rem 0.5rem 0.8rem;
+            max-width: 500px;
+            margin: 0 auto;
+            border-radius: 20px 20px 0 0;
+        }
+        .bottom-menu a {
+            color: #4a6a8a;
+            text-decoration: none;
+            font-size: 0.65rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            transition: 0.2s;
+        }
+        .bottom-menu a i { font-size: 1.2rem; }
+        .bottom-menu a.active { color: #00b4d8; }
+        .bottom-menu a:hover { color: #00b4d8; }
+
+        /* МОДАЛЬНОЕ ОКНО ДЛЯ ПРОМОКОДОВ */
+        .promo-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(8, 12, 26, 0.85);
+            backdrop-filter: blur(6px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem;
+        }
+        .promo-modal.active {
+            display: flex;
+        }
+        .promo-modal-content {
+            background: #111827;
+            border-radius: 2rem;
+            padding: 2rem 1.5rem;
+            max-width: 400px;
+            width: 100%;
+            border: 1px solid #00b4d8;
+            text-align: center;
+            animation: fadeIn 0.3s ease;
+            box-shadow: 0 0 60px rgba(0, 180, 216, 0.05);
+        }
+        .promo-modal-content h3 {
+            font-size: 1.3rem;
+            color: #e8edf5;
+            margin-bottom: 0.5rem;
+        }
+        .promo-modal-content p {
+            color: #7a8ba8;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+        .promo-modal-content .telegram-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #00b4d8, #0077b6);
+            color: #fff;
+            padding: 0.8rem 2rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: 0.3s;
+            width: 100%;
+            justify-content: center;
+        }
+        .promo-modal-content .telegram-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 30px rgba(0, 180, 216, 0.3);
+        }
+        .promo-modal-content .close-btn {
+            background: none;
+            border: none;
+            color: #4a6a8a;
+            font-size: 0.85rem;
+            margin-top: 1rem;
+            cursor: pointer;
+            text-decoration: underline;
+            transition: 0.2s;
+        }
+        .promo-modal-content .close-btn:hover { color: #e8edf5; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        @media (max-width: 500px) {
+            body { padding: 0.5rem 0.8rem 5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ШАПКА -->
+    <header class="header">
+        <div class="logo">R<span>ubi</span></div>
+        <div class="header-icons">
+            <i class="fas fa-bell" style="color:#4a6a8a;"></i>
+            <span class="cart">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="count">3</span>
+            </span>
+            <i class="fas fa-user-circle" style="color:#4a6a8a;"></i>
+        </div>
+    </header>
+
+    <!-- ПОИСК -->
+    <div class="search-bar">
+        <i class="fas fa-search"></i>
+        <input type="text" placeholder="Поиск игр и приложений">
+    </div>
+
+    <!-- КАТЕГОРИИ -->
+    <div class="categories">
+        <a href="#" class="active">🔥 Все</a>
+        <a href="#"><i class="fab fa-telegram" style="margin-right:4px;"></i> Telegram</a>
+        <a href="#"><i class="fas fa-gamepad" style="margin-right:4px;"></i> Brawl Stars</a>
+        <a href="#"><i class="fas fa-robot" style="margin-right:4px;"></i> Roblox</a>
+        <a href="#"><i class="fas fa-crosshairs" style="margin-right:4px;"></i> PUBG Mobile</a>
+        <a href="#"><i class="fab fa-apple" style="margin-right:4px;"></i> Apple</a>
+        <a href="#"><i class="fas fa-skull" style="margin-right:4px;"></i> CS2</a>
+        <a href="#"><i class="fas fa-dragon" style="margin-right:4px;"></i> Dota 2</a>
+        <a href="#"><i class="fas fa-chess-queen" style="margin-right:4px;"></i> Fortnite</a>
+        <a href="#"><i class="fas fa-ghost" style="margin-right:4px;"></i> Valorant</a>
+        <a href="#"><i class="fas fa-car" style="margin-right:4px;"></i> GTA V</a>
+        <a href="#"><i class="fas fa-cube" style="margin-right:4px;"></i> Minecraft</a>
+        <a href="#"><i class="fas fa-users" style="margin-right:4px;"></i> Among Us</a>
+    </div>
+
+    <!-- НОВОЕ -->
+    <div class="section-title">
+        <h2>🆕 Новое</h2>
+        <a href="#">Смотреть всё →</a>
+    </div>
+
+    <div class="products-scroll">
+        <div class="product-card">
+            <div class="img"><i class="fas fa-crown"></i></div>
+            <div class="name">Аккаунт PRIME</div>
+            <div class="game">CS2</div>
+            <div class="price">1 299 ⭐</div>
+        </div>
+        <div class="product-card">
+            <div class="img"><i class="fas fa-gem"></i></div>
+            <div class="name">Скин Dragon Lore</div>
+            <div class="game">CS2</div>
+            <div class="price">4 499 ⭐</div>
+        </div>
+        <div class="product-card">
+            <div class="img"><i class="fas fa-star"></i></div>
+            <div class="name">Аккаунт Brawl</div>
+            <div class="game">Brawl Stars</div>
+            <div class="price">999 ⭐</div>
+        </div>
+        <div class="product-card">
+            <div class="img"><i class="fas fa-rocket"></i></div>
+            <div class="name">Буст ранга</div>
+            <div class="game">PUBG</div>
+            <div class="price">899 ⭐</div>
+        </div>
+        <div class="product-card">
+            <div class="img"><i class="fas fa-robot"></i></div>
+            <div class="name">Аккаунт Roblox</div>
+            <div class="game">Roblox</div>
+            <div class="price">750 ⭐</div>
+        </div>
+    </div>
+
+    <!-- ПОПОЛНИТЬ БАЛАНС -->
+    <div class="balance-card">
+        <h3>💰 Пополнить баланс</h3>
+        <div class="field">
+            <i class="fas fa-user"></i>
+            <input type="text" placeholder="Логин Steam">
+        </div>
+        <div class="field">
+            <i class="fas fa-coins"></i>
+            <input type="text" placeholder="Сумма" value="1 000 ₽">
+        </div>
+        <div class="row">
+            <span class="commission">Комиссия <span>5%</span></span>
+            <a href="#" class="promo" id="promoBtn">Ввести промокод</a>
+        </div>
+        <button class="btn"><i class="fas fa-arrow-right"></i> Пополнить</button>
+    </div>
+
+    <!-- МОДАЛЬНОЕ ОКНО ДЛЯ ПРОМОКОДОВ -->
+    <div class="promo-modal" id="promoModal">
+        <div class="promo-modal-content">
+            <h3>🎁 Промокоды</h3>
+            <p>Все актуальные промокоды вы можете найти в нашем Telegram-канале</p>
+            <a href="https://t.me/rubishopgame" target="_blank" class="telegram-btn">
+                <i class="fab fa-telegram"></i> Перейти в Telegram
+            </a>
+            <button class="close-btn" id="closePromoBtn">Закрыть</button>
+        </div>
+    </div>
+
+    <!-- НИЖНЕЕ МЕНЮ -->
+    <nav class="bottom-menu">
+        <a href="#" class="active"><i class="fas fa-search"></i> Поиск</a>
+        <a href="#"><i class="fas fa-plus-circle"></i> Продать</a>
+        <a href="#"><i class="fas fa-comments"></i> Чаты</a>
+        <a href="#"><i class="fas fa-user"></i> Профиль</a>
+    </nav>
+
+    <script>
+        // Открыть модальное окно по клику на "Ввести промокод"
+        document.getElementById('promoBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('promoModal').classList.add('active');
+        });
+
+        // Закрыть модальное окно по клику на кнопку "Закрыть"
+        document.getElementById('closePromoBtn').addEventListener('click', function() {
+            document.getElementById('promoModal').classList.remove('active');
+        });
+
+        // Закрыть модальное окно по клику на фон
+        document.getElementById('promoModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.remove('active');
+            }
+        });
+    </script>
+
+</body>
+</html>
