@@ -105,6 +105,23 @@
             display: none;
         }
 
+        .auth-switch {
+            text-align: center;
+            margin-top: 14px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .auth-switch span {
+            color: #8b5cf6;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .auth-switch span:hover {
+            text-decoration: underline;
+        }
+
         /* Phone */
         .phone-frame {
             width: 100%;
@@ -397,13 +414,13 @@
             font-size: 14px;
         }
 
-        .balance-row input::placeholder {
-            color: rgba(255, 255, 255, 0.3);
-        }
-
         .balance-row input:focus {
             outline: none;
             border-color: #8b5cf6;
+        }
+
+        .balance-row input::placeholder {
+            color: rgba(255, 255, 255, 0.3);
         }
 
         .balance-row .amount {
@@ -1219,13 +1236,15 @@
             margin-top: 4px;
         }
 
-        /* Light Theme */
+        /* ============================================================ */
+        /* ===== СВЕТЛАЯ ТЕМА — ВСЁ ЧЁТКО ВИДНО ===== */
+        /* ============================================================ */
         [data-theme="light"] .app-screen {
-            background: #f0edf5;
+            background: #f5f0fa;
         }
 
         [data-theme="light"] .phone-frame {
-            background: #e8e4f0;
+            background: #e8e0f0;
         }
 
         [data-theme="light"] .header h1 {
@@ -1236,10 +1255,23 @@
 
         [data-theme="light"] .section-header h2 {
             color: #1a1428;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        }
+
+        [data-theme="light"] .section-header a {
+            color: #6d28d9;
+            font-weight: 600;
         }
 
         [data-theme="light"] .product-card {
-            background: rgba(255, 255, 255, 0.6);
+            background: #ffffff;
+            border: 1px solid #d5cce0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        [data-theme="light"] .product-card:hover {
+            border-color: #6d28d9;
+            box-shadow: 0 8px 24px rgba(109, 40, 217, 0.15);
         }
 
         [data-theme="light"] .product-card .title {
@@ -1247,33 +1279,90 @@
         }
 
         [data-theme="light"] .product-card .sub {
-            color: rgba(0, 0, 0, 0.4);
+            color: #6a5f7a;
+        }
+
+        [data-theme="light"] .product-card .price {
+            color: #d97706;
+            text-shadow: none;
+        }
+
+        [data-theme="light"] .product-card .old-price {
+            color: #a090b0;
+        }
+
+        [data-theme="light"] .product-card .favorite-btn {
+            color: #c0b0d0;
+        }
+
+        [data-theme="light"] .product-card .favorite-btn.active {
+            color: #ef4444;
         }
 
         [data-theme="light"] .balance-block {
-            background: rgba(255, 255, 255, 0.5);
+            background: #ffffff;
+            border: 1px solid #d5cce0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
         }
 
         [data-theme="light"] .balance-block .label {
-            color: rgba(0, 0, 0, 0.4);
+            color: #5a4f6a;
         }
 
         [data-theme="light"] .balance-row input {
-            background: rgba(255, 255, 255, 0.5);
+            background: #f5f0fa;
+            border: 1px solid #d5cce0;
             color: #1a1428;
+        }
+
+        [data-theme="light"] .balance-row input::placeholder {
+            color: #a090b0;
+        }
+
+        [data-theme="light"] .balance-row .amount {
+            color: #d97706;
+            text-shadow: none;
         }
 
         [data-theme="light"] .balance-hint {
-            color: rgba(0, 0, 0, 0.3);
+            color: #6a5f7a;
         }
 
         [data-theme="light"] .balance-hint .promo input {
-            background: rgba(255, 255, 255, 0.5);
+            background: #f5f0fa;
+            border: 1px solid #d5cce0;
             color: #1a1428;
         }
 
+        [data-theme="light"] .balance-hint .promo button {
+            background: #6d28d9;
+            color: white;
+        }
+
+        [data-theme="light"] .promo-banner {
+            background: linear-gradient(135deg, rgba(184, 28, 92, 0.12), rgba(109, 40, 217, 0.12));
+            border: 1px solid #d5cce0;
+        }
+
+        [data-theme="light"] .promo-banner .text {
+            color: #d97706;
+        }
+
+        [data-theme="light"] .promo-banner .text span {
+            color: #6a5f7a;
+        }
+
+        [data-theme="light"] .promo-banner .countdown {
+            background: rgba(0,0,0,0.06);
+            color: #5a4f6a;
+        }
+
+        [data-theme="light"] .bottom-nav {
+            border-top-color: #d5cce0;
+        }
+
         [data-theme="light"] .nav-item {
-            color: rgba(0, 0, 0, 0.3);
+            color: #8a7f9a;
         }
 
         [data-theme="light"] .nav-item.active {
@@ -1285,17 +1374,44 @@
         }
 
         [data-theme="light"] .header-btn {
-            background: rgba(255, 255, 255, 0.6);
-            color: rgba(0, 0, 0, 0.5);
+            background: #ffffff;
+            border: 1px solid #d5cce0;
+            color: #4a3f5a;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        [data-theme="light"] .header-btn:hover {
+            border-color: #6d28d9;
+            box-shadow: 0 4px 12px rgba(109, 40, 217, 0.12);
+        }
+
+        [data-theme="light"] .header-btn .badge {
+            background: #ef4444;
+            color: white;
         }
 
         [data-theme="light"] .theme-toggle {
-            background: rgba(255, 255, 255, 0.6);
-            color: rgba(0, 0, 0, 0.5);
+            background: #ffffff;
+            border: 1px solid #d5cce0;
+            color: #4a3f5a;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
         }
 
-        [data-theme="light"] .bottom-nav {
-            border-top-color: rgba(0, 0, 0, 0.08);
+        [data-theme="light"] .theme-toggle:hover {
+            border-color: #6d28d9;
+        }
+
+        /* ===== СТРЕЛКА НАЗАД — ЧЁТКО ВИДНА ===== */
+        [data-theme="light"] .page-header .back {
+            background: #ffffff;
+            border: 1px solid #d5cce0;
+            color: #4a3f5a;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        [data-theme="light"] .page-header .back:hover {
+            border-color: #6d28d9;
+            box-shadow: 0 4px 16px rgba(109, 40, 217, 0.15);
         }
 
         [data-theme="light"] .page-header h3 {
@@ -1307,42 +1423,90 @@
         }
 
         [data-theme="light"] .profile-username {
-            color: rgba(0, 0, 0, 0.4);
+            color: #6a5f7a;
         }
 
         [data-theme="light"] .profile-balance {
-            background: rgba(255, 255, 255, 0.5);
+            background: #ffffff;
+            border: 1px solid #d5cce0;
+        }
+
+        [data-theme="light"] .profile-balance .label {
+            color: #5a4f6a;
+        }
+
+        [data-theme="light"] .profile-balance .amount {
+            color: #d97706;
+            text-shadow: none;
         }
 
         [data-theme="light"] .profile-menu-item {
-            background: rgba(255, 255, 255, 0.4);
+            background: #ffffff;
+            border: 1px solid #d5cce0;
             color: #1a1428;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        [data-theme="light"] .profile-menu-item:hover {
+            border-color: #6d28d9;
+            background: #f8f4ff;
+            box-shadow: 0 4px 16px rgba(109, 40, 217, 0.1);
+        }
+
+        [data-theme="light"] .profile-menu-item .arrow {
+            color: #a090b0;
         }
 
         [data-theme="light"] .cart-item {
-            background: rgba(255, 255, 255, 0.4);
+            background: #ffffff;
+            border: 1px solid #d5cce0;
         }
 
         [data-theme="light"] .cart-item .info .name {
             color: #1a1428;
         }
 
+        [data-theme="light"] .cart-item .info .date {
+            color: #8a7f9a;
+        }
+
         [data-theme="light"] .cart-total {
             color: #1a1428;
+            border-top-color: #d5cce0;
+        }
+
+        [data-theme="light"] .cart-total .total-price {
+            color: #d97706;
         }
 
         [data-theme="light"] .chat-message.incoming {
-            background: rgba(255, 255, 255, 0.6);
+            background: #ffffff;
+            border: 1px solid #d5cce0;
             color: #1a1428;
+        }
+
+        [data-theme="light"] .chat-message.outgoing {
+            background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+            color: white;
         }
 
         [data-theme="light"] .chat-input input {
-            background: rgba(255, 255, 255, 0.5);
+            background: #ffffff;
+            border: 1px solid #d5cce0;
             color: #1a1428;
         }
 
+        [data-theme="light"] .chat-input input::placeholder {
+            color: #8a7f9a;
+        }
+
+        [data-theme="light"] .chat-input input:focus {
+            border-color: #6d28d9;
+        }
+
         [data-theme="light"] .product-modal-content {
-            background: #f0edf5;
+            background: #f5f0fa;
+            border: 1px solid #d5cce0;
         }
 
         [data-theme="light"] .product-modal-content h3 {
@@ -1350,44 +1514,75 @@
         }
 
         [data-theme="light"] .product-modal-content input {
-            background: rgba(255, 255, 255, 0.5);
+            background: #ffffff;
+            border: 1px solid #d5cce0;
             color: #1a1428;
+        }
+
+        [data-theme="light"] .product-modal-content input::placeholder {
+            color: #8a7f9a;
         }
 
         [data-theme="light"] .btn-close-modal {
-            background: rgba(0, 0, 0, 0.05);
+            background: #e8e0f0;
             color: #1a1428;
+            border: 1px solid #d5cce0;
+        }
+
+        [data-theme="light"] .btn-close-modal:hover {
+            border-color: #6d28d9;
         }
 
         [data-theme="light"] .auth-modal {
-            background: #f0edf5;
+            background: #f5f0fa;
+            border: 1px solid #d5cce0;
         }
 
         [data-theme="light"] .auth-modal .sub {
-            color: rgba(0, 0, 0, 0.5);
+            color: #5a4f6a;
         }
 
         [data-theme="light"] .auth-input {
-            background: rgba(0, 0, 0, 0.05);
+            background: #ffffff;
+            border: 1px solid #d5cce0;
             color: #1a1428;
         }
 
         [data-theme="light"] .auth-input::placeholder {
-            color: rgba(0, 0, 0, 0.3);
+            color: #8a7f9a;
+        }
+
+        [data-theme="light"] .auth-input:focus {
+            border-color: #6d28d9;
+        }
+
+        [data-theme="light"] .auth-switch {
+            color: #5a4f6a;
+        }
+
+        [data-theme="light"] .auth-switch span {
+            color: #6d28d9;
         }
 
         [data-theme="light"] .admin-card {
-            background: rgba(255, 255, 255, 0.5);
+            background: #ffffff;
+            border: 1px solid #d5cce0;
         }
 
         [data-theme="light"] .admin-card .admin-row input,
         [data-theme="light"] .admin-card .admin-row select {
-            background: rgba(255, 255, 255, 0.5);
+            background: #f5f0fa;
+            border: 1px solid #d5cce0;
             color: #1a1428;
         }
 
         [data-theme="light"] .admin-stat-item {
-            background: rgba(255, 255, 255, 0.4);
+            background: #f5f0fa;
+            border: 1px solid #d5cce0;
+        }
+
+        [data-theme="light"] .admin-stat-item .num {
+            color: #6d28d9;
         }
 
         [data-theme="light"] .admin-user-item .user-name {
@@ -1399,15 +1594,16 @@
         }
 
         [data-theme="light"] .admin-hint {
-            color: rgba(0, 0, 0, 0.2);
+            color: #8a7f9a;
         }
 
         [data-theme="light"] .admin-promo-item {
-            background: rgba(139, 92, 246, 0.1);
+            background: rgba(109, 40, 217, 0.06);
+            border: 1px solid #d5cce0;
         }
 
-        [data-theme="light"] .promo-banner {
-            background: linear-gradient(135deg, rgba(184, 28, 92, 0.15), rgba(139, 92, 246, 0.15));
+        [data-theme="light"] .admin-promo-item .promo-code {
+            color: #6d28d9;
         }
 
         @media (max-width: 420px) {
@@ -1464,11 +1660,14 @@
 <div class="auth-overlay show" id="authOverlay">
     <div class="auth-modal">
         <h2>🔮 Rubi</h2>
-        <p class="sub">Войдите или создайте аккаунт</p>
+        <p class="sub" id="authSub">Войдите в свой аккаунт</p>
         <input class="auth-input" id="authLogin" placeholder="Имя пользователя">
         <input class="auth-input" id="authPassword" type="password" placeholder="Пароль">
-        <button class="auth-btn" onclick="handleAuth()">Войти</button>
+        <button class="auth-btn" id="authBtn" onclick="handleAuth()">Войти</button>
         <div class="auth-error" id="authError">Неверный логин или пароль</div>
+        <div class="auth-switch">
+            <span id="authSwitch" onclick="toggleAuthMode()">Нет аккаунта? Зарегистрироваться</span>
+        </div>
         <p style="margin-top:14px;font-size:11px;text-align:center;opacity:0.2;">Админ: admin / 123456</p>
     </div>
 </div>
@@ -1493,7 +1692,7 @@
 <div class="phone-frame">
     <div class="app-screen">
 
-        <!-- ===== MAIN PAGE ===== -->
+        <!-- MAIN PAGE -->
         <div class="page active" id="pageMain">
             <div class="header">
                 <h1>Rubi</h1>
@@ -1514,34 +1713,29 @@
                 </div>
             </div>
 
-            <!-- Promo Banner -->
             <div class="promo-banner" id="promoBanner">
                 <div class="text">🔥 <span>Акция:</span> Скидка 20% на все скины CS2!</div>
                 <div class="countdown" id="countdownTimer">⏳ 2д 14ч</div>
             </div>
 
-            <!-- Favorites -->
             <div class="section-header">
                 <h2>❤️ Избранное</h2>
                 <a onclick="navigateTo('favorites')">Смотреть всё →</a>
             </div>
             <div class="products" id="favoritesContainer"></div>
 
-            <!-- Новое -->
             <div class="section-header">
                 <h2>Новое</h2>
                 <a onclick="alert('Все товары')">Смотреть всё →</a>
             </div>
             <div class="products" id="productsContainer"></div>
 
-            <!-- Recommendations -->
             <div class="section-header">
                 <h2>🎯 Вам может понравиться</h2>
                 <a onclick="alert('Все рекомендации')">Смотреть всё →</a>
             </div>
             <div class="products" id="recommendationsContainer"></div>
 
-            <!-- Пополнить баланс -->
             <div class="balance-block">
                 <div class="label">💳 Пополнить баланс</div>
                 <div class="balance-row">
@@ -1557,7 +1751,6 @@
                 </div>
             </div>
 
-            <!-- Bottom Nav -->
             <div class="bottom-nav">
                 <button class="nav-item active" onclick="navigateTo('main')">
                     <span class="icon">🏠</span> Главная
@@ -1579,7 +1772,7 @@
             </div>
         </div>
 
-        <!-- ===== PROFILE PAGE ===== -->
+        <!-- PROFILE PAGE -->
         <div class="page" id="pageProfile">
             <div class="page-header">
                 <div class="back" onclick="navigateTo('main')">←</div>
@@ -1614,7 +1807,7 @@
             </div>
         </div>
 
-        <!-- ===== CART PAGE ===== -->
+        <!-- CART PAGE -->
         <div class="page" id="pageCart">
             <div class="page-header">
                 <div class="back" onclick="navigateTo('main')">←</div>
@@ -1630,7 +1823,7 @@
             </div>
         </div>
 
-        <!-- ===== CHAT PAGE ===== -->
+        <!-- CHAT PAGE -->
         <div class="page" id="pageChat">
             <div class="page-header">
                 <div class="back" onclick="navigateTo('main')">←</div>
@@ -1644,7 +1837,7 @@
             </div>
         </div>
 
-        <!-- ===== SEARCH PAGE ===== -->
+        <!-- SEARCH PAGE -->
         <div class="page" id="pageSearch">
             <div class="page-header">
                 <div class="back" onclick="navigateTo('main')">←</div>
@@ -1655,7 +1848,7 @@
             <div class="products" id="searchResults" style="flex-wrap:wrap;gap:8px;"></div>
         </div>
 
-        <!-- ===== FAVORITES PAGE ===== -->
+        <!-- FAVORITES PAGE -->
         <div class="page" id="pageFavorites">
             <div class="page-header">
                 <div class="back" onclick="navigateTo('main')">←</div>
@@ -1665,7 +1858,7 @@
             <div class="products" id="favoritesPageContainer" style="flex-wrap:wrap;gap:8px;"></div>
         </div>
 
-        <!-- ===== ADMIN PAGE ===== -->
+        <!-- ADMIN PAGE -->
         <div class="page" id="pageAdmin">
             <div class="page-header">
                 <div class="back" onclick="navigateTo('main')">←</div>
@@ -1680,143 +1873,467 @@
 
 <script>
     // ============================================================
-    // DATA
+    // КОНФИГУРАЦИЯ
     // ============================================================
-    let PRODUCTS_DATA = JSON.parse(localStorage.getItem('rubi_products')) || [
-        { id: 1, name: 'Аккаунт PRIME', sub: 'CS2', emoji: '⭐', price: 1299, discount: 0 },
-        { id: 2, name: 'Скин Dragon Lore', sub: 'CS2', emoji: '🐉', price: 4499, discount: 20 },
-        { id: 3, name: 'Аккаунт Bi', sub: 'Brawl Stars', emoji: '🌟', price: 999, discount: 0 },
-        { id: 4, name: 'Roblox Premium', sub: 'Roblox', emoji: '🎮', price: 599, discount: 10 },
-        { id: 5, name: 'GTA Online', sub: 'GTA', emoji: '🏎️', price: 799, discount: 0 },
-        { id: 6, name: 'Standoff 2', sub: 'Standoff', emoji: '🔫', price: 499, discount: 0 },
-        { id: 7, name: 'Nulls Brawl', sub: 'Nulls Brawl', emoji: '⚡', price: 349, discount: 15 },
-        { id: 8, name: 'Telegram Premium', sub: 'Telegram', emoji: '📱', price: 299, discount: 0 },
-        { id: 9, name: 'Instagram Boost', sub: 'Instagram', emoji: '📸', price: 399, discount: 0 },
-        { id: 10, name: 'TikTok Followers', sub: 'TikTok', emoji: '🎵', price: 499, discount: 0 },
-    ];
+    const API_URL = 'http://localhost:5000/api';
+    let isLoginMode = true;
 
     // ============================================================
-    // STATE
+    // ПЕРЕКЛЮЧЕНИЕ МЕЖДУ ВХОДОМ И РЕГИСТРАЦИЕЙ
     // ============================================================
-    let cart = JSON.parse(localStorage.getItem('rubi_cart')) || [];
-    let chatMessages = JSON.parse(localStorage.getItem('rubi_chat')) || [
-        { text: '👋 Добро пожаловать в Rubi!', time: '12:30', type: 'incoming' },
-        { text: 'Здесь вы можете купить игровые предметы', time: '12:31', type: 'incoming' },
-    ];
-    let currentUser = JSON.parse(localStorage.getItem('rubi_user')) || null;
-    let selectedProduct = null;
-    let avatarImage = null;
-    let nextProductId = PRODUCTS_DATA.length + 1;
-    let favorites = JSON.parse(localStorage.getItem('rubi_favorites')) || [];
-    let purchaseHistory = JSON.parse(localStorage.getItem('rubi_purchase_history')) || [];
-
-    // ============================================================
-    // РАБОТА С БАЛАНСОМ ПОЛЬЗОВАТЕЛЯ
-    // ============================================================
-    function getUserBalance() {
-        if (!currentUser) return 0;
-        const users = JSON.parse(localStorage.getItem('rubi_users')) || [];
-        const user = users.find(u => u.login === currentUser.login);
-        return user ? (user.balance || 0) : 0;
-    }
-
-    function setUserBalance(newBalance) {
-        if (!currentUser) return;
-        let users = JSON.parse(localStorage.getItem('rubi_users')) || [];
-        const index = users.findIndex(u => u.login === currentUser.login);
-        if (index !== -1) {
-            users[index].balance = newBalance;
-            localStorage.setItem('rubi_users', JSON.stringify(users));
-            currentUser.balance = newBalance;
-            localStorage.setItem('rubi_user', JSON.stringify(currentUser));
+    function toggleAuthMode() {
+        isLoginMode = !isLoginMode;
+        const btn = document.getElementById('authBtn');
+        const sub = document.getElementById('authSub');
+        const switchLink = document.getElementById('authSwitch');
+        
+        if (isLoginMode) {
+            btn.textContent = 'Войти';
+            sub.textContent = 'Войдите в свой аккаунт';
+            switchLink.textContent = 'Нет аккаунта? Зарегистрироваться';
+        } else {
+            btn.textContent = 'Зарегистрироваться';
+            sub.textContent = 'Создайте новый аккаунт';
+            switchLink.textContent = 'Уже есть аккаунт? Войти';
         }
+        document.getElementById('authError').style.display = 'none';
     }
 
     // ============================================================
     // AUTH
     // ============================================================
-    function handleAuth() {
+    async function handleAuth() {
         const login = document.getElementById('authLogin').value.trim();
         const password = document.getElementById('authPassword').value.trim();
 
-        let users = JSON.parse(localStorage.getItem('rubi_users')) || [];
+        if (!login || !password) {
+            showAuthError('❌ Введите логин и пароль');
+            return;
+        }
 
-        // АДМИН
-        if (login === 'admin' && password === '123456') {
-            let admin = users.find(u => u.login === 'admin');
-            if (!admin) {
-                admin = { login: 'admin', password: '123456', name: 'Admin', username: '@admin_rubi', isAdmin: true, level: 99, balance: 9999 };
-                users.push(admin);
-                localStorage.setItem('rubi_users', JSON.stringify(users));
+        try {
+            const response = await fetch(`${API_URL}/auth`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ login, password })
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                showAuthError(data.error || 'Ошибка входа');
+                return;
             }
-            currentUser = admin;
-            localStorage.setItem('rubi_user', JSON.stringify(currentUser));
-            document.getElementById('authOverlay').classList.remove('show');
-            document.getElementById('adminBtn').style.display = 'flex';
-            initApp();
-            return;
-        }
 
-        // ПОИСК ПОЛЬЗОВАТЕЛЯ
-        let found = users.find(u => u.login === login && u.password === password);
-        if (found) {
-            currentUser = found;
+            currentUser = data.user;
             localStorage.setItem('rubi_user', JSON.stringify(currentUser));
             document.getElementById('authOverlay').classList.remove('show');
-            document.getElementById('adminBtn').style.display = 'none';
+            if (currentUser.isAdmin) {
+                document.getElementById('adminBtn').style.display = 'flex';
+            }
+            await loadData();
             initApp();
-            return;
-        }
 
-        // РЕГИСТРАЦИЯ
-        if (login.length > 0 && password.length > 0) {
-            const newUser = {
-                login: login,
-                password: password,
-                name: login,
-                username: '@' + login + '_tg',
-                level: 1,
-                balance: 500,
-                isAdmin: false
-            };
-            users.push(newUser);
-            localStorage.setItem('rubi_users', JSON.stringify(users));
-            currentUser = newUser;
-            localStorage.setItem('rubi_user', JSON.stringify(currentUser));
-            document.getElementById('authOverlay').classList.remove('show');
-            document.getElementById('adminBtn').style.display = 'none';
-            initApp();
-        } else {
-            document.getElementById('authError').style.display = 'block';
-            setTimeout(() => document.getElementById('authError').style.display = 'none', 3000);
+        } catch (error) {
+            showAuthError('❌ Ошибка подключения к серверу');
+            console.error(error);
         }
+    }
+
+    function showAuthError(text) {
+        const errorEl = document.getElementById('authError');
+        errorEl.textContent = text;
+        errorEl.style.display = 'block';
+        setTimeout(() => errorEl.style.display = 'none', 4000);
     }
 
     document.getElementById('authPassword').addEventListener('keydown', e => { if (e.key === 'Enter') handleAuth(); });
     document.getElementById('authLogin').addEventListener('keydown', e => { if (e.key === 'Enter') handleAuth(); });
 
     // ============================================================
-    // INIT
+    // ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ
     // ============================================================
-    function initApp() {
-        if (currentUser && currentUser.isAdmin) {
-            document.getElementById('adminBtn').style.display = 'flex';
-        } else {
-            document.getElementById('adminBtn').style.display = 'none';
+    let currentUser = null;
+    let products = [];
+    let cart = [];
+    let favorites = [];
+    let allUsers = [];
+    let selectedProduct = null;
+    let avatarImage = null;
+    let chatMessages = JSON.parse(localStorage.getItem('rubi_chat')) || [
+        { text: '👋 Добро пожаловать в Rubi!', time: '12:30', type: 'incoming' },
+        { text: 'Здесь вы можете купить игровые предметы', time: '12:31', type: 'incoming' },
+    ];
+
+    // ============================================================
+    // ЗАГРУЗКА ДАННЫХ
+    // ============================================================
+    async function loadData() {
+        try {
+            const productsRes = await fetch(`${API_URL}/products`);
+            products = await productsRes.json();
+
+            if (currentUser) {
+                const cartRes = await fetch(`${API_URL}/cart/${currentUser.id}`);
+                cart = await cartRes.json();
+
+                const favRes = await fetch(`${API_URL}/favorites/${currentUser.id}`);
+                favorites = await favRes.json();
+            }
+
+            if (currentUser && currentUser.isAdmin) {
+                const usersRes = await fetch(`${API_URL}/users`);
+                allUsers = await usersRes.json();
+            }
+
+        } catch (error) {
+            console.error('Ошибка загрузки данных:', error);
         }
-        updateUI();
-        renderProducts();
-        renderFavorites();
-        renderRecommendations();
-        renderCart();
-        renderChat();
-        setupSearch();
-        updateBalanceDisplay();
-        updateFavBadge();
-        if (currentUser && currentUser.isAdmin) {
+    }
+
+    // ============================================================
+    // BALANCE
+    // ============================================================
+    function getUserBalance() {
+        return currentUser ? currentUser.balance : 0;
+    }
+
+    // ============================================================
+    // BUY PRODUCT
+    // ============================================================
+    async function buyProduct() {
+        if (!selectedProduct) return;
+        const code = document.getElementById('modalCode').value.trim();
+
+        if (!code) {
+            alert('⚠️ Введите код, полученный после оплаты через @vmvmvq');
+            return;
+        }
+
+        try {
+            const response = await fetch(`${API_URL}/buy`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    userId: currentUser.id,
+                    productId: selectedProduct.id,
+                    productName: selectedProduct.name,
+                    price: selectedProduct.price
+                })
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                alert(data.error || 'Ошибка покупки');
+                return;
+            }
+
+            currentUser = data.user;
+            localStorage.setItem('rubi_user', JSON.stringify(currentUser));
+            await loadData();
+            updateUI();
+            renderCart();
+            updateBalanceDisplay();
+            alert(`✅ Товар "${selectedProduct.name}" успешно куплен!`);
+            closeModal();
+
+        } catch (error) {
+            alert('❌ Ошибка подключения к серверу');
+        }
+    }
+
+    function contactSeller() {
+        alert('📩 Связь с продавцом: @vmvmvq\n\nИнструкция:\n1. Напишите сумму пополнения\n2. После оплаты получите код\n3. Введите код при покупке');
+        window.open('https://t.me/vmvmvq', '_blank');
+    }
+
+    function closeModal() {
+        document.getElementById('productModal').classList.remove('show');
+    }
+
+    document.getElementById('productModal').addEventListener('click', function(e) {
+        if (e.target === this) closeModal();
+    });
+
+    // ============================================================
+    // APPLY PROMO
+    // ============================================================
+    async function applyPromo() {
+        const input = document.getElementById('promoInput');
+        const code = input.value.trim().toUpperCase();
+
+        if (!code) {
+            alert('❌ Введите промокод');
+            return;
+        }
+
+        try {
+            const response = await fetch(`${API_URL}/apply-promo`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ userId: currentUser.id, code })
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                alert(data.error || 'Ошибка');
+                return;
+            }
+
+            currentUser = data.user;
+            localStorage.setItem('rubi_user', JSON.stringify(currentUser));
+            updateBalanceDisplay();
+            alert(`🎉 Промокод активирован! +${data.bonus} ★`);
+            input.value = '';
+
+        } catch (error) {
+            alert('❌ Ошибка подключения к серверу');
+        }
+    }
+
+    // ============================================================
+    // TOGGLE FAVORITE
+    // ============================================================
+    async function toggleFavorite(productId) {
+        const isFav = favorites.includes(productId);
+        const action = isFav ? 'remove' : 'add';
+
+        try {
+            const response = await fetch(`${API_URL}/favorites`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ userId: currentUser.id, productId, action })
+            });
+
+            if (!response.ok) throw new Error('Ошибка');
+
+            if (isFav) {
+                favorites = favorites.filter(id => id !== productId);
+            } else {
+                favorites.push(productId);
+            }
+
+            renderProducts();
+            renderFavorites();
+            updateFavBadge();
+            if (document.getElementById('pageFavorites').classList.contains('active')) {
+                renderFavoritesPage();
+            }
+
+        } catch (error) {
+            console.error('Ошибка избранного:', error);
+        }
+    }
+
+    // ============================================================
+    // ADMIN FUNCTIONS
+    // ============================================================
+    async function addProduct() {
+        const name = document.getElementById('adminProductName').value.trim();
+        const sub = document.getElementById('adminProductSub').value.trim();
+        const emoji = document.getElementById('adminProductEmoji').value.trim() || '📦';
+        const price = parseInt(document.getElementById('adminProductPrice').value);
+        const discount = parseInt(document.getElementById('adminProductDiscount').value) || 0;
+
+        if (!name || !price) {
+            alert('❌ Введите название и цену');
+            return;
+        }
+
+        try {
+            const response = await fetch(`${API_URL}/products`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, sub, emoji, price, discount })
+            });
+
+            if (!response.ok) throw new Error('Ошибка');
+
+            await loadData();
+            renderProducts();
             renderAdmin();
+            alert('✅ Товар добавлен!');
+            
+            document.getElementById('adminProductName').value = '';
+            document.getElementById('adminProductSub').value = '';
+            document.getElementById('adminProductEmoji').value = '';
+            document.getElementById('adminProductPrice').value = '';
+            document.getElementById('adminProductDiscount').value = '';
+
+        } catch (error) {
+            alert('❌ Ошибка добавления товара');
         }
-        startCountdown();
+    }
+
+    async function deleteProduct(id) {
+        if (!confirm('Удалить товар?')) return;
+
+        try {
+            const response = await fetch(`${API_URL}/products/${id}`, {
+                method: 'DELETE'
+            });
+
+            if (!response.ok) throw new Error('Ошибка');
+
+            await loadData();
+            renderProducts();
+            renderAdmin();
+
+        } catch (error) {
+            alert('❌ Ошибка удаления');
+        }
+    }
+
+    async function deleteUser(login) {
+        if (!confirm(`Удалить пользователя ${login}?`)) return;
+        const user = allUsers.find(u => u.login === login);
+        if (!user) {
+            alert('❌ Пользователь не найден');
+            return;
+        }
+
+        try {
+            const response = await fetch(`${API_URL}/users/${user.id}`, {
+                method: 'DELETE'
+            });
+
+            if (!response.ok) throw new Error('Ошибка');
+
+            await loadData();
+            renderAdmin();
+
+        } catch (error) {
+            alert('❌ Ошибка удаления пользователя');
+        }
+    }
+
+    async function addPromoCode() {
+        const code = document.getElementById('adminPromoCode').value.trim().toUpperCase();
+        const bonus = parseInt(document.getElementById('adminPromoBonus').value);
+        
+        if (!code || !bonus) {
+            alert('❌ Введите код и бонус');
+            return;
+        }
+
+        try {
+            const response = await fetch(`${API_URL}/promocodes`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ code, bonus })
+            });
+
+            if (!response.ok) throw new Error('Ошибка');
+
+            alert(`✅ Промокод ${code} добавлен! (+${bonus} ★)`);
+            document.getElementById('adminPromoCode').value = '';
+            document.getElementById('adminPromoBonus').value = '';
+            renderAdmin();
+
+        } catch (error) {
+            alert('❌ Ошибка добавления промокода');
+        }
+    }
+
+    async function deletePromoCode(code) {
+        if (!confirm(`Удалить промокод "${code}"?`)) return;
+
+        try {
+            const response = await fetch(`${API_URL}/promocodes/${code}`, {
+                method: 'DELETE'
+            });
+
+            if (!response.ok) throw new Error('Ошибка');
+
+            alert(`✅ Промокод "${code}" удалён!`);
+            renderAdmin();
+
+        } catch (error) {
+            alert('❌ Ошибка удаления промокода');
+        }
+    }
+
+    async function setUserBalanceAdmin() {
+        const username = document.getElementById('adminUserBalance').value.trim();
+        const newBalance = parseInt(document.getElementById('adminNewBalance').value);
+
+        if (!username || isNaN(newBalance)) {
+            alert('❌ Введите имя и баланс');
+            return;
+        }
+
+        const user = allUsers.find(u => u.login === username || u.name === username);
+        if (!user) {
+            alert('❌ Пользователь не найден');
+            return;
+        }
+
+        try {
+            const response = await fetch(`${API_URL}/users/${user.id}/balance`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ balance: newBalance })
+            });
+
+            if (!response.ok) throw new Error('Ошибка');
+
+            const data = await response.json();
+            if (currentUser.id === user.id) {
+                currentUser = data.user;
+                localStorage.setItem('rubi_user', JSON.stringify(currentUser));
+                updateBalanceDisplay();
+            }
+            await loadData();
+            renderAdmin();
+            alert(`✅ Баланс ${username} установлен: ${newBalance} ★`);
+
+        } catch (error) {
+            alert('❌ Ошибка');
+        }
+    }
+
+    // ============================================================
+    // NAVIGATION
+    // ============================================================
+    function navigateTo(page) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        const target = document.getElementById('page' + page.charAt(0).toUpperCase() + page.slice(1));
+        if (target) target.classList.add('active');
+        
+        document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+        const navMap = { main: 0, search: 1, favorites: 2, chat: 3, profile: 4 };
+        if (navMap[page] !== undefined) {
+            const items = document.querySelectorAll('.nav-item');
+            if (items[navMap[page]]) items[navMap[page]].classList.add('active');
+        }
+        
+        if (page === 'cart') renderCart();
+        if (page === 'profile') updateProfile();
+        if (page === 'chat') renderChat();
+        if (page === 'admin') renderAdmin();
+        if (page === 'favorites') renderFavoritesPage();
+    }
+
+    // ============================================================
+    // THEME
+    // ============================================================
+    function toggleTheme() {
+        const current = document.documentElement.getAttribute('data-theme');
+        document.documentElement.setAttribute('data-theme', current === 'light' ? 'dark' : 'light');
+    }
+
+    // ============================================================
+    // OPEN PRODUCT
+    // ============================================================
+    function openProduct(id, name, sub, emoji, price) {
+        selectedProduct = { id, name, sub, emoji, price };
+        document.getElementById('modalEmoji').textContent = emoji;
+        document.getElementById('modalName').textContent = name;
+        document.getElementById('modalPrice').textContent = price + ' ★';
+        document.getElementById('modalCode').value = '';
+        document.getElementById('productModal').classList.add('show');
     }
 
     // ============================================================
@@ -1824,8 +2341,12 @@
     // ============================================================
     function renderProducts() {
         const container = document.getElementById('productsContainer');
-        container.innerHTML = PRODUCTS_DATA.map(p => {
-            const isFav = favorites.includes(p.id);
+        if (!products || products.length === 0) {
+            container.innerHTML = '<div style="color:rgba(255,255,255,0.3);padding:20px;">Загрузка...</div>';
+            return;
+        }
+        container.innerHTML = products.map(p => {
+            const isFav = favorites ? favorites.includes(p.id) : false;
             const discount = p.discount || 0;
             const finalPrice = discount > 0 ? Math.round(p.price * (1 - discount / 100)) : p.price;
             return `
@@ -1851,25 +2372,13 @@
     // ============================================================
     // FAVORITES
     // ============================================================
-    function toggleFavorite(productId) {
-        const index = favorites.indexOf(productId);
-        if (index > -1) {
-            favorites.splice(index, 1);
-        } else {
-            favorites.push(productId);
-        }
-        localStorage.setItem('rubi_favorites', JSON.stringify(favorites));
-        renderProducts();
-        renderFavorites();
-        updateFavBadge();
-        if (document.getElementById('pageFavorites').classList.contains('active')) {
-            renderFavoritesPage();
-        }
-    }
-
     function renderFavorites() {
         const container = document.getElementById('favoritesContainer');
-        const favProducts = PRODUCTS_DATA.filter(p => favorites.includes(p.id));
+        if (!favorites || favorites.length === 0 || !products) {
+            container.innerHTML = '<div style="color:rgba(255,255,255,0.3);padding:10px 0;font-size:13px;">Нет избранных товаров</div>';
+            return;
+        }
+        const favProducts = products.filter(p => favorites.includes(p.id));
         if (favProducts.length === 0) {
             container.innerHTML = '<div style="color:rgba(255,255,255,0.3);padding:10px 0;font-size:13px;">Нет избранных товаров</div>';
             return;
@@ -1891,7 +2400,11 @@
 
     function renderFavoritesPage() {
         const container = document.getElementById('favoritesPageContainer');
-        const favProducts = PRODUCTS_DATA.filter(p => favorites.includes(p.id));
+        if (!favorites || favorites.length === 0 || !products) {
+            container.innerHTML = '<div style="color:rgba(255,255,255,0.3);padding:40px 0;text-align:center;">❤️ Нет избранных товаров</div>';
+            return;
+        }
+        const favProducts = products.filter(p => favorites.includes(p.id));
         if (favProducts.length === 0) {
             container.innerHTML = '<div style="color:rgba(255,255,255,0.3);padding:40px 0;text-align:center;">❤️ Нет избранных товаров</div>';
             return;
@@ -1912,7 +2425,7 @@
     }
 
     function updateFavBadge() {
-        document.getElementById('favBadgeNav').textContent = favorites.length;
+        document.getElementById('favBadgeNav').textContent = favorites ? favorites.length : 0;
     }
 
     // ============================================================
@@ -1920,7 +2433,11 @@
     // ============================================================
     function renderRecommendations() {
         const container = document.getElementById('recommendationsContainer');
-        const notFav = PRODUCTS_DATA.filter(p => !favorites.includes(p.id));
+        if (!products || products.length === 0) {
+            container.innerHTML = '<div style="color:rgba(255,255,255,0.3);padding:10px 0;font-size:13px;">Нет рекомендаций</div>';
+            return;
+        }
+        const notFav = products.filter(p => !favorites || !favorites.includes(p.id));
         const shuffled = notFav.sort(() => 0.5 - Math.random());
         const recs = shuffled.slice(0, 3);
         
@@ -1970,7 +2487,8 @@
         if (!input) return;
         input.addEventListener('input', function() {
             const query = this.value.toLowerCase().trim();
-            const filtered = PRODUCTS_DATA.filter(p => 
+            if (!products) return;
+            const filtered = products.filter(p => 
                 p.name.toLowerCase().includes(query) || 
                 p.sub.toLowerCase().includes(query)
             );
@@ -1995,138 +2513,12 @@
     }
 
     // ============================================================
-    // NAVIGATION
-    // ============================================================
-    function navigateTo(page) {
-        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-        const target = document.getElementById('page' + page.charAt(0).toUpperCase() + page.slice(1));
-        if (target) target.classList.add('active');
-        
-        document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-        const navMap = { main: 0, search: 1, favorites: 2, chat: 3, profile: 4 };
-        if (navMap[page] !== undefined) {
-            const items = document.querySelectorAll('.nav-item');
-            if (items[navMap[page]]) items[navMap[page]].classList.add('active');
-        }
-        
-        if (page === 'cart') renderCart();
-        if (page === 'profile') updateProfile();
-        if (page === 'chat') renderChat();
-        if (page === 'admin') renderAdmin();
-        if (page === 'favorites') renderFavoritesPage();
-    }
-
-    // ============================================================
-    // THEME
-    // ============================================================
-    function toggleTheme() {
-        const current = document.documentElement.getAttribute('data-theme');
-        document.documentElement.setAttribute('data-theme', current === 'light' ? 'dark' : 'light');
-    }
-
-    // ============================================================
-    // PRODUCT MODAL
-    // ============================================================
-    function openProduct(id, name, sub, emoji, price) {
-        selectedProduct = { id, name, sub, emoji, price };
-        document.getElementById('modalEmoji').textContent = emoji;
-        document.getElementById('modalName').textContent = name;
-        document.getElementById('modalPrice').textContent = price + ' ★';
-        document.getElementById('modalCode').value = '';
-        document.getElementById('productModal').classList.add('show');
-    }
-
-    function closeModal() {
-        document.getElementById('productModal').classList.remove('show');
-    }
-
-    function buyProduct() {
-        if (!selectedProduct) return;
-        const code = document.getElementById('modalCode').value.trim();
-        if (code) {
-            const currentBalance = getUserBalance();
-            if (currentBalance >= selectedProduct.price) {
-                setUserBalance(currentBalance - selectedProduct.price);
-                
-                cart.push({
-                    ...selectedProduct,
-                    date: new Date().toLocaleDateString('ru-RU'),
-                    time: new Date().toLocaleTimeString('ru-RU', {hour:'2-digit',minute:'2-digit'})
-                });
-                localStorage.setItem('rubi_cart', JSON.stringify(cart));
-                
-                purchaseHistory.push({
-                    productId: selectedProduct.id,
-                    productName: selectedProduct.name,
-                    price: selectedProduct.price,
-                    date: new Date().toISOString(),
-                    user: currentUser ? currentUser.login : 'unknown'
-                });
-                localStorage.setItem('rubi_purchase_history', JSON.stringify(purchaseHistory));
-                
-                updateUI();
-                renderCart();
-                updateBalanceDisplay();
-                alert(`✅ Товар "${selectedProduct.name}" успешно куплен!`);
-                closeModal();
-            } else {
-                alert('❌ Недостаточно средств! Пополните баланс через @vmvmvq');
-            }
-        } else {
-            alert('⚠️ Введите код, полученный после оплаты через @vmvmvq');
-        }
-    }
-
-    function contactSeller() {
-        alert('📩 Связь с продавцом: @vmvmvq\n\nИнструкция:\n1. Напишите сумму пополнения\n2. После оплаты получите код\n3. Введите код при покупке');
-        window.open('https://t.me/vmvmvq', '_blank');
-    }
-
-    document.getElementById('productModal').addEventListener('click', function(e) {
-        if (e.target === this) closeModal();
-    });
-
-    // ============================================================
-    // BALANCE
-    // ============================================================
-    function updateBalanceDisplay() {
-        const balance = getUserBalance();
-        document.getElementById('balanceDisplay').textContent = balance + ' ★';
-        document.getElementById('profileBalance').textContent = '$' + balance;
-    }
-
-    function applyPromo() {
-        const input = document.getElementById('promoInput');
-        const code = input.value.trim().toUpperCase();
-        
-        const promos = JSON.parse(localStorage.getItem('rubi_promos')) || {};
-        const defaultPromos = {
-            'RUBI2026': 100,
-            'GAMEON': 100,
-            'RUBI50': 100,
-            'STARTER': 100,
-            'ADMIN1000': 1000,
-        };
-        const allPromos = { ...defaultPromos, ...promos };
-        
-        if (allPromos[code]) {
-            const currentBalance = getUserBalance();
-            setUserBalance(currentBalance + allPromos[code]);
-            updateBalanceDisplay();
-            alert(`🎉 Промокод активирован! +${allPromos[code]} ★`);
-            input.value = '';
-        } else {
-            alert('❌ Неверный промокод');
-        }
-    }
-
-    // ============================================================
     // CART
     // ============================================================
     function renderCart() {
         const list = document.getElementById('cartList');
         const total = document.getElementById('cartTotal');
-        if (cart.length === 0) {
+        if (!cart || cart.length === 0) {
             list.innerHTML = '<div class="cart-empty">🛒 Корзина пуста</div>';
             total.textContent = '$0';
             document.getElementById('cartBadge').textContent = '0';
@@ -2134,9 +2526,9 @@
         }
         list.innerHTML = cart.map(item => `
             <div class="cart-item">
-                <span class="emoji">${item.emoji}</span>
+                <span class="emoji">${item.productEmoji || '📦'}</span>
                 <div class="info">
-                    <div class="name">${item.name}</div>
+                    <div class="name">${item.productName}</div>
                     <div class="date">${item.date || 'Сегодня'} ${item.time || ''}</div>
                 </div>
                 <div class="price">${item.price} ★</div>
@@ -2152,6 +2544,7 @@
     // ============================================================
     function renderChat() {
         const container = document.getElementById('chatMessages');
+        if (!container) return;
         container.innerHTML = chatMessages.map(m => `
             <div class="chat-message ${m.type}">
                 ${m.text}
@@ -2166,6 +2559,7 @@
 
     function sendMessage() {
         const input = document.getElementById('chatInput');
+        if (!input) return;
         const text = input.value.trim();
         if (!text) return;
         const now = new Date();
@@ -2257,7 +2651,16 @@
     }
 
     // ============================================================
-    // ADMIN
+    // UPDATE BALANCE
+    // ============================================================
+    function updateBalanceDisplay() {
+        const balance = getUserBalance();
+        document.getElementById('balanceDisplay').textContent = balance + ' ★';
+        document.getElementById('profileBalance').textContent = '$' + balance;
+    }
+
+    // ============================================================
+    // ADMIN PANEL
     // ============================================================
     function renderAdmin() {
         if (!currentUser || !currentUser.isAdmin) {
@@ -2265,77 +2668,21 @@
             return;
         }
 
-        const users = JSON.parse(localStorage.getItem('rubi_users')) || [];
-        const allCarts = JSON.parse(localStorage.getItem('rubi_cart')) || [];
-        const totalUsers = users.length;
-        const totalPurchases = allCarts.length;
-        const totalRevenue = allCarts.reduce((sum, item) => sum + (item.price || 0), 0);
-
-        const productSales = {};
-        allCarts.forEach(item => {
-            const key = item.id || item.name;
-            if (!productSales[key]) {
-                productSales[key] = { name: item.name, count: 0, revenue: 0 };
-            }
-            productSales[key].count++;
-            productSales[key].revenue += item.price || 0;
-        });
-        const topProducts = Object.values(productSales).sort((a, b) => b.revenue - a.revenue).slice(0, 5);
-
-        const activeUsers = users.filter(u => (u.balance || 0) > 0 || allCarts.some(c => c.userId === u.login)).length;
-
-        const promos = JSON.parse(localStorage.getItem('rubi_promos')) || {};
-        const defaultPromos = {
-            'RUBI2026': 100,
-            'GAMEON': 100,
-            'RUBI50': 100,
-            'STARTER': 100,
-            'ADMIN1000': 1000,
-        };
-        const allPromos = { ...defaultPromos, ...promos };
+        const totalUsers = allUsers ? allUsers.length : 0;
+        const totalPurchases = cart ? cart.length : 0;
+        const totalRevenue = cart ? cart.reduce((sum, item) => sum + (item.price || 0), 0) : 0;
+        const totalProducts = products ? products.length : 0;
 
         let html = `
             <div class="admin-card">
                 <h4>📊 Статистика</h4>
                 <div class="admin-stats">
-                    <div class="admin-stat-item">
-                        <div class="num">${totalUsers}</div>
-                        <div class="label">Пользователей</div>
-                    </div>
-                    <div class="admin-stat-item">
-                        <div class="num">${totalPurchases}</div>
-                        <div class="label">Покупок</div>
-                    </div>
-                    <div class="admin-stat-item">
-                        <div class="num">${totalRevenue} ★</div>
-                        <div class="label">Выручка</div>
-                    </div>
-                    <div class="admin-stat-item">
-                        <div class="num">${PRODUCTS_DATA.length}</div>
-                        <div class="label">Товаров</div>
-                    </div>
-                    <div class="admin-stat-item">
-                        <div class="num">${activeUsers}</div>
-                        <div class="label">Активных</div>
-                    </div>
-                    <div class="admin-stat-item">
-                        <div class="num">${favorites.length}</div>
-                        <div class="label">В избранном</div>
-                    </div>
+                    <div class="admin-stat-item"><div class="num">${totalUsers}</div><div class="label">Пользователей</div></div>
+                    <div class="admin-stat-item"><div class="num">${totalPurchases}</div><div class="label">Покупок</div></div>
+                    <div class="admin-stat-item"><div class="num">${totalRevenue} ★</div><div class="label">Выручка</div></div>
+                    <div class="admin-stat-item"><div class="num">${totalProducts}</div><div class="label">Товаров</div></div>
+                    <div class="admin-stat-item"><div class="num">${favorites ? favorites.length : 0}</div><div class="label">В избранном</div></div>
                 </div>
-            </div>
-
-            <div class="admin-card">
-                <h4>🏆 Топ товаров</h4>
-                ${topProducts.length === 0 ? '<div style="color:rgba(255,255,255,0.3);font-size:13px;">Нет продаж</div>' : ''}
-                ${topProducts.map((p, i) => `
-                    <div class="admin-top-item">
-                        <span class="rank">#${i+1}</span>
-                        <span class="name">${p.name}</span>
-                        <span class="sales">${p.count} шт</span>
-                        <span class="revenue">${p.revenue} ★</span>
-                    </div>
-                `).join('')}
             </div>
 
             <div class="admin-card">
@@ -2349,25 +2696,25 @@
                     <button onclick="addProduct()" class="success">➕</button>
                 </div>
                 <div class="admin-products-list">
-                    ${PRODUCTS_DATA.map(p => `
+                    ${products && products.map(p => `
                         <div class="product-row">
                             <span class="p-name">${p.emoji} ${p.name} ${p.discount > 0 ? `🔻-${p.discount}%` : ''}</span>
                             <span class="p-price">${p.price} ★</span>
                             <button onclick="deleteProduct(${p.id})">✕</button>
                         </div>
-                    `).join('')}
+                    `).join('') || 'Нет товаров'}
                 </div>
             </div>
 
             <div class="admin-card">
                 <h4>👥 Пользователи (${totalUsers})</h4>
-                ${users.length === 0 ? '<div style="color:rgba(255,255,255,0.3);font-size:13px;">Нет зарегистрированных пользователей</div>' : ''}
-                ${users.map(u => `
+                ${allUsers && allUsers.length === 0 ? '<div style="color:rgba(255,255,255,0.3);font-size:13px;">Нет пользователей</div>' : ''}
+                ${allUsers && allUsers.map(u => `
                     <div class="admin-user-item">
                         <span class="user-name">${u.name || u.login}</span>
                         <span style="color:rgba(255,255,255,0.3);font-size:11px;">${u.login}</span>
                         <span class="user-bal">${u.balance || 0} ★</span>
-                        <button onclick="deleteUser('${u.login}')">✕</button>
+                        ${u.login !== 'admin' ? `<button onclick="deleteUser('${u.login}')">✕</button>` : '<span style="color:rgba(255,255,255,0.2);font-size:10px;">админ</span>'}
                     </div>
                 `).join('')}
             </div>
@@ -2380,13 +2727,10 @@
                     <button onclick="addPromoCode()" class="success">➕</button>
                 </div>
                 <div class="admin-promo-list">
-                    ${Object.entries(allPromos).map(([code, bonus]) => `
-                        <div class="admin-promo-item">
-                            <span class="promo-code">${code}</span>
-                            <span class="promo-bonus">+${bonus} ★</span>
-                            ${!defaultPromos[code] ? `<button onclick="deletePromoCode('${code}')">✕</button>` : '<span style="color:rgba(255,255,255,0.2);font-size:10px;">встроенный</span>'}
-                        </div>
-                    `).join('')}
+                    <div class="admin-promo-item"><span class="promo-code">RUBI2026</span><span class="promo-bonus">+100 ★</span><span style="color:rgba(255,255,255,0.2);font-size:10px;">встроенный</span></div>
+                    <div class="admin-promo-item"><span class="promo-code">GAMEON</span><span class="promo-bonus">+100 ★</span><span style="color:rgba(255,255,255,0.2);font-size:10px;">встроенный</span></div>
+                    <div class="admin-promo-item"><span class="promo-code">STARTER</span><span class="promo-bonus">+100 ★</span><span style="color:rgba(255,255,255,0.2);font-size:10px;">встроенный</span></div>
+                    <div class="admin-promo-item"><span class="promo-code">ADMIN1000</span><span class="promo-bonus">+1000 ★</span><span style="color:rgba(255,255,255,0.2);font-size:10px;">встроенный</span></div>
                 </div>
                 <div class="admin-hint">Встроенные промокоды нельзя удалить</div>
             </div>
@@ -2402,107 +2746,6 @@
         `;
 
         document.getElementById('adminContent').innerHTML = html;
-    }
-
-    // ============================================================
-    // ADMIN FUNCTIONS
-    // ============================================================
-    function addProduct() {
-        const name = document.getElementById('adminProductName').value.trim();
-        const sub = document.getElementById('adminProductSub').value.trim();
-        const emoji = document.getElementById('adminProductEmoji').value.trim() || '📦';
-        const price = parseInt(document.getElementById('adminProductPrice').value);
-        const discount = parseInt(document.getElementById('adminProductDiscount').value) || 0;
-        
-        if (!name || !price) {
-            alert('❌ Введите название и цену');
-            return;
-        }
-
-        PRODUCTS_DATA.push({ id: nextProductId++, name, sub, emoji, price, discount });
-        localStorage.setItem('rubi_products', JSON.stringify(PRODUCTS_DATA));
-        renderProducts();
-        renderAdmin();
-        alert('✅ Товар добавлен!');
-        
-        document.getElementById('adminProductName').value = '';
-        document.getElementById('adminProductSub').value = '';
-        document.getElementById('adminProductEmoji').value = '';
-        document.getElementById('adminProductPrice').value = '';
-        document.getElementById('adminProductDiscount').value = '';
-    }
-
-    function deleteProduct(id) {
-        if (!confirm('Удалить товар?')) return;
-        PRODUCTS_DATA = PRODUCTS_DATA.filter(p => p.id !== id);
-        localStorage.setItem('rubi_products', JSON.stringify(PRODUCTS_DATA));
-        renderProducts();
-        renderAdmin();
-    }
-
-    function deleteUser(login) {
-        if (!confirm(`Удалить пользователя ${login}?`)) return;
-        let users = JSON.parse(localStorage.getItem('rubi_users')) || [];
-        users = users.filter(u => u.login !== login);
-        localStorage.setItem('rubi_users', JSON.stringify(users));
-        renderAdmin();
-    }
-
-    function addPromoCode() {
-        const code = document.getElementById('adminPromoCode').value.trim().toUpperCase();
-        const bonus = parseInt(document.getElementById('adminPromoBonus').value);
-        
-        if (!code || !bonus) {
-            alert('❌ Введите код и бонус');
-            return;
-        }
-
-        const promos = JSON.parse(localStorage.getItem('rubi_promos')) || {};
-        promos[code] = bonus;
-        localStorage.setItem('rubi_promos', JSON.stringify(promos));
-        
-        alert(`✅ Промокод ${code} добавлен! (+${bonus} ★)`);
-        document.getElementById('adminPromoCode').value = '';
-        document.getElementById('adminPromoBonus').value = '';
-        renderAdmin();
-    }
-
-    function deletePromoCode(code) {
-        if (!confirm(`Удалить промокод "${code}"?`)) return;
-        const promos = JSON.parse(localStorage.getItem('rubi_promos')) || {};
-        delete promos[code];
-        localStorage.setItem('rubi_promos', JSON.stringify(promos));
-        alert(`✅ Промокод "${code}" удалён!`);
-        renderAdmin();
-    }
-
-    function setUserBalanceAdmin() {
-        const username = document.getElementById('adminUserBalance').value.trim();
-        const newBalance = parseInt(document.getElementById('adminNewBalance').value);
-        
-        if (!username || isNaN(newBalance)) {
-            alert('❌ Введите имя пользователя и баланс');
-            return;
-        }
-
-        let users = JSON.parse(localStorage.getItem('rubi_users')) || [];
-        const user = users.find(u => u.login === username || u.name === username);
-        if (user) {
-            user.balance = newBalance;
-            localStorage.setItem('rubi_users', JSON.stringify(users));
-            if (currentUser && currentUser.login === user.login) {
-                currentUser.balance = newBalance;
-                localStorage.setItem('rubi_user', JSON.stringify(currentUser));
-            }
-            alert(`✅ Баланс ${username} установлен: ${newBalance} ★`);
-            updateBalanceDisplay();
-        } else {
-            alert('❌ Пользователь не найден');
-        }
-        
-        document.getElementById('adminUserBalance').value = '';
-        document.getElementById('adminNewBalance').value = '';
-        renderAdmin();
     }
 
     // ============================================================
@@ -2522,6 +2765,30 @@
     }
 
     // ============================================================
+    // INIT
+    // ============================================================
+    function initApp() {
+        if (currentUser && currentUser.isAdmin) {
+            document.getElementById('adminBtn').style.display = 'flex';
+        } else {
+            document.getElementById('adminBtn').style.display = 'none';
+        }
+        updateUI();
+        renderProducts();
+        renderFavorites();
+        renderRecommendations();
+        renderCart();
+        renderChat();
+        setupSearch();
+        updateBalanceDisplay();
+        updateFavBadge();
+        if (currentUser && currentUser.isAdmin) {
+            renderAdmin();
+        }
+        startCountdown();
+    }
+
+    // ============================================================
     // START
     // ============================================================
     if (currentUser) {
@@ -2529,7 +2796,7 @@
         if (currentUser.isAdmin) {
             document.getElementById('adminBtn').style.display = 'flex';
         }
-        initApp();
+        loadData().then(() => initApp());
     } else {
         document.getElementById('authOverlay').classList.add('show');
         initApp();
@@ -2543,8 +2810,6 @@
     console.log('👤 Админ: admin / 123456');
     console.log('📢 Канал: https://t.me/rubishopgame');
     console.log('⭐ Пополнение: @vmvmvq');
-    console.log('❤️ Избранное: нажмите 🤍 на товаре');
-    console.log('👥 У каждого пользователя свой баланс!');
 </script>
 </body>
-    </html>
+                </html>
