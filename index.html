@@ -9,99 +9,108 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', 'Inter', system-ui, sans-serif;
-            transition: background-color 0.3s, color 0.3s, border-color 0.3s, box-shadow 0.3s;
-        }
-
-        :root {
-            --bg-primary: #0b0710;
-            --bg-secondary: #130c21;
-            --bg-card: rgba(255, 255, 255, 0.03);
-            --text-primary: #f0eeff;
-            --text-secondary: #c8c0e6;
-            --border-color: rgba(255, 255, 255, 0.08);
-            --shadow-color: rgba(100, 50, 255, 0.2);
-            --neon-purple: #8b5cf6;
-            --neon-blue: #3b82f6;
-            --ruby-red: #b81c5c;
-            --glass-bg: rgba(255, 255, 255, 0.02);
-        }
-
-        [data-theme="light"] {
-            --bg-primary: #f0edf5;
-            --bg-secondary: #e8e4f0;
-            --bg-card: rgba(255, 255, 255, 0.7);
-            --text-primary: #1a1428;
-            --text-secondary: #3d3560;
-            --border-color: rgba(0, 0, 0, 0.1);
-            --shadow-color: rgba(100, 50, 255, 0.1);
-            --glass-bg: rgba(255, 255, 255, 0.5);
+            font-family: 'Segoe UI', 'Inter', system-ui, -apple-system, sans-serif;
         }
 
         body {
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
+            min-height: 100vh;
+            background: #0b0710;
+            background-image: radial-gradient(circle at 20% 30%, #1f1433 0%, #0a0612 80%);
             padding: 12px;
+        }
+
+        .phone-frame {
+            width: 100%;
+            max-width: 390px;
+            aspect-ratio: 9 / 16;
+            background: #0d081a;
+            border-radius: 48px;
+            padding: 14px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), 0 0 0 2px rgba(180, 80, 255, 0.15), 0 0 40px #6f2bff40;
+            position: relative;
+        }
+
+        .app-screen {
+            width: 100%;
+            height: 100%;
+            border-radius: 36px;
+            background: linear-gradient(145deg, #130c21 0%, #0b0618 100%);
+            overflow: hidden;
+            position: relative;
+            padding: 20px 16px 18px;
+            box-shadow: inset 0 0 30px rgba(90, 0, 255, 0.2);
+            display: flex;
+            flex-direction: column;
         }
 
         /* Auth Modal */
         .auth-overlay {
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.9);
             backdrop-filter: blur(20px);
-            display: flex;
+            display: none;
             justify-content: center;
             align-items: center;
-            z-index: 9999;
-            animation: fadeIn 0.5s;
+            z-index: 99999;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .auth-overlay.show {
+            display: flex;
         }
 
         .auth-modal {
-            background: var(--bg-secondary);
+            background: rgba(20, 10, 40, 0.95);
             padding: 40px 30px;
             border-radius: 32px;
             max-width: 380px;
             width: 100%;
-            border: 1px solid var(--border-color);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             box-shadow: 0 0 80px rgba(139, 92, 246, 0.2);
+            backdrop-filter: blur(20px);
         }
 
         .auth-modal h2 {
             text-align: center;
-            font-size: 28px;
-            margin-bottom: 8px;
-            background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+            font-size: 32px;
+            margin-bottom: 4px;
+            background: linear-gradient(135deg, #8b5cf6, #ec4899);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .auth-modal p {
             text-align: center;
-            color: var(--text-secondary);
+            color: #c8c0e6;
             margin-bottom: 24px;
             font-size: 14px;
+            opacity: 0.6;
         }
 
         .auth-input {
             width: 100%;
-            padding: 14px 16px;
+            padding: 14px 18px;
             border-radius: 16px;
-            border: 1px solid var(--border-color);
-            background: var(--bg-card);
-            color: var(--text-primary);
-            font-size: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.05);
+            color: #f0eeff;
+            font-size: 15px;
             margin-bottom: 12px;
+            transition: 0.3s;
         }
 
         .auth-input:focus {
             outline: none;
-            border-color: var(--neon-purple);
-            box-shadow: 0 0 20px var(--shadow-color);
+            border-color: #8b5cf6;
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.2);
+        }
+
+        .auth-input::placeholder {
+            color: rgba(255, 255, 255, 0.3);
         }
 
         .auth-btn {
@@ -119,7 +128,7 @@
 
         .auth-btn:hover {
             transform: scale(0.98);
-            box-shadow: 0 0 40px rgba(139, 92, 246, 0.4);
+            box-shadow: 0 0 50px rgba(139, 92, 246, 0.4);
         }
 
         .auth-error {
@@ -135,30 +144,6 @@
             to { opacity: 1; transform: scale(1); }
         }
 
-        /* Phone Frame */
-        .phone-frame {
-            width: 100%;
-            max-width: 390px;
-            aspect-ratio: 9 / 16;
-            background: var(--bg-secondary);
-            border-radius: 48px;
-            padding: 14px;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), 0 0 0 2px var(--border-color), 0 0 40px var(--shadow-color);
-            position: relative;
-        }
-
-        .app-screen {
-            width: 100%;
-            height: 100%;
-            border-radius: 36px;
-            background: var(--bg-primary);
-            overflow: hidden;
-            position: relative;
-            padding: 16px 14px 14px;
-            display: flex;
-            flex-direction: column;
-        }
-
         /* Floating Items */
         .floating-items {
             position: absolute;
@@ -171,20 +156,21 @@
 
         .float-icon {
             position: absolute;
-            font-size: 2.4rem;
-            filter: drop-shadow(0 0 20px #a855f7);
+            font-size: 2.8rem;
+            filter: drop-shadow(0 0 20px #a855f7) drop-shadow(0 0 40px #3b82f6);
             animation: float 8s infinite alternate ease-in-out;
         }
 
-        .float-icon:nth-child(1) { top: 10%; left: 4%; animation-delay: 0s; }
-        .float-icon:nth-child(2) { top: 20%; right: 6%; animation-delay: 1.5s; }
-        .float-icon:nth-child(3) { bottom: 35%; left: 2%; animation-delay: 0.7s; }
-        .float-icon:nth-child(4) { bottom: 20%; right: 3%; animation-delay: 2.2s; }
-        .float-icon:nth-child(5) { top: 55%; left: 18%; animation-delay: 3s; }
+        .float-icon:nth-child(1) { top: 12%; left: 5%; font-size: 3.2rem; animation-delay: 0s; }
+        .float-icon:nth-child(2) { top: 25%; right: 8%; font-size: 3.8rem; animation-delay: 1.5s; }
+        .float-icon:nth-child(3) { bottom: 30%; left: 2%; font-size: 4.2rem; animation-delay: 0.7s; }
+        .float-icon:nth-child(4) { bottom: 15%; right: 4%; font-size: 3rem; animation-delay: 2.2s; }
+        .float-icon:nth-child(5) { top: 55%; left: 20%; font-size: 2.6rem; animation-delay: 3s; }
+        .float-icon:nth-child(6) { top: 70%; right: 18%; font-size: 3.4rem; animation-delay: 1s; }
 
         @keyframes float {
-            0% { transform: translateY(0px) rotate(0deg) scale(0.9); opacity: 0.5; }
-            100% { transform: translateY(-20px) rotate(6deg) scale(1.1); opacity: 1; }
+            0% { transform: translateY(0px) rotate(0deg) scale(0.9); opacity: 0.6; }
+            100% { transform: translateY(-25px) rotate(8deg) scale(1.2); opacity: 1; }
         }
 
         .content {
@@ -193,14 +179,27 @@
             display: flex;
             flex-direction: column;
             height: 100%;
-            gap: 10px;
+            gap: 12px;
+        }
+
+        .page {
+            display: none;
+            flex-direction: column;
+            height: 100%;
+            gap: 12px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .page.active {
+            display: flex;
         }
 
         /* Top Bar */
         .top-bar {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+            flex-shrink: 0;
         }
 
         .avatar-click {
@@ -210,20 +209,24 @@
         }
 
         .avatar-img {
-            width: 44px;
-            height: 44px;
+            width: 48px;
+            height: 48px;
             border-radius: 50%;
             background: linear-gradient(135deg, #b37aff, #6f3bff);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
+            font-size: 24px;
             font-weight: 600;
             color: white;
             box-shadow: 0 0 20px #a855f7;
-            border: 2px solid var(--border-color);
-            object-fit: cover;
+            border: 2px solid rgba(255, 255, 255, 0.15);
             overflow: hidden;
+            transition: 0.3s;
+        }
+
+        .avatar-img:hover {
+            transform: scale(1.05);
         }
 
         .avatar-img img {
@@ -238,12 +241,14 @@
             right: -4px;
             background: #facc15;
             color: #0b0710;
-            font-size: 9px;
+            font-size: 10px;
             font-weight: 700;
             padding: 2px 6px;
             border-radius: 30px;
-            border: 1px solid var(--bg-primary);
+            border: 1px solid #0b0710;
             box-shadow: 0 0 12px #facc15;
+            min-width: 18px;
+            text-align: center;
         }
 
         .search-wrap {
@@ -253,35 +258,40 @@
 
         .search-bar {
             width: 100%;
-            padding: 10px 14px 10px 42px;
+            padding: 12px 18px 12px 48px;
             border-radius: 40px;
-            border: 1px solid var(--border-color);
-            background: var(--bg-card);
+            border: none;
+            background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(12px);
-            color: var(--text-primary);
-            font-size: 14px;
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #f0eeff;
+            font-size: 16px;
+            font-weight: 400;
+            letter-spacing: 0.3px;
+            box-shadow: 0 0 20px rgba(100, 50, 255, 0.15);
             transition: 0.3s;
         }
 
         .search-bar::placeholder {
-            color: var(--text-secondary);
-            opacity: 0.5;
+            color: rgba(255, 255, 255, 0.35);
+            font-weight: 300;
         }
 
         .search-bar:focus {
             outline: none;
-            border-color: var(--neon-purple);
-            box-shadow: 0 0 30px var(--shadow-color);
+            border-color: #8b5cf6;
+            box-shadow: 0 0 30px #6d28d9;
+            background: rgba(30, 20, 50, 0.6);
         }
 
         .search-icon {
             position: absolute;
-            left: 14px;
+            left: 16px;
             top: 50%;
             transform: translateY(-50%);
-            color: var(--text-secondary);
-            font-size: 16px;
-            opacity: 0.5;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 18px;
         }
 
         .top-icons {
@@ -291,24 +301,24 @@
         }
 
         .icon-btn {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
+            width: 44px;
+            height: 44px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 18px;
+            font-size: 20px;
             cursor: pointer;
-            color: var(--text-secondary);
+            color: rgba(255, 255, 255, 0.6);
             transition: 0.3s;
             position: relative;
         }
 
         .icon-btn:hover {
-            border-color: var(--neon-purple);
-            box-shadow: 0 0 20px var(--shadow-color);
+            border-color: #8b5cf6;
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
         }
 
         .icon-btn .badge {
@@ -321,162 +331,212 @@
             padding: 2px 6px;
             border-radius: 30px;
             font-weight: 700;
+            min-width: 18px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(239, 68, 68, 0.4);
         }
 
         .theme-toggle {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
+            width: 44px;
+            height: 44px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 18px;
+            font-size: 20px;
             cursor: pointer;
-            color: var(--text-secondary);
+            color: rgba(255, 255, 255, 0.6);
             transition: 0.3s;
         }
 
         .theme-toggle:hover {
-            border-color: var(--neon-purple);
+            border-color: #8b5cf6;
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
         }
 
         /* Action Buttons */
         .action-buttons {
             display: flex;
-            gap: 10px;
+            gap: 12px;
+            flex-shrink: 0;
         }
 
         .btn-buy, .btn-sell {
             flex: 1;
-            padding: 14px 0;
+            padding: 16px 0;
             border: none;
             border-radius: 40px;
             font-weight: 700;
-            font-size: 16px;
-            letter-spacing: 0.5px;
-            cursor: pointer;
+            font-size: 18px;
+            letter-spacing: 0.6px;
+            background: rgba(20, 10, 40, 0.6);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #f0eeff;
+            text-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
             transition: 0.3s;
-            text-align: center;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(255, 0, 100, 0.2);
         }
 
         .btn-buy {
             background: linear-gradient(145deg, #b81c5c, #8b1a4a);
+            border-color: #ff3b7f;
+            box-shadow: 0 0 40px #ff2d7c80, inset 0 0 20px #ff6aa6;
             color: white;
-            box-shadow: 0 0 40px rgba(255, 45, 127, 0.3);
         }
 
         .btn-sell {
             background: linear-gradient(145deg, #1c3b8b, #142a6b);
+            border-color: #3b7bff;
+            box-shadow: 0 0 40px #2d7bff80, inset 0 0 20px #6aa6ff;
             color: white;
-            box-shadow: 0 0 40px rgba(45, 123, 255, 0.3);
+        }
+
+        .btn-buy::after, .btn-sell::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -20%;
+            width: 140%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 40%, rgba(255, 255, 255, 0.15), transparent 60%);
+            pointer-events: none;
         }
 
         .btn-buy:hover, .btn-sell:hover {
-            transform: scale(0.97);
-            filter: brightness(1.2);
+            transform: scale(0.98);
+            filter: brightness(1.3);
         }
 
         /* Categories */
-        .categories {
-            display: flex;
-            gap: 8px;
+        .categories-wrap {
+            flex-shrink: 0;
             overflow-x: auto;
-            padding: 4px 0 8px;
+            padding: 2px 0 4px;
             scrollbar-width: none;
+            -ms-overflow-style: none;
         }
 
-        .categories::-webkit-scrollbar {
+        .categories-wrap::-webkit-scrollbar {
             display: none;
+        }
+
+        .categories {
+            display: flex;
+            gap: 10px;
         }
 
         .category-item {
             flex-shrink: 0;
-            padding: 6px 16px;
-            background: var(--bg-card);
+            padding: 8px 20px;
+            background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(16px);
-            border: 1px solid var(--border-color);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
             border-radius: 40px;
-            color: var(--text-secondary);
+            color: #c8c0e6;
             font-weight: 500;
-            font-size: 13px;
+            font-size: 15px;
+            letter-spacing: 0.4px;
+            box-shadow: 0 0 15px rgba(100, 50, 255, 0.1);
+            transition: 0.25s;
             cursor: pointer;
-            transition: 0.3s;
             white-space: nowrap;
         }
 
         .category-item.active {
             background: rgba(139, 92, 246, 0.25);
-            border-color: var(--neon-purple);
-            color: var(--text-primary);
-            box-shadow: 0 0 30px var(--shadow-color);
+            border-color: #8b5cf6;
+            color: white;
+            box-shadow: 0 0 30px #6d28d9;
         }
 
         .category-item:hover {
-            border-color: var(--neon-purple);
+            border-color: #8b5cf6;
+            transform: translateY(-1px);
         }
 
-        /* Glass Card - Products */
+        /* Glass Card */
         .glass-card {
-            background: var(--glass-bg);
+            background: rgba(255, 255, 255, 0.02);
             backdrop-filter: blur(24px);
-            border-radius: 28px;
-            padding: 14px;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            -webkit-backdrop-filter: blur(24px);
+            border-radius: 32px;
+            padding: 18px 16px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), inset 0 0 60px rgba(120, 80, 255, 0.08);
             flex: 1;
+            display: flex;
+            flex-direction: column;
             overflow-y: auto;
             min-height: 0;
         }
 
+        .glass-card::-webkit-scrollbar {
+            width: 2px;
+        }
+
+        .glass-card::-webkit-scrollbar-thumb {
+            background: #8b5cf6;
+            border-radius: 10px;
+        }
+
         .glass-title {
-            color: var(--text-secondary);
-            font-size: 11px;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 12px;
             letter-spacing: 2px;
             text-transform: uppercase;
-            margin-bottom: 10px;
-            opacity: 0.6;
+            margin-bottom: 12px;
+            flex-shrink: 0;
         }
 
         .product-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
+            gap: 10px;
         }
 
         .product-item {
-            background: var(--bg-card);
-            border-radius: 16px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
             padding: 12px 8px;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            box-shadow: 0 0 20px rgba(100, 50, 255, 0.1);
             text-align: center;
-            border: 1px solid var(--border-color);
             cursor: pointer;
             transition: 0.3s;
         }
 
         .product-item:hover {
-            border-color: var(--neon-purple);
-            box-shadow: 0 0 20px var(--shadow-color);
-            transform: translateY(-2px);
+            border-color: #8b5cf6;
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
+            transform: translateY(-3px);
         }
 
         .product-item .emoji {
-            font-size: 28px;
+            font-size: 32px;
             display: block;
             margin-bottom: 4px;
         }
 
         .product-item .name {
             font-size: 11px;
-            color: var(--text-secondary);
+            color: rgba(255, 255, 255, 0.6);
             font-weight: 500;
         }
 
         .product-item .price {
-            font-size: 13px;
-            font-weight: 700;
+            font-size: 14px;
+            font-weight: 600;
             color: #facc15;
+            text-shadow: 0 0 20px #facc15;
             margin-top: 2px;
         }
 
@@ -485,73 +545,87 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 6px 0 0;
-            border-top: 1px solid var(--border-color);
+            padding: 8px 0 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            flex-shrink: 0;
         }
 
         .bottom-stat {
             display: flex;
             align-items: center;
             gap: 6px;
-            color: var(--text-secondary);
-            font-size: 12px;
+            color: #b6abdf;
+            font-size: 13px;
         }
 
         .bottom-stat span {
             font-weight: 600;
-            color: var(--text-primary);
+            color: #ffffff;
+            text-shadow: 0 0 20px #a855f7;
         }
 
         .appstore-badge {
-            color: var(--text-secondary);
-            font-size: 8px;
-            letter-spacing: 1px;
-            opacity: 0.3;
+            color: rgba(255, 255, 255, 0.12);
+            font-size: 9px;
+            letter-spacing: 2px;
+            font-weight: 300;
         }
 
-        /* Pages (hidden by default) */
-        .page {
-            display: none;
-            flex-direction: column;
-            height: 100%;
-            gap: 10px;
+        .appstore-badge::before {
+            content: "⬡  ";
+            opacity: 0.4;
         }
 
-        .page.active {
-            display: flex;
-        }
-
+        /* Page Header */
         .page-header {
             display: flex;
             align-items: center;
             gap: 12px;
-            padding-bottom: 8px;
-            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            flex-shrink: 0;
         }
 
         .page-header .back {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 50%;
-            width: 36px;
-            height: 36px;
+            width: 40px;
+            height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            font-size: 18px;
-            color: var(--text-secondary);
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.6);
+            transition: 0.3s;
+        }
+
+        .page-header .back:hover {
+            border-color: #8b5cf6;
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
         }
 
         .page-header h3 {
             flex: 1;
-            font-size: 18px;
+            font-size: 20px;
+            color: #f0eeff;
+            font-weight: 700;
         }
 
-        /* Profile Page */
+        /* Profile */
+        .profile-content {
+            flex: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            padding-bottom: 4px;
+        }
+
         .profile-info {
             text-align: center;
-            padding: 20px 0;
+            padding: 8px 0 12px;
         }
 
         .profile-avatar {
@@ -559,16 +633,23 @@
             height: 80px;
             border-radius: 50%;
             background: linear-gradient(135deg, #b37aff, #6f3bff);
-            margin: 0 auto 12px;
+            margin: 0 auto 10px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 32px;
             color: white;
             cursor: pointer;
-            border: 3px solid var(--border-color);
+            border: 3px solid rgba(255, 255, 255, 0.15);
             overflow: hidden;
             position: relative;
+            transition: 0.3s;
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
+        }
+
+        .profile-avatar:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 50px rgba(139, 92, 246, 0.5);
         }
 
         .profile-avatar img {
@@ -580,7 +661,7 @@
         .profile-avatar .edit-overlay {
             position: absolute;
             inset: 0;
-            background: rgba(0,0,0,0.5);
+            background: rgba(0, 0, 0, 0.5);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -588,6 +669,7 @@
             transition: 0.3s;
             font-size: 14px;
             color: white;
+            border-radius: 50%;
         }
 
         .profile-avatar:hover .edit-overlay {
@@ -595,86 +677,118 @@
         }
 
         .profile-name {
-            font-size: 20px;
+            font-size: 22px;
             font-weight: 700;
+            color: #f0eeff;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .profile-name:hover {
+            color: #8b5cf6;
         }
 
         .profile-username {
-            color: var(--text-secondary);
+            color: #b6abdf;
             font-size: 14px;
             margin: 4px 0 12px;
+            opacity: 0.7;
         }
 
         .profile-balance {
-            background: var(--bg-card);
-            padding: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 14px 20px;
             border-radius: 16px;
-            border: 1px solid var(--border-color);
+            border: 1px solid rgba(255, 255, 255, 0.06);
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .profile-balance .label {
-            color: var(--text-secondary);
-            font-size: 13px;
+            color: #b6abdf;
+            font-size: 14px;
         }
 
         .profile-balance .amount {
-            font-size: 20px;
+            font-size: 24px;
             font-weight: 700;
             color: #facc15;
+            text-shadow: 0 0 30px rgba(250, 204, 21, 0.2);
         }
 
         .profile-menu {
             display: flex;
             flex-direction: column;
-            gap: 6px;
-            margin-top: 8px;
+            gap: 8px;
         }
 
         .profile-menu-item {
             display: flex;
             align-items: center;
-            gap: 12px;
-            padding: 12px 16px;
-            background: var(--bg-card);
-            border-radius: 14px;
-            border: 1px solid var(--border-color);
+            gap: 14px;
+            padding: 14px 18px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
             cursor: pointer;
             transition: 0.3s;
-            color: var(--text-primary);
+            color: #f0eeff;
             text-decoration: none;
         }
 
         .profile-menu-item:hover {
-            border-color: var(--neon-purple);
-            box-shadow: 0 0 20px var(--shadow-color);
+            border-color: #8b5cf6;
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.2);
+            transform: translateX(3px);
+            background: rgba(139, 92, 246, 0.05);
         }
 
         .profile-menu-item .icon {
-            font-size: 20px;
+            font-size: 22px;
         }
 
         .profile-menu-item .arrow {
             margin-left: auto;
-            color: var(--text-secondary);
+            color: rgba(255, 255, 255, 0.2);
         }
 
-        /* Cart Page */
+        .profile-menu-item .highlight {
+            color: #3b82f6;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+
+        /* Cart */
+        .cart-list {
+            flex: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
         .cart-item {
             display: flex;
             align-items: center;
-            gap: 12px;
-            padding: 10px 14px;
-            background: var(--bg-card);
-            border-radius: 14px;
-            border: 1px solid var(--border-color);
-            margin-bottom: 6px;
+            gap: 14px;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: 0.3s;
+        }
+
+        .cart-item:hover {
+            border-color: #8b5cf6;
         }
 
         .cart-item .emoji {
-            font-size: 24px;
+            font-size: 28px;
         }
 
         .cart-item .info {
@@ -683,18 +797,42 @@
 
         .cart-item .info .name {
             font-weight: 600;
-            font-size: 14px;
+            font-size: 15px;
+            color: #f0eeff;
         }
 
         .cart-item .info .date {
             font-size: 11px;
-            color: var(--text-secondary);
-            opacity: 0.6;
+            color: rgba(255, 255, 255, 0.3);
         }
 
         .cart-item .price {
             font-weight: 700;
             color: #facc15;
+            font-size: 16px;
+        }
+
+        .cart-empty {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.3);
+            padding: 40px 0;
+            font-size: 15px;
+        }
+
+        .cart-total {
+            padding: 12px 0 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            justify-content: space-between;
+            font-weight: 600;
+            font-size: 16px;
+            color: #f0eeff;
+            flex-shrink: 0;
+        }
+
+        .cart-total .total-price {
+            color: #facc15;
+            font-size: 20px;
         }
 
         /* Chat */
@@ -703,21 +841,23 @@
             overflow-y: auto;
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            gap: 8px;
             padding: 4px 0;
         }
 
         .chat-message {
-            padding: 10px 14px;
-            border-radius: 16px;
+            padding: 12px 16px;
+            border-radius: 18px;
             max-width: 80%;
             font-size: 14px;
+            animation: fadeIn 0.3s ease;
         }
 
         .chat-message.incoming {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.06);
             align-self: flex-start;
+            color: #f0eeff;
         }
 
         .chat-message.outgoing {
@@ -728,52 +868,68 @@
 
         .chat-message .time {
             font-size: 10px;
-            opacity: 0.6;
+            opacity: 0.4;
             margin-top: 4px;
             display: block;
         }
 
         .chat-input {
             display: flex;
-            gap: 8px;
-            padding-top: 8px;
-            border-top: 1px solid var(--border-color);
+            gap: 10px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            flex-shrink: 0;
         }
 
         .chat-input input {
             flex: 1;
-            padding: 10px 14px;
+            padding: 12px 18px;
             border-radius: 40px;
-            border: 1px solid var(--border-color);
-            background: var(--bg-card);
-            color: var(--text-primary);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.05);
+            color: #f0eeff;
+            font-size: 14px;
+            transition: 0.3s;
         }
 
         .chat-input input:focus {
             outline: none;
-            border-color: var(--neon-purple);
+            border-color: #8b5cf6;
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.2);
+        }
+
+        .chat-input input::placeholder {
+            color: rgba(255, 255, 255, 0.3);
         }
 
         .chat-input button {
-            padding: 10px 20px;
+            padding: 12px 24px;
             border: none;
             border-radius: 40px;
             background: linear-gradient(135deg, #8b5cf6, #6d28d9);
             color: white;
             font-weight: 600;
             cursor: pointer;
+            transition: 0.3s;
+            font-size: 16px;
         }
 
-        /* Modal for product detail */
+        .chat-input button:hover {
+            transform: scale(0.95);
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
+        }
+
+        /* Product Modal */
         .product-modal {
             position: fixed;
             inset: 0;
-            background: rgba(0,0,0,0.7);
-            backdrop-filter: blur(12px);
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             display: none;
             align-items: center;
             justify-content: center;
-            z-index: 999;
+            z-index: 9999;
             padding: 20px;
         }
 
@@ -782,17 +938,18 @@
         }
 
         .product-modal-content {
-            background: var(--bg-secondary);
+            background: linear-gradient(145deg, #1a1030, #0f0820);
             border-radius: 32px;
-            padding: 30px 24px;
+            padding: 32px 28px;
             max-width: 360px;
             width: 100%;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 0 80px var(--shadow-color);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 80px rgba(139, 92, 246, 0.2);
+            animation: fadeIn 0.3s ease;
         }
 
         .product-modal-content .emoji {
-            font-size: 48px;
+            font-size: 56px;
             text-align: center;
             display: block;
         }
@@ -800,85 +957,110 @@
         .product-modal-content h3 {
             text-align: center;
             margin: 8px 0 4px;
+            font-size: 22px;
+            color: #f0eeff;
         }
 
         .product-modal-content .price {
             text-align: center;
-            font-size: 24px;
+            font-size: 28px;
             font-weight: 700;
             color: #facc15;
             margin-bottom: 16px;
+            text-shadow: 0 0 30px rgba(250, 204, 21, 0.2);
+        }
+
+        .product-modal-content .modal-label {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.3);
+            margin-bottom: 6px;
         }
 
         .product-modal-content input {
             width: 100%;
-            padding: 12px 16px;
+            padding: 14px 18px;
             border-radius: 16px;
-            border: 1px solid var(--border-color);
-            background: var(--bg-card);
-            color: var(--text-primary);
-            margin-bottom: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.05);
+            color: #f0eeff;
+            margin-bottom: 14px;
+            font-size: 15px;
+            transition: 0.3s;
         }
 
         .product-modal-content input:focus {
             outline: none;
-            border-color: var(--neon-purple);
+            border-color: #8b5cf6;
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.2);
+        }
+
+        .product-modal-content input::placeholder {
+            color: rgba(255, 255, 255, 0.3);
         }
 
         .product-modal-content .btn-group {
             display: flex;
-            gap: 8px;
+            gap: 10px;
         }
 
         .product-modal-content .btn-group button {
             flex: 1;
-            padding: 12px;
+            padding: 14px;
             border: none;
             border-radius: 16px;
             font-weight: 600;
             cursor: pointer;
             transition: 0.3s;
+            font-size: 15px;
         }
 
         .btn-buy-product {
-            background: linear-gradient(135deg, #b81c5c, #8b1a4a);
+            background: linear-gradient(145deg, #b81c5c, #8b1a4a);
             color: white;
+            box-shadow: 0 0 30px rgba(220, 28, 92, 0.2);
+        }
+
+        .btn-buy-product:hover {
+            transform: scale(0.97);
+            box-shadow: 0 0 50px rgba(220, 28, 92, 0.4);
         }
 
         .btn-close-modal {
-            background: var(--bg-card);
-            color: var(--text-primary);
-            border: 1px solid var(--border-color);
+            background: rgba(255, 255, 255, 0.05);
+            color: #f0eeff;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .btn-close-modal:hover {
+            border-color: #8b5cf6;
         }
 
         .btn-contact {
             background: linear-gradient(135deg, #3b82f6, #1d4ed8);
             color: white;
             width: 100%;
-            padding: 12px;
+            padding: 14px;
             border: none;
             border-radius: 16px;
             font-weight: 600;
             cursor: pointer;
-            margin-top: 8px;
+            margin-top: 10px;
+            transition: 0.3s;
         }
 
-        .hidden {
-            display: none !important;
+        .btn-contact:hover {
+            transform: scale(0.97);
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
         }
 
-        /* Scrollbar */
-        ::-webkit-scrollbar {
-            width: 3px;
-        }
-        ::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--neon-purple);
-            border-radius: 10px;
+        .modal-hint {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.2);
+            text-align: center;
+            margin-top: 12px;
         }
 
+        /* Responsive */
         @media (max-width: 420px) {
             .phone-frame {
                 border-radius: 32px;
@@ -886,55 +1068,59 @@
                 max-width: 100%;
             }
             .app-screen {
-                padding: 12px 10px;
+                padding: 16px 12px;
                 border-radius: 28px;
             }
-            .product-grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 6px;
-            }
-            .product-item { padding: 8px 4px; }
-            .product-item .emoji { font-size: 22px; }
-            .avatar-img { width: 38px; height: 38px; font-size: 16px; }
+            .float-icon { font-size: 2rem; }
+            .btn-buy, .btn-sell { font-size: 15px; padding: 14px 0; }
+            .category-item { font-size: 13px; padding: 6px 14px; }
+            .avatar-img { width: 40px; height: 40px; font-size: 18px; }
+            .icon-btn, .theme-toggle { width: 38px; height: 38px; font-size: 17px; }
+            .product-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+            .product-item { padding: 10px 6px; }
+            .product-item .emoji { font-size: 26px; }
+            .product-item .name { font-size: 10px; }
+            .product-item .price { font-size: 12px; }
+            .auth-modal { padding: 30px 20px; }
         }
     </style>
 </head>
 <body>
 
 <!-- Auth Modal -->
-<div class="auth-overlay" id="authOverlay">
+<div class="auth-overlay show" id="authOverlay">
     <div class="auth-modal">
         <h2>🔮 Rubi</h2>
-        <p>Войдите в свой аккаунт</p>
-        <input class="auth-input" id="authLogin" placeholder="Имя пользователя" value="admin">
-        <input class="auth-input" id="authPassword" type="password" placeholder="Пароль" value="123456">
-        <button class="auth-btn" onclick="handleAuth()">Войти</button>
+        <p>Игровой маркетплейс</p>
+        <input class="auth-input" id="authLogin" placeholder="Имя пользователя">
+        <input class="auth-input" id="authPassword" type="password" placeholder="Пароль">
+        <button class="auth-btn" onclick="handleAuth()">Войти / Регистрация</button>
         <div class="auth-error" id="authError">Неверный логин или пароль</div>
-        <p style="margin-top:12px;font-size:12px;opacity:0.4;">Админ: admin / 123456</p>
+        <p style="margin-top:14px;font-size:11px;text-align:center;opacity:0.2;">Админ: admin / 123456</p>
     </div>
 </div>
 
-<!-- Product Detail Modal -->
+<!-- Product Modal -->
 <div class="product-modal" id="productModal">
     <div class="product-modal-content">
         <span class="emoji" id="modalEmoji">🎯</span>
         <h3 id="modalName">AWP Скин</h3>
         <div class="price" id="modalPrice">$85</div>
-        <input id="modalCode" placeholder="Введите код для покупки">
+        <div class="modal-label">Введите код для покупки</div>
+        <input id="modalCode" placeholder="Код из оплаты">
         <div class="btn-group">
             <button class="btn-buy-product" onclick="buyProduct()">💎 Купить</button>
             <button class="btn-close-modal" onclick="closeModal()">Закрыть</button>
         </div>
         <button class="btn-contact" onclick="contactSeller()">📩 Связаться с продавцом</button>
-        <p style="font-size:11px;color:var(--text-secondary);margin-top:8px;text-align:center;opacity:0.5;">
-            Пополнить баланс: @vmvmvq
-        </p>
+        <div class="modal-hint">Пополнение баланса: @vmvmvq</div>
     </div>
 </div>
 
-<!-- Phone -->
+<!-- Phone Frame -->
 <div class="phone-frame">
     <div class="app-screen">
+        <!-- Floating Items -->
         <div class="floating-items">
             <div class="float-icon">🔫</div>
             <div class="float-icon">🗡️</div>
@@ -948,11 +1134,11 @@
             <div class="top-bar">
                 <div class="avatar-click" onclick="navigateTo('profile')">
                     <div class="avatar-img" id="mainAvatar">R</div>
-                    <span class="badge-level" id="mainLevel">23</span>
+                    <span class="badge-level" id="mainLevel">1</span>
                 </div>
                 <div class="search-wrap">
                     <span class="search-icon">🔍</span>
-                    <input class="search-bar" placeholder="Поиск предметов...">
+                    <input class="search-bar" id="mainSearch" placeholder="Поиск предметов, скинов...">
                 </div>
                 <div class="top-icons">
                     <div class="theme-toggle" onclick="toggleTheme()">🌓</div>
@@ -962,34 +1148,34 @@
                     </div>
                     <div class="icon-btn" onclick="navigateTo('chat')">
                         💬
-                        <span class="badge" id="chatBadge">1</span>
+                        <span class="badge" id="chatBadge">0</span>
                     </div>
                 </div>
             </div>
 
             <div class="action-buttons">
                 <div class="btn-buy" onclick="navigateTo('cart')">💎 КУПИТЬ</div>
-                <div class="btn-sell" onclick="alert('Продажа предметов')">⚡ ПРОДАТЬ</div>
+                <div class="btn-sell" onclick="alert('📤 Продажа предметов на Rubi')">⚡ ПРОДАТЬ</div>
             </div>
 
-            <div class="categories" id="categoriesContainer">
-                <span class="category-item active" data-cat="games">🎮 Игры</span>
-                <span class="category-item" data-cat="apps">📱 Приложения</span>
-                <span class="category-item" data-cat="skins">🔫 Скины</span>
-                <span class="category-item" data-cat="boost">🚀 Бусты</span>
+            <div class="categories-wrap">
+                <div class="categories" id="categoriesContainer">
+                    <span class="category-item active" data-cat="games">🎮 Игры</span>
+                    <span class="category-item" data-cat="apps">📱 Приложения</span>
+                    <span class="category-item" data-cat="skins">🔫 Скины</span>
+                    <span class="category-item" data-cat="boost">🚀 Бусты</span>
+                </div>
             </div>
 
             <div class="glass-card">
                 <div class="glass-title">✦ ПОПУЛЯРНЫЕ ЛОТЫ</div>
-                <div class="product-grid" id="productGrid">
-                    <!-- Динамически из JS -->
-                </div>
+                <div class="product-grid" id="productGrid"></div>
             </div>
 
             <div class="bottom-bar">
                 <div class="bottom-stat">🟣 Онлайн <span id="onlineCount">1.2k</span></div>
                 <div class="bottom-stat">🟡 Рейтинг <span>4.9</span></div>
-                <div class="appstore-badge">СКРИНШОТ APP STORE</div>
+                <div class="appstore-badge">СКРИНШОТ ИЗ APP STORE</div>
             </div>
         </div>
 
@@ -998,41 +1184,42 @@
             <div class="page-header">
                 <div class="back" onclick="navigateTo('main')">←</div>
                 <h3>Профиль</h3>
-                <div style="width:36px;"></div>
+                <div style="width:40px;"></div>
             </div>
-            <div class="profile-info">
-                <div class="profile-avatar" id="profileAvatar" onclick="editAvatar()">
-                    <span id="profileAvatarText">R</span>
-                    <div class="edit-overlay">✎</div>
+            <div class="profile-content">
+                <div class="profile-info">
+                    <div class="profile-avatar" id="profileAvatar" onclick="editAvatar()">
+                        <span id="profileAvatarText">R</span>
+                        <div class="edit-overlay">✎</div>
+                    </div>
+                    <div class="profile-name" id="profileNameDisplay" onclick="editName()">Rubi User</div>
+                    <div class="profile-username" id="profileUsername">@telegram_user</div>
+                    <div class="profile-balance">
+                        <span class="label">💰 Баланс</span>
+                        <span class="amount" id="profileBalance">$0</span>
+                    </div>
                 </div>
-                <input id="profileNameInput" style="display:none;text-align:center;font-size:20px;background:transparent;border:none;border-bottom:2px solid var(--neon-purple);color:var(--text-primary);width:80%;margin:0 auto;" value="Rubi User">
-                <div class="profile-name" id="profileNameDisplay" onclick="editName()">Rubi User</div>
-                <div class="profile-username" id="profileUsername">@telegram_user</div>
-                <div class="profile-balance">
-                    <span class="label">💰 Баланс</span>
-                    <span class="amount" id="profileBalance">$1,240</span>
-                </div>
-            </div>
-            <div class="profile-menu">
-                <div class="profile-menu-item" onclick="getPromoCode()">
-                    <span class="icon">🎁</span>
-                    <span>Получить промокод</span>
-                    <span class="arrow">→</span>
-                </div>
-                <a class="profile-menu-item" href="https://t.me/rubishopgame" target="_blank">
-                    <span class="icon">📢</span>
-                    <span>Telegram-канал</span>
-                    <span class="arrow" style="color:#3b82f6;">✦</span>
-                </a>
-                <div class="profile-menu-item" onclick="topUpBalance()">
-                    <span class="icon">⭐</span>
-                    <span>Пополнить баланс</span>
-                    <span class="arrow">→</span>
-                </div>
-                <div class="profile-menu-item" onclick="logout()">
-                    <span class="icon">🚪</span>
-                    <span>Выйти</span>
-                    <span class="arrow">→</span>
+                <div class="profile-menu">
+                    <div class="profile-menu-item" onclick="getPromoCode()">
+                        <span class="icon">🎁</span>
+                        <span>Получить промокод</span>
+                        <span class="arrow">→</span>
+                    </div>
+                    <a class="profile-menu-item" href="https://t.me/rubishopgame" target="_blank">
+                        <span class="icon">📢</span>
+                        <span>Telegram-канал</span>
+                        <span class="arrow highlight">✦</span>
+                    </a>
+                    <div class="profile-menu-item" onclick="topUpBalance()">
+                        <span class="icon">⭐</span>
+                        <span>Пополнить баланс</span>
+                        <span class="arrow">→</span>
+                    </div>
+                    <div class="profile-menu-item" onclick="logout()">
+                        <span class="icon">🚪</span>
+                        <span>Выйти</span>
+                        <span class="arrow">→</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1042,16 +1229,14 @@
             <div class="page-header">
                 <div class="back" onclick="navigateTo('main')">←</div>
                 <h3>🛒 Корзина</h3>
-                <div style="width:36px;"></div>
+                <div style="width:40px;"></div>
             </div>
-            <div style="flex:1;overflow-y:auto;" id="cartList">
-                <div style="text-align:center;color:var(--text-secondary);padding:40px 0;opacity:0.5;">
-                    Корзина пуста
-                </div>
+            <div class="cart-list" id="cartList">
+                <div class="cart-empty">Корзина пуста</div>
             </div>
-            <div style="padding:8px 0;border-top:1px solid var(--border-color);display:flex;justify-content:space-between;">
+            <div class="cart-total">
                 <span>Итого:</span>
-                <span style="font-weight:700;color:#facc15;" id="cartTotal">$0</span>
+                <span class="total-price" id="cartTotal">$0</span>
             </div>
         </div>
 
@@ -1060,22 +1245,9 @@
             <div class="page-header">
                 <div class="back" onclick="navigateTo('main')">←</div>
                 <h3>💬 Чат</h3>
-                <div style="width:36px;"></div>
+                <div style="width:40px;"></div>
             </div>
-            <div class="chat-messages" id="chatMessages">
-                <div class="chat-message incoming">
-                    👋 Привет! Ваш заказ подтверждён.
-                    <span class="time">12:30</span>
-                </div>
-                <div class="chat-message outgoing">
-                    Спасибо!
-                    <span class="time">12:32</span>
-                </div>
-                <div class="chat-message incoming">
-                    🎁 Вам доступен промокод RUBI2026
-                    <span class="time">12:35</span>
-                </div>
-            </div>
+            <div class="chat-messages" id="chatMessages"></div>
             <div class="chat-input">
                 <input id="chatInput" placeholder="Сообщение..." onkeydown="if(event.key==='Enter')sendMessage()">
                 <button onclick="sendMessage()">→</button>
@@ -1085,7 +1257,9 @@
 </div>
 
 <script>
-    // ==================== DATA ====================
+    // ============================================================
+    // DATA
+    // ============================================================
     const PRODUCTS = {
         games: [
             { id: 1, name: 'Brawl Stars', emoji: '⭐', price: 25 },
@@ -1121,42 +1295,46 @@
         ]
     };
 
+    // ============================================================
+    // STATE
+    // ============================================================
     let currentCategory = 'games';
     let cart = JSON.parse(localStorage.getItem('rubi_cart')) || [];
     let chatMessages = JSON.parse(localStorage.getItem('rubi_chat')) || [
-        { text: '👋 Привет! Ваш заказ подтверждён.', time: '12:30', type: 'incoming' },
-        { text: 'Спасибо!', time: '12:32', type: 'outgoing' },
-        { text: '🎁 Вам доступен промокод RUBI2026', time: '12:35', type: 'incoming' }
+        { text: '👋 Добро пожаловать в Rubi!', time: '12:30', type: 'incoming' },
+        { text: 'Здесь вы можете купить игровые предметы', time: '12:31', type: 'incoming' },
+        { text: '🎁 Используйте промокод RUBI2026', time: '12:32', type: 'incoming' }
     ];
     let currentUser = JSON.parse(localStorage.getItem('rubi_user')) || null;
-    let balance = parseInt(localStorage.getItem('rubi_balance')) || 1240;
+    let balance = parseInt(localStorage.getItem('rubi_balance')) || 500;
+    let selectedProduct = null;
+    let avatarImage = null;
 
-    // ==================== AUTH ====================
+    // ============================================================
+    // AUTH
+    // ============================================================
     function handleAuth() {
         const login = document.getElementById('authLogin').value.trim();
         const password = document.getElementById('authPassword').value.trim();
 
-        // Admin check
         if (login === 'admin' && password === '123456') {
             currentUser = { name: 'Admin', username: '@admin_rubi', isAdmin: true, level: 99 };
             localStorage.setItem('rubi_user', JSON.stringify(currentUser));
-            document.getElementById('authOverlay').style.display = 'none';
-            updateUI();
+            document.getElementById('authOverlay').classList.remove('show');
+            initApp();
             return;
         }
 
-        // Check existing users
         const users = JSON.parse(localStorage.getItem('rubi_users')) || [];
         const found = users.find(u => u.login === login && u.password === password);
         if (found) {
             currentUser = { name: found.name, username: found.username, level: found.level || 1 };
             localStorage.setItem('rubi_user', JSON.stringify(currentUser));
-            document.getElementById('authOverlay').style.display = 'none';
-            updateUI();
+            document.getElementById('authOverlay').classList.remove('show');
+            initApp();
             return;
         }
 
-        // New user registration
         if (login.length > 0 && password.length > 0) {
             const newUser = {
                 login: login,
@@ -1169,35 +1347,89 @@
             localStorage.setItem('rubi_users', JSON.stringify(users));
             currentUser = { name: login, username: '@' + login + '_tg', level: 1 };
             localStorage.setItem('rubi_user', JSON.stringify(currentUser));
-            document.getElementById('authOverlay').style.display = 'none';
-            updateUI();
+            document.getElementById('authOverlay').classList.remove('show');
+            initApp();
         } else {
             document.getElementById('authError').style.display = 'block';
             setTimeout(() => document.getElementById('authError').style.display = 'none', 3000);
         }
     }
 
-    // Check if already logged in
-    if (currentUser) {
-        document.getElementById('authOverlay').style.display = 'none';
+    document.getElementById('authPassword').addEventListener('keydown', e => { if (e.key === 'Enter') handleAuth(); });
+    document.getElementById('authLogin').addEventListener('keydown', e => { if (e.key === 'Enter') handleAuth(); });
+
+    // ============================================================
+    // INIT
+    // ============================================================
+    function initApp() {
+        if (currentUser) {
+            document.getElementById('authOverlay').classList.remove('show');
+        }
+        updateUI();
+        renderProducts('games');
+        renderCart();
+        renderChat();
+        setupCategories();
+        setupSearch();
     }
 
-    // ==================== NAVIGATION ====================
+    function setupCategories() {
+        document.querySelectorAll('.category-item').forEach(el => {
+            el.addEventListener('click', function() {
+                document.querySelectorAll('.category-item').forEach(c => c.classList.remove('active'));
+                this.classList.add('active');
+                const cat = this.dataset.cat;
+                if (cat && PRODUCTS[cat]) {
+                    currentCategory = cat;
+                    renderProducts(cat);
+                }
+            });
+        });
+    }
+
+    function setupSearch() {
+        document.getElementById('mainSearch').addEventListener('input', function() {
+            const query = this.value.toLowerCase().trim();
+            const products = PRODUCTS[currentCategory] || PRODUCTS.games;
+            const filtered = products.filter(p => p.name.toLowerCase().includes(query));
+            const grid = document.getElementById('productGrid');
+            if (filtered.length === 0) {
+                grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:20px;color:rgba(255,255,255,0.3);">Ничего не найдено</div>';
+            } else {
+                grid.innerHTML = filtered.map(p => `
+                    <div class="product-item" onclick="openProduct('${p.id}','${p.name}','${p.emoji}',${p.price})">
+                        <span class="emoji">${p.emoji}</span>
+                        <div class="name">${p.name}</div>
+                        <div class="price">$${p.price}</div>
+                    </div>
+                `).join('');
+            }
+        });
+    }
+
+    // ============================================================
+    // NAVIGATION
+    // ============================================================
     function navigateTo(page) {
         document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-        document.getElementById('page' + page.charAt(0).toUpperCase() + page.slice(1)).classList.add('active');
+        const target = document.getElementById('page' + page.charAt(0).toUpperCase() + page.slice(1));
+        if (target) target.classList.add('active');
         if (page === 'cart') renderCart();
         if (page === 'profile') updateProfile();
         if (page === 'chat') renderChat();
     }
 
-    // ==================== THEME ====================
+    // ============================================================
+    // THEME
+    // ============================================================
     function toggleTheme() {
         const current = document.documentElement.getAttribute('data-theme');
         document.documentElement.setAttribute('data-theme', current === 'light' ? 'dark' : 'light');
     }
 
-    // ==================== PRODUCTS ====================
+    // ============================================================
+    // PRODUCTS
+    // ============================================================
     function renderProducts(category) {
         const grid = document.getElementById('productGrid');
         const products = PRODUCTS[category] || PRODUCTS.games;
@@ -1210,22 +1442,9 @@
         `).join('');
     }
 
-    // Categories click
-    document.querySelectorAll('.category-item').forEach(el => {
-        el.addEventListener('click', function() {
-            document.querySelectorAll('.category-item').forEach(c => c.classList.remove('active'));
-            this.classList.add('active');
-            const cat = this.dataset.cat;
-            if (cat === 'games' || cat === 'apps' || cat === 'skins' || cat === 'boost') {
-                currentCategory = cat;
-                renderProducts(cat);
-            }
-        });
-    });
-
-    // ==================== PRODUCT MODAL ====================
-    let selectedProduct = null;
-
+    // ============================================================
+    // PRODUCT MODAL
+    // ============================================================
     function openProduct(id, name, emoji, price) {
         selectedProduct = { id, name, emoji, price };
         document.getElementById('modalEmoji').textContent = emoji;
@@ -1243,36 +1462,46 @@
         if (!selectedProduct) return;
         const code = document.getElementById('modalCode').value.trim();
         if (code) {
-            // Проверка кода (для демо - любой код подходит)
             if (balance >= selectedProduct.price) {
                 balance -= selectedProduct.price;
                 localStorage.setItem('rubi_balance', balance);
-                cart.push({ ...selectedProduct, date: new Date().toLocaleDateString() });
+                cart.push({
+                    ...selectedProduct,
+                    date: new Date().toLocaleDateString('ru-RU'),
+                    time: new Date().toLocaleTimeString('ru-RU', {hour:'2-digit',minute:'2-digit'})
+                });
                 localStorage.setItem('rubi_cart', JSON.stringify(cart));
                 updateUI();
-                alert(`✅ Товар "${selectedProduct.name}" куплен!`);
-                closeModal();
                 renderCart();
+                alert(`✅ Товар "${selectedProduct.name}" успешно куплен!`);
+                closeModal();
             } else {
-                alert('❌ Недостаточно средств! Пополните баланс.');
+                alert('❌ Недостаточно средств! Пополните баланс через @vmvmvq');
             }
         } else {
-            alert('⚠️ Введите код, полученный после оплаты.');
+            alert('⚠️ Введите код, полученный после оплаты через @vmvmvq');
         }
     }
 
     function contactSeller() {
-        alert('📩 Свяжитесь с продавцом: @vmvmvq\n\nИнструкция:\n1. Напишите сумму пополнения\n2. После оплаты получите код\n3. Введите код при покупке');
+        alert('📩 Связь с продавцом: @vmvmvq\n\nИнструкция:\n1. Напишите сумму пополнения\n2. После оплаты получите код\n3. Введите код при покупке');
         window.open('https://t.me/vmvmvq', '_blank');
     }
 
-    // ==================== CART ====================
+    document.getElementById('productModal').addEventListener('click', function(e) {
+        if (e.target === this) closeModal();
+    });
+
+    // ============================================================
+    // CART
+    // ============================================================
     function renderCart() {
         const list = document.getElementById('cartList');
         const total = document.getElementById('cartTotal');
         if (cart.length === 0) {
-            list.innerHTML = '<div style="text-align:center;color:var(--text-secondary);padding:40px 0;opacity:0.5;">Корзина пуста</div>';
+            list.innerHTML = '<div class="cart-empty">🛒 Корзина пуста</div>';
             total.textContent = '$0';
+            document.getElementById('cartBadge').textContent = '0';
             return;
         }
         list.innerHTML = cart.map(item => `
@@ -1280,7 +1509,7 @@
                 <span class="emoji">${item.emoji}</span>
                 <div class="info">
                     <div class="name">${item.name}</div>
-                    <div class="date">${item.date || 'Сегодня'}</div>
+                    <div class="date">${item.date || 'Сегодня'} ${item.time || ''}</div>
                 </div>
                 <div class="price">$${item.price}</div>
             </div>
@@ -1290,7 +1519,9 @@
         document.getElementById('cartBadge').textContent = cart.length;
     }
 
-    // ==================== CHAT ====================
+    // ============================================================
+    // CHAT
+    // ============================================================
     function renderChat() {
         const container = document.getElementById('chatMessages');
         container.innerHTML = chatMessages.map(m => `
@@ -1300,7 +1531,8 @@
             </div>
         `).join('');
         container.scrollTop = container.scrollHeight;
-        document.getElementById('chatBadge').textContent = chatMessages.filter(m => m.type === 'incoming').length;
+        const incoming = chatMessages.filter(m => m.type === 'incoming').length;
+        document.getElementById('chatBadge').textContent = incoming;
     }
 
     function sendMessage() {
@@ -1313,9 +1545,9 @@
         localStorage.setItem('rubi_chat', JSON.stringify(chatMessages));
         input.value = '';
         renderChat();
-        // Simulate reply
+
         setTimeout(() => {
-            const replies = ['👍 Отлично!', 'Скоро ответим', 'Спасибо за обращение', '✅ Принято'];
+            const replies = ['👍 Отлично!', 'Скоро ответим', 'Спасибо за обращение', '✅ Принято', '🎁 Промокод: RUBI2026'];
             const reply = replies[Math.floor(Math.random() * replies.length)];
             const now2 = new Date();
             const time2 = now2.getHours().toString().padStart(2,'0') + ':' + now2.getMinutes().toString().padStart(2,'0');
@@ -1325,39 +1557,30 @@
         }, 1500);
     }
 
-    // ==================== PROFILE ====================
+    // ============================================================
+    // PROFILE
+    // ============================================================
     function updateProfile() {
         if (!currentUser) return;
         document.getElementById('profileNameDisplay').textContent = currentUser.name || 'Rubi User';
         document.getElementById('profileUsername').textContent = currentUser.username || '@user';
         document.getElementById('profileBalance').textContent = '$' + balance;
-        document.getElementById('mainAvatar').textContent = currentUser.name ? currentUser.name[0].toUpperCase() : 'R';
-        document.getElementById('profileAvatarText').textContent = currentUser.name ? currentUser.name[0].toUpperCase() : 'R';
+        const initial = currentUser.name ? currentUser.name[0].toUpperCase() : 'R';
+        document.getElementById('mainAvatar').innerHTML = avatarImage ? 
+            `<img src="${avatarImage}">` : initial;
+        document.getElementById('profileAvatarText').textContent = avatarImage ? '' : initial;
         document.getElementById('mainLevel').textContent = currentUser.level || 1;
     }
 
     function editName() {
-        const display = document.getElementById('profileNameDisplay');
-        const input = document.getElementById('profileNameInput');
-        display.style.display = 'none';
-        input.style.display = 'block';
-        input.value = currentUser.name || '';
-        input.focus();
-        input.onblur = function() {
-            if (this.value.trim()) {
-                currentUser.name = this.value.trim();
-                localStorage.setItem('rubi_user', JSON.stringify(currentUser));
-                updateProfile();
-            }
-            this.style.display = 'none';
-            display.style.display = 'block';
-        };
-        input.onkeydown = function(e) {
-            if (e.key === 'Enter') this.blur();
-        };
+        const newName = prompt('Введите новое имя:', currentUser.name);
+        if (newName && newName.trim()) {
+            currentUser.name = newName.trim();
+            localStorage.setItem('rubi_user', JSON.stringify(currentUser));
+            updateProfile();
+        }
     }
 
-    let avatarImage = null;
     function editAvatar() {
         const input = document.createElement('input');
         input.type = 'file';
@@ -1367,11 +1590,8 @@
             if (file) {
                 const reader = new FileReader();
                 reader.onload = function(ev) {
-                    const dataUrl = ev.target.result;
-                    avatarImage = dataUrl;
-                    const avatarEl = document.getElementById('profileAvatar');
-                    avatarEl.innerHTML = `<img src="${dataUrl}" alt="avatar"><div class="edit-overlay">✎</div>`;
-                    document.getElementById('mainAvatar').innerHTML = `<img src="${dataUrl}" style="width:100%;height:100%;object-fit:cover;">`;
+                    avatarImage = ev.target.result;
+                    updateProfile();
                 };
                 reader.readAsDataURL(file);
             }
@@ -1380,13 +1600,17 @@
     }
 
     function getPromoCode() {
-        const codes = ['RUBI2026', 'GAMEON', 'RUBI50', 'STARTER'];
+        const codes = ['RUBI2026', 'GAMEON', 'RUBI50', 'STARTER', 'RUBI100'];
         const code = codes[Math.floor(Math.random() * codes.length)];
         alert(`🎁 Ваш промокод: ${code}\nДействует на первый заказ!`);
+        window.open('https://t.me/rubishopgame', '_blank');
     }
 
     function topUpBalance() {
-        alert('⭐ Пополнение баланса через Telegram Stars\n\nСвяжитесь с @vmvmvq\n\nИнструкция:\n1. Напишите сумму пополнения\n2. После оплаты получите код\n3. Введите код при покупке товара');
+        alert('⭐ Пополнение баланса через Telegram Stars\n\n' +
+              '1. Напишите @vmvmvq сумму пополнения\n' +
+              '2. После оплаты получите код\n' +
+              '3. Введите код при покупке товара');
         window.open('https://t.me/vmvmvq', '_blank');
     }
 
@@ -1398,49 +1622,36 @@
         }
     }
 
-    // ==================== UPDATE UI ====================
+    // ============================================================
+    // UPDATE UI
+    // ============================================================
     function updateUI() {
         updateProfile();
-        renderProducts('games');
         renderCart();
         renderChat();
-        document.getElementById('cartBadge').textContent = cart.length;
-        document.getElementById('chatBadge').textContent = chatMessages.filter(m => m.type === 'incoming').length;
-        // Online count random
-        const online = (Math.random() * 2 + 0.5).toFixed(1) + 'k';
+        const online = (Math.random() * 2 + 0.8).toFixed(1) + 'k';
         document.getElementById('onlineCount').textContent = online;
     }
 
-    // ==================== INIT ====================
-    // Set initial theme
+    // ============================================================
+    // START
+    // ============================================================
+    if (currentUser) {
+        document.getElementById('authOverlay').classList.remove('show');
+        initApp();
+    } else {
+        document.getElementById('authOverlay').classList.add('show');
+        initApp();
+    }
+
     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
         document.documentElement.setAttribute('data-theme', 'light');
     }
 
-    // Auth enter key
-    document.getElementById('authPassword').addEventListener('keydown', function(e) {
-        if (e.key === 'Enter') handleAuth();
-    });
-    document.getElementById('authLogin').addEventListener('keydown', function(e) {
-        if (e.key === 'Enter') handleAuth();
-    });
-
-    // Init
-    if (currentUser) {
-        updateUI();
-    } else {
-        document.getElementById('authOverlay').style.display = 'flex';
-    }
-
-    // Close modal on outside click
-    document.getElementById('productModal').addEventListener('click', function(e) {
-        if (e.target === this) closeModal();
-    });
-
     console.log('🔮 Rubi Market запущен!');
     console.log('👤 Админ: admin / 123456');
-    console.log('📢 Telegram канал: https://t.me/rubishopgame');
+    console.log('📢 Канал: https://t.me/rubishopgame');
     console.log('⭐ Пополнение: @vmvmvq');
 </script>
 </body>
-</html>
+                </html>
