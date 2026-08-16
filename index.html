@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Rubi — Игровой Маркетплейс</title>
     <style>
-        /* ===== ВСЕ СТИЛИ ИЗ ПРЕДЫДУЩЕГО КОДА (БЕЗ ИЗМЕНЕНИЙ) ===== */
         * {
             margin: 0;
             padding: 0;
@@ -216,7 +215,7 @@
             border-color: #8b5cf6;
         }
 
-        /* ===== НОВЫЕ БЛОКИ ===== */
+        /* Promo Banner */
         .promo-banner {
             background: linear-gradient(135deg, rgba(184, 28, 92, 0.2), rgba(139, 92, 246, 0.2));
             border-radius: 16px;
@@ -247,7 +246,6 @@
             border-radius: 20px;
         }
 
-        /* Секции */
         .section-header {
             display: flex;
             justify-content: space-between;
@@ -268,7 +266,19 @@
             cursor: pointer;
         }
 
-        /* Товары с избранным */
+        /* Products */
+        .products {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 8px;
+            scrollbar-width: none;
+        }
+
+        .products::-webkit-scrollbar {
+            display: none;
+        }
+
         .product-card {
             min-width: 130px;
             background: rgba(255, 255, 255, 0.04);
@@ -354,19 +364,7 @@
             transform: scale(1.2);
         }
 
-        /* ===== ВСЕ ОСТАЛЬНЫЕ СТИЛИ (БЕЗ ИЗМЕНЕНИЙ) ===== */
-        .products {
-            display: flex;
-            gap: 10px;
-            overflow-x: auto;
-            padding-bottom: 8px;
-            scrollbar-width: none;
-        }
-
-        .products::-webkit-scrollbar {
-            display: none;
-        }
-
+        /* Balance */
         .balance-block {
             background: rgba(255, 255, 255, 0.03);
             border-radius: 16px;
@@ -456,6 +454,7 @@
             transform: scale(0.95);
         }
 
+        /* Bottom Nav */
         .bottom-nav {
             display: flex;
             justify-content: space-around;
@@ -503,7 +502,7 @@
             margin-top: -10px;
         }
 
-        /* ===== СТРАНИЦЫ ===== */
+        /* Pages */
         .page {
             display: none;
             flex-direction: column;
@@ -951,7 +950,7 @@
             margin-top: 10px;
         }
 
-        /* ===== АДМИН-ПАНЕЛЬ С РАСШИРЕННОЙ СТАТИСТИКОЙ ===== */
+        /* Admin */
         .admin-content {
             flex: 1;
             overflow-y: auto;
@@ -1063,17 +1062,6 @@
             margin-top: 2px;
         }
 
-        .admin-stat-item .trend-up {
-            color: #22c55e;
-            font-size: 11px;
-        }
-
-        .admin-stat-item .trend-down {
-            color: #ef4444;
-            font-size: 11px;
-        }
-
-        /* Топ товары в админке */
         .admin-top-item {
             display: flex;
             justify-content: space-between;
@@ -1467,9 +1455,6 @@
                 font-size: 11px;
                 padding: 6px 10px;
             }
-            .admin-stats {
-                grid-template-columns: repeat(2, 1fr);
-            }
         }
     </style>
 </head>
@@ -1510,7 +1495,6 @@
 
         <!-- ===== MAIN PAGE ===== -->
         <div class="page active" id="pageMain">
-            <!-- Header -->
             <div class="header">
                 <h1>Rubi</h1>
                 <div class="header-actions">
@@ -1530,40 +1514,32 @@
                 </div>
             </div>
 
-            <!-- ===== НОВОЕ: БАННЕР АКЦИИ ===== -->
+            <!-- Promo Banner -->
             <div class="promo-banner" id="promoBanner">
                 <div class="text">🔥 <span>Акция:</span> Скидка 20% на все скины CS2!</div>
                 <div class="countdown" id="countdownTimer">⏳ 2д 14ч</div>
             </div>
 
-            <!-- ===== НОВОЕ: ИЗБРАННОЕ (сверху) ===== -->
+            <!-- Favorites -->
             <div class="section-header">
                 <h2>❤️ Избранное</h2>
                 <a onclick="navigateTo('favorites')">Смотреть всё →</a>
             </div>
-            <div class="products" id="favoritesContainer">
-                <!-- JS fill -->
-            </div>
+            <div class="products" id="favoritesContainer"></div>
 
             <!-- Новое -->
             <div class="section-header">
                 <h2>Новое</h2>
                 <a onclick="alert('Все товары')">Смотреть всё →</a>
             </div>
+            <div class="products" id="productsContainer"></div>
 
-            <!-- Товары -->
-            <div class="products" id="productsContainer">
-                <!-- JS fill -->
-            </div>
-
-            <!-- ===== НОВОЕ: РЕКОМЕНДАЦИИ ===== -->
+            <!-- Recommendations -->
             <div class="section-header">
                 <h2>🎯 Вам может понравиться</h2>
                 <a onclick="alert('Все рекомендации')">Смотреть всё →</a>
             </div>
-            <div class="products" id="recommendationsContainer">
-                <!-- JS fill -->
-            </div>
+            <div class="products" id="recommendationsContainer"></div>
 
             <!-- Пополнить баланс -->
             <div class="balance-block">
@@ -1581,34 +1557,29 @@
                 </div>
             </div>
 
-            <!-- Нижняя панель -->
+            <!-- Bottom Nav -->
             <div class="bottom-nav">
                 <button class="nav-item active" onclick="navigateTo('main')">
-                    <span class="icon">🏠</span>
-                    Главная
+                    <span class="icon">🏠</span> Главная
                 </button>
                 <button class="nav-item" onclick="navigateTo('search')">
-                    <span class="icon">🔍</span>
-                    Поиск
+                    <span class="icon">🔍</span> Поиск
                 </button>
                 <button class="nav-item" onclick="navigateTo('favorites')">
-                    <span class="icon">❤️</span>
-                    Избранное
+                    <span class="icon">❤️</span> Избранное
                     <span class="badge-nav" id="favBadgeNav">0</span>
                 </button>
                 <button class="nav-item" onclick="navigateTo('chat')">
-                    <span class="icon">💬</span>
-                    Чаты
+                    <span class="icon">💬</span> Чаты
                     <span class="badge-nav" id="chatBadgeNav">0</span>
                 </button>
                 <button class="nav-item" onclick="navigateTo('profile')">
-                    <span class="icon">👤</span>
-                    Профиль
+                    <span class="icon">👤</span> Профиль
                 </button>
             </div>
         </div>
 
-        <!-- ===== PROFILE PAGE (без изменений) ===== -->
+        <!-- ===== PROFILE PAGE ===== -->
         <div class="page" id="pageProfile">
             <div class="page-header">
                 <div class="back" onclick="navigateTo('main')">←</div>
@@ -1628,30 +1599,22 @@
                 </div>
                 <div class="profile-menu">
                     <div class="profile-menu-item" onclick="getPromoCode()">
-                        <span class="icon">🎁</span>
-                        <span>Получить промокод</span>
-                        <span class="arrow">→</span>
+                        <span class="icon">🎁</span> Получить промокод <span class="arrow">→</span>
                     </div>
                     <a class="profile-menu-item" href="https://t.me/rubishopgame" target="_blank">
-                        <span class="icon">📢</span>
-                        <span>Telegram-канал</span>
-                        <span class="arrow highlight">✦</span>
+                        <span class="icon">📢</span> Telegram-канал <span class="arrow highlight">✦</span>
                     </a>
                     <div class="profile-menu-item" onclick="topUpBalance()">
-                        <span class="icon">⭐</span>
-                        <span>Пополнить баланс</span>
-                        <span class="arrow">→</span>
+                        <span class="icon">⭐</span> Пополнить баланс <span class="arrow">→</span>
                     </div>
                     <div class="profile-menu-item" onclick="logout()">
-                        <span class="icon">🚪</span>
-                        <span>Выйти</span>
-                        <span class="arrow">→</span>
+                        <span class="icon">🚪</span> Выйти <span class="arrow">→</span>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- ===== CART PAGE (без изменений) ===== -->
+        <!-- ===== CART PAGE ===== -->
         <div class="page" id="pageCart">
             <div class="page-header">
                 <div class="back" onclick="navigateTo('main')">←</div>
@@ -1667,7 +1630,7 @@
             </div>
         </div>
 
-        <!-- ===== CHAT PAGE (без изменений) ===== -->
+        <!-- ===== CHAT PAGE ===== -->
         <div class="page" id="pageChat">
             <div class="page-header">
                 <div class="back" onclick="navigateTo('main')">←</div>
@@ -1681,7 +1644,7 @@
             </div>
         </div>
 
-        <!-- ===== SEARCH PAGE (без изменений) ===== -->
+        <!-- ===== SEARCH PAGE ===== -->
         <div class="page" id="pageSearch">
             <div class="page-header">
                 <div class="back" onclick="navigateTo('main')">←</div>
@@ -1692,7 +1655,7 @@
             <div class="products" id="searchResults" style="flex-wrap:wrap;gap:8px;"></div>
         </div>
 
-        <!-- ===== НОВОЕ: FAVORITES PAGE ===== -->
+        <!-- ===== FAVORITES PAGE ===== -->
         <div class="page" id="pageFavorites">
             <div class="page-header">
                 <div class="back" onclick="navigateTo('main')">←</div>
@@ -1702,16 +1665,14 @@
             <div class="products" id="favoritesPageContainer" style="flex-wrap:wrap;gap:8px;"></div>
         </div>
 
-        <!-- ===== ADMIN PAGE (с расширенной статистикой) ===== -->
+        <!-- ===== ADMIN PAGE ===== -->
         <div class="page" id="pageAdmin">
             <div class="page-header">
                 <div class="back" onclick="navigateTo('main')">←</div>
                 <h3>⚙️ Админ-панель</h3>
                 <div style="width:36px;"></div>
             </div>
-            <div class="admin-content" id="adminContent">
-                <!-- JS fill -->
-            </div>
+            <div class="admin-content" id="adminContent"></div>
         </div>
 
     </div>
@@ -1743,16 +1704,33 @@
         { text: 'Здесь вы можете купить игровые предметы', time: '12:31', type: 'incoming' },
     ];
     let currentUser = JSON.parse(localStorage.getItem('rubi_user')) || null;
-    let balance = parseInt(localStorage.getItem('rubi_balance')) || 1500;
     let selectedProduct = null;
     let avatarImage = null;
     let nextProductId = PRODUCTS_DATA.length + 1;
-    
-    // ===== НОВОЕ: ИЗБРАННОЕ =====
     let favorites = JSON.parse(localStorage.getItem('rubi_favorites')) || [];
-
-    // ===== НОВОЕ: СТАТИСТИКА ДЛЯ АДМИНА =====
     let purchaseHistory = JSON.parse(localStorage.getItem('rubi_purchase_history')) || [];
+
+    // ============================================================
+    // РАБОТА С БАЛАНСОМ ПОЛЬЗОВАТЕЛЯ
+    // ============================================================
+    function getUserBalance() {
+        if (!currentUser) return 0;
+        const users = JSON.parse(localStorage.getItem('rubi_users')) || [];
+        const user = users.find(u => u.login === currentUser.login);
+        return user ? (user.balance || 0) : 0;
+    }
+
+    function setUserBalance(newBalance) {
+        if (!currentUser) return;
+        let users = JSON.parse(localStorage.getItem('rubi_users')) || [];
+        const index = users.findIndex(u => u.login === currentUser.login);
+        if (index !== -1) {
+            users[index].balance = newBalance;
+            localStorage.setItem('rubi_users', JSON.stringify(users));
+            currentUser.balance = newBalance;
+            localStorage.setItem('rubi_user', JSON.stringify(currentUser));
+        }
+    }
 
     // ============================================================
     // AUTH
@@ -1761,8 +1739,17 @@
         const login = document.getElementById('authLogin').value.trim();
         const password = document.getElementById('authPassword').value.trim();
 
+        let users = JSON.parse(localStorage.getItem('rubi_users')) || [];
+
+        // АДМИН
         if (login === 'admin' && password === '123456') {
-            currentUser = { name: 'Admin', username: '@admin_rubi', isAdmin: true, level: 99 };
+            let admin = users.find(u => u.login === 'admin');
+            if (!admin) {
+                admin = { login: 'admin', password: '123456', name: 'Admin', username: '@admin_rubi', isAdmin: true, level: 99, balance: 9999 };
+                users.push(admin);
+                localStorage.setItem('rubi_users', JSON.stringify(users));
+            }
+            currentUser = admin;
             localStorage.setItem('rubi_user', JSON.stringify(currentUser));
             document.getElementById('authOverlay').classList.remove('show');
             document.getElementById('adminBtn').style.display = 'flex';
@@ -1770,10 +1757,10 @@
             return;
         }
 
-        const users = JSON.parse(localStorage.getItem('rubi_users')) || [];
-        const found = users.find(u => u.login === login && u.password === password);
+        // ПОИСК ПОЛЬЗОВАТЕЛЯ
+        let found = users.find(u => u.login === login && u.password === password);
         if (found) {
-            currentUser = { name: found.name, username: found.username, level: found.level || 1 };
+            currentUser = found;
             localStorage.setItem('rubi_user', JSON.stringify(currentUser));
             document.getElementById('authOverlay').classList.remove('show');
             document.getElementById('adminBtn').style.display = 'none';
@@ -1781,17 +1768,20 @@
             return;
         }
 
+        // РЕГИСТРАЦИЯ
         if (login.length > 0 && password.length > 0) {
             const newUser = {
                 login: login,
                 password: password,
                 name: login,
                 username: '@' + login + '_tg',
-                level: 1
+                level: 1,
+                balance: 500,
+                isAdmin: false
             };
             users.push(newUser);
             localStorage.setItem('rubi_users', JSON.stringify(users));
-            currentUser = { name: login, username: '@' + login + '_tg', level: 1 };
+            currentUser = newUser;
             localStorage.setItem('rubi_user', JSON.stringify(currentUser));
             document.getElementById('authOverlay').classList.remove('show');
             document.getElementById('adminBtn').style.display = 'none';
@@ -1830,7 +1820,7 @@
     }
 
     // ============================================================
-    // РЕНДЕР ТОВАРОВ (с избранным и скидками)
+    // RENDER PRODUCTS
     // ============================================================
     function renderProducts() {
         const container = document.getElementById('productsContainer');
@@ -1859,7 +1849,7 @@
     }
 
     // ============================================================
-    // ИЗБРАННОЕ
+    // FAVORITES
     // ============================================================
     function toggleFavorite(productId) {
         const index = favorites.indexOf(productId);
@@ -1926,11 +1916,10 @@
     }
 
     // ============================================================
-    // РЕКОМЕНДАЦИИ
+    // RECOMMENDATIONS
     // ============================================================
     function renderRecommendations() {
         const container = document.getElementById('recommendationsContainer');
-        // Берём 3 случайных товара, которых нет в избранном
         const notFav = PRODUCTS_DATA.filter(p => !favorites.includes(p.id));
         const shuffled = notFav.sort(() => 0.5 - Math.random());
         const recs = shuffled.slice(0, 3);
@@ -1955,10 +1944,10 @@
     }
 
     // ============================================================
-    // ТАЙМЕР АКЦИИ
+    // COUNTDOWN
     // ============================================================
     function startCountdown() {
-        let hours = 62; // 2 дня 14 часов
+        let hours = 62;
         const timer = document.getElementById('countdownTimer');
         setInterval(() => {
             if (hours <= 0) {
@@ -1969,11 +1958,11 @@
             const days = Math.floor(hours / 24);
             const h = hours % 24;
             timer.textContent = `⏳ ${days}д ${h}ч`;
-        }, 3600000); // обновляем каждый час
+        }, 3600000);
     }
 
     // ============================================================
-    // ПОИСК
+    // SEARCH
     // ============================================================
     function setupSearch() {
         const input = document.getElementById('searchInput');
@@ -2055,9 +2044,10 @@
         if (!selectedProduct) return;
         const code = document.getElementById('modalCode').value.trim();
         if (code) {
-            if (balance >= selectedProduct.price) {
-                balance -= selectedProduct.price;
-                localStorage.setItem('rubi_balance', balance);
+            const currentBalance = getUserBalance();
+            if (currentBalance >= selectedProduct.price) {
+                setUserBalance(currentBalance - selectedProduct.price);
+                
                 cart.push({
                     ...selectedProduct,
                     date: new Date().toLocaleDateString('ru-RU'),
@@ -2065,12 +2055,12 @@
                 });
                 localStorage.setItem('rubi_cart', JSON.stringify(cart));
                 
-                // ===== НОВОЕ: запись в историю покупок =====
                 purchaseHistory.push({
                     productId: selectedProduct.id,
                     productName: selectedProduct.name,
                     price: selectedProduct.price,
-                    date: new Date().toISOString()
+                    date: new Date().toISOString(),
+                    user: currentUser ? currentUser.login : 'unknown'
                 });
                 localStorage.setItem('rubi_purchase_history', JSON.stringify(purchaseHistory));
                 
@@ -2100,6 +2090,7 @@
     // BALANCE
     // ============================================================
     function updateBalanceDisplay() {
+        const balance = getUserBalance();
         document.getElementById('balanceDisplay').textContent = balance + ' ★';
         document.getElementById('profileBalance').textContent = '$' + balance;
     }
@@ -2119,8 +2110,8 @@
         const allPromos = { ...defaultPromos, ...promos };
         
         if (allPromos[code]) {
-            balance += allPromos[code];
-            localStorage.setItem('rubi_balance', balance);
+            const currentBalance = getUserBalance();
+            setUserBalance(currentBalance + allPromos[code]);
             updateBalanceDisplay();
             alert(`🎉 Промокод активирован! +${allPromos[code]} ★`);
             input.value = '';
@@ -2202,6 +2193,7 @@
         if (!currentUser) return;
         document.getElementById('profileNameDisplay').textContent = currentUser.name || 'Rubi User';
         document.getElementById('profileUsername').textContent = currentUser.username || '@user';
+        const balance = getUserBalance();
         document.getElementById('profileBalance').textContent = '$' + balance;
         const initial = currentUser.name ? currentUser.name[0].toUpperCase() : 'R';
         document.getElementById('profileAvatarText').textContent = avatarImage ? '' : initial;
@@ -2211,6 +2203,12 @@
         const newName = prompt('Введите новое имя:', currentUser.name);
         if (newName && newName.trim()) {
             currentUser.name = newName.trim();
+            let users = JSON.parse(localStorage.getItem('rubi_users')) || [];
+            const index = users.findIndex(u => u.login === currentUser.login);
+            if (index !== -1) {
+                users[index].name = currentUser.name;
+                localStorage.setItem('rubi_users', JSON.stringify(users));
+            }
             localStorage.setItem('rubi_user', JSON.stringify(currentUser));
             updateProfile();
         }
@@ -2259,7 +2257,7 @@
     }
 
     // ============================================================
-    // ADMIN PANEL (с расширенной статистикой)
+    // ADMIN
     // ============================================================
     function renderAdmin() {
         if (!currentUser || !currentUser.isAdmin) {
@@ -2273,7 +2271,6 @@
         const totalPurchases = allCarts.length;
         const totalRevenue = allCarts.reduce((sum, item) => sum + (item.price || 0), 0);
 
-        // ===== НОВОЕ: статистика по товарам =====
         const productSales = {};
         allCarts.forEach(item => {
             const key = item.id || item.name;
@@ -2285,10 +2282,8 @@
         });
         const topProducts = Object.values(productSales).sort((a, b) => b.revenue - a.revenue).slice(0, 5);
 
-        // ===== НОВОЕ: активность пользователей =====
         const activeUsers = users.filter(u => (u.balance || 0) > 0 || allCarts.some(c => c.userId === u.login)).length;
 
-        // Промокоды
         const promos = JSON.parse(localStorage.getItem('rubi_promos')) || {};
         const defaultPromos = {
             'RUBI2026': 100,
@@ -2300,7 +2295,6 @@
         const allPromos = { ...defaultPromos, ...promos };
 
         let html = `
-            <!-- ===== РАСШИРЕННАЯ СТАТИСТИКА ===== -->
             <div class="admin-card">
                 <h4>📊 Статистика</h4>
                 <div class="admin-stats">
@@ -2331,7 +2325,6 @@
                 </div>
             </div>
 
-            <!-- ===== НОВОЕ: ТОП ТОВАРОВ ===== -->
             <div class="admin-card">
                 <h4>🏆 Топ товаров</h4>
                 ${topProducts.length === 0 ? '<div style="color:rgba(255,255,255,0.3);font-size:13px;">Нет продаж</div>' : ''}
@@ -2345,7 +2338,6 @@
                 `).join('')}
             </div>
 
-            <!-- Управление товарами -->
             <div class="admin-card">
                 <h4>📦 Управление товарами</h4>
                 <div class="admin-row">
@@ -2367,7 +2359,6 @@
                 </div>
             </div>
 
-            <!-- Управление пользователями -->
             <div class="admin-card">
                 <h4>👥 Пользователи (${totalUsers})</h4>
                 ${users.length === 0 ? '<div style="color:rgba(255,255,255,0.3);font-size:13px;">Нет зарегистрированных пользователей</div>' : ''}
@@ -2381,7 +2372,6 @@
                 `).join('')}
             </div>
 
-            <!-- Управление промокодами -->
             <div class="admin-card">
                 <h4>🎫 Промокоды</h4>
                 <div class="admin-row">
@@ -2401,13 +2391,12 @@
                 <div class="admin-hint">Встроенные промокоды нельзя удалить</div>
             </div>
 
-            <!-- Управление балансом -->
             <div class="admin-card">
                 <h4>💰 Управление балансом</h4>
                 <div class="admin-row">
                     <input id="adminUserBalance" placeholder="Имя пользователя">
                     <input id="adminNewBalance" placeholder="Новый баланс ★" type="number">
-                    <button onclick="setUserBalance()">Установить</button>
+                    <button onclick="setUserBalanceAdmin()">Установить</button>
                 </div>
             </div>
         `;
@@ -2487,7 +2476,7 @@
         renderAdmin();
     }
 
-    function setUserBalance() {
+    function setUserBalanceAdmin() {
         const username = document.getElementById('adminUserBalance').value.trim();
         const newBalance = parseInt(document.getElementById('adminNewBalance').value);
         
@@ -2496,21 +2485,19 @@
             return;
         }
 
-        if (username === 'admin') {
-            balance = newBalance;
-            localStorage.setItem('rubi_balance', balance);
-            updateBalanceDisplay();
-            alert(`✅ Баланс админа установлен: ${newBalance} ★`);
-        } else {
-            let users = JSON.parse(localStorage.getItem('rubi_users')) || [];
-            const user = users.find(u => u.login === username || u.name === username);
-            if (user) {
-                user.balance = newBalance;
-                localStorage.setItem('rubi_users', JSON.stringify(users));
-                alert(`✅ Баланс ${username} установлен: ${newBalance} ★`);
-            } else {
-                alert('❌ Пользователь не найден');
+        let users = JSON.parse(localStorage.getItem('rubi_users')) || [];
+        const user = users.find(u => u.login === username || u.name === username);
+        if (user) {
+            user.balance = newBalance;
+            localStorage.setItem('rubi_users', JSON.stringify(users));
+            if (currentUser && currentUser.login === user.login) {
+                currentUser.balance = newBalance;
+                localStorage.setItem('rubi_user', JSON.stringify(currentUser));
             }
+            alert(`✅ Баланс ${username} установлен: ${newBalance} ★`);
+            updateBalanceDisplay();
+        } else {
+            alert('❌ Пользователь не найден');
         }
         
         document.getElementById('adminUserBalance').value = '';
@@ -2557,8 +2544,7 @@
     console.log('📢 Канал: https://t.me/rubishopgame');
     console.log('⭐ Пополнение: @vmvmvq');
     console.log('❤️ Избранное: нажмите 🤍 на товаре');
-    console.log('🎯 Рекомендации: подбираются автоматически');
-    console.log('📊 Статистика: в админ-панели');
+    console.log('👥 У каждого пользователя свой баланс!');
 </script>
 </body>
     </html>
