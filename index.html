@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Rubi — Игровой Маркетплейс</title>
     <style>
+        /* ===== ВСЕ СТИЛИ ИЗ ПРЕДЫДУЩЕГО КОДА ===== */
         * {
             margin: 0;
             padding: 0;
@@ -128,8 +129,6 @@
             overflow: hidden;
         }
 
-        /* ===== ИНТЕРФЕЙС КАК НА СКРИНШОТЕ ===== */
-        
         /* Header */
         .header {
             display: flex;
@@ -148,7 +147,7 @@
 
         .header-actions {
             display: flex;
-            gap: 8px;
+            gap: 6px;
             align-items: center;
         }
 
@@ -156,12 +155,12 @@
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 50%;
-            width: 38px;
-            height: 38px;
+            width: 36px;
+            height: 36px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 18px;
+            font-size: 16px;
             cursor: pointer;
             color: rgba(255, 255, 255, 0.6);
             transition: 0.3s;
@@ -186,16 +185,28 @@
             text-align: center;
         }
 
+        .header-btn.admin-btn {
+            border-color: #facc15;
+            color: #facc15;
+            font-size: 18px;
+            display: none;
+        }
+
+        .header-btn.admin-btn:hover {
+            background: rgba(250, 204, 21, 0.1);
+            box-shadow: 0 0 20px rgba(250, 204, 21, 0.2);
+        }
+
         .theme-toggle {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 50%;
-            width: 38px;
-            height: 38px;
+            width: 36px;
+            height: 36px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 18px;
+            font-size: 16px;
             cursor: pointer;
             color: rgba(255, 255, 255, 0.6);
             transition: 0.3s;
@@ -210,7 +221,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin: 6px 0 10px;
+            margin: 4px 0 8px;
         }
 
         .section-header h2 {
@@ -363,13 +374,18 @@
             font-size: 12px;
             font-weight: 600;
             cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .balance-hint .promo button:hover {
+            transform: scale(0.95);
         }
 
         /* Нижняя панель */
         .bottom-nav {
             display: flex;
             justify-content: space-around;
-            padding: 10px 0 0;
+            padding: 8px 0 0;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
             margin-top: auto;
             flex-shrink: 0;
@@ -380,16 +396,17 @@
             flex-direction: column;
             align-items: center;
             gap: 2px;
-            font-size: 10px;
+            font-size: 9px;
             color: rgba(255, 255, 255, 0.3);
             cursor: pointer;
             transition: 0.3s;
             background: none;
             border: none;
+            padding: 4px 8px;
         }
 
         .nav-item .icon {
-            font-size: 20px;
+            font-size: 18px;
         }
 
         .nav-item.active {
@@ -403,13 +420,13 @@
         .nav-item .badge-nav {
             background: #ef4444;
             color: white;
-            font-size: 8px;
-            padding: 1px 6px;
+            font-size: 7px;
+            padding: 1px 5px;
             border-radius: 30px;
             font-weight: 700;
             position: relative;
-            top: -8px;
-            margin-top: -12px;
+            top: -6px;
+            margin-top: -10px;
         }
 
         /* ===== СТРАНИЦЫ ===== */
@@ -444,6 +461,7 @@
             cursor: pointer;
             font-size: 18px;
             color: rgba(255, 255, 255, 0.6);
+            transition: 0.3s;
         }
 
         .page-header .back:hover {
@@ -713,6 +731,10 @@
             border-color: #8b5cf6;
         }
 
+        .chat-input input::placeholder {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
         .chat-input button {
             padding: 10px 20px;
             border: none;
@@ -721,6 +743,11 @@
             color: white;
             font-weight: 600;
             cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .chat-input button:hover {
+            transform: scale(0.95);
         }
 
         /* Product Modal */
@@ -787,6 +814,10 @@
             border-color: #8b5cf6;
         }
 
+        .product-modal-content input::placeholder {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
         .product-modal-content .btn-group {
             display: flex;
             gap: 8px;
@@ -800,6 +831,7 @@
             font-weight: 600;
             cursor: pointer;
             font-size: 14px;
+            transition: 0.3s;
         }
 
         .btn-buy-product {
@@ -807,10 +839,18 @@
             color: white;
         }
 
+        .btn-buy-product:hover {
+            transform: scale(0.95);
+        }
+
         .btn-close-modal {
             background: rgba(255, 255, 255, 0.05);
             color: #f0eeff;
             border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .btn-close-modal:hover {
+            border-color: #8b5cf6;
         }
 
         .btn-contact {
@@ -823,6 +863,11 @@
             font-weight: 600;
             cursor: pointer;
             margin-top: 8px;
+            transition: 0.3s;
+        }
+
+        .btn-contact:hover {
+            transform: scale(0.95);
         }
 
         .modal-hint {
@@ -830,6 +875,221 @@
             color: rgba(255, 255, 255, 0.2);
             text-align: center;
             margin-top: 10px;
+        }
+
+        /* ===== АДМИН-ПАНЕЛЬ ===== */
+        .admin-content {
+            flex: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            padding-bottom: 4px;
+        }
+
+        .admin-content::-webkit-scrollbar {
+            width: 2px;
+        }
+
+        .admin-content::-webkit-scrollbar-thumb {
+            background: #8b5cf6;
+            border-radius: 10px;
+        }
+
+        .admin-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            padding: 14px 16px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .admin-card h4 {
+            color: #facc15;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .admin-card .admin-row {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 8px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .admin-card .admin-row input,
+        .admin-card .admin-row select {
+            flex: 1;
+            min-width: 60px;
+            padding: 8px 12px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.05);
+            color: #f0eeff;
+            font-size: 13px;
+        }
+
+        .admin-card .admin-row input:focus,
+        .admin-card .admin-row select:focus {
+            outline: none;
+            border-color: #8b5cf6;
+        }
+
+        .admin-card .admin-row input::placeholder {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .admin-card .admin-row button {
+            padding: 8px 14px;
+            border: none;
+            border-radius: 10px;
+            background: #8b5cf6;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 13px;
+            transition: 0.3s;
+            white-space: nowrap;
+        }
+
+        .admin-card .admin-row button:hover {
+            transform: scale(0.95);
+        }
+
+        .admin-card .admin-row button.danger {
+            background: #ef4444;
+        }
+
+        .admin-card .admin-row button.success {
+            background: #22c55e;
+        }
+
+        .admin-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+        }
+
+        .admin-stat-item {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 10px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .admin-stat-item .num {
+            font-size: 20px;
+            font-weight: 700;
+            color: #8b5cf6;
+        }
+
+        .admin-stat-item .label {
+            font-size: 10px;
+            color: rgba(255, 255, 255, 0.4);
+            margin-top: 2px;
+        }
+
+        .admin-user-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            font-size: 13px;
+        }
+
+        .admin-user-item .user-name {
+            color: #f0eeff;
+        }
+
+        .admin-user-item .user-bal {
+            color: #facc15;
+        }
+
+        .admin-user-item button {
+            padding: 2px 12px;
+            border: none;
+            border-radius: 6px;
+            font-size: 11px;
+            cursor: pointer;
+            background: #ef4444;
+            color: white;
+            transition: 0.3s;
+        }
+
+        .admin-user-item button:hover {
+            transform: scale(0.9);
+        }
+
+        .admin-products-list {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+
+        .admin-products-list::-webkit-scrollbar {
+            width: 2px;
+        }
+
+        .admin-products-list::-webkit-scrollbar-thumb {
+            background: #8b5cf6;
+            border-radius: 10px;
+        }
+
+        .admin-products-list .product-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 4px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            font-size: 12px;
+        }
+
+        .admin-products-list .product-row .p-name {
+            color: #f0eeff;
+        }
+
+        .admin-products-list .product-row .p-price {
+            color: #facc15;
+        }
+
+        .admin-products-list .product-row button {
+            padding: 2px 10px;
+            border: none;
+            border-radius: 4px;
+            font-size: 10px;
+            cursor: pointer;
+            background: #ef4444;
+            color: white;
+            transition: 0.3s;
+        }
+
+        .admin-products-list .product-row button:hover {
+            transform: scale(0.9);
+        }
+
+        .admin-promo-list {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.4);
+            padding: 4px 0;
+        }
+
+        .admin-promo-list .promo-item {
+            display: inline-block;
+            background: rgba(139, 92, 246, 0.15);
+            padding: 2px 10px;
+            border-radius: 10px;
+            margin: 2px 4px 2px 0;
+            color: #facc15;
+            font-weight: 500;
+        }
+
+        .admin-hint {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.2);
+            margin-top: 4px;
         }
 
         /* Light Theme */
@@ -989,6 +1249,32 @@
             color: rgba(0, 0, 0, 0.3);
         }
 
+        [data-theme="light"] .admin-card {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        [data-theme="light"] .admin-card .admin-row input,
+        [data-theme="light"] .admin-card .admin-row select {
+            background: rgba(255, 255, 255, 0.5);
+            color: #1a1428;
+        }
+
+        [data-theme="light"] .admin-stat-item {
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        [data-theme="light"] .admin-user-item .user-name {
+            color: #1a1428;
+        }
+
+        [data-theme="light"] .admin-products-list .product-row .p-name {
+            color: #1a1428;
+        }
+
+        [data-theme="light"] .admin-hint {
+            color: rgba(0, 0, 0, 0.2);
+        }
+
         @media (max-width: 420px) {
             .phone-frame {
                 border-radius: 28px;
@@ -1011,6 +1297,28 @@
             }
             .header h1 {
                 font-size: 20px;
+            }
+            .admin-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .header-btn {
+                width: 32px;
+                height: 32px;
+                font-size: 14px;
+            }
+            .theme-toggle {
+                width: 32px;
+                height: 32px;
+                font-size: 14px;
+            }
+            .admin-card .admin-row input {
+                min-width: 40px;
+                font-size: 11px;
+                padding: 6px 8px;
+            }
+            .admin-card .admin-row button {
+                font-size: 11px;
+                padding: 6px 10px;
             }
         }
     </style>
@@ -1057,6 +1365,7 @@
                 <h1>Rubi</h1>
                 <div class="header-actions">
                     <div class="theme-toggle" onclick="toggleTheme()">🌓</div>
+                    <div class="header-btn admin-btn" onclick="navigateTo('admin')" id="adminBtn">⚙️</div>
                     <div class="header-btn" onclick="navigateTo('cart')">
                         🛒
                         <span class="badge" id="cartBadge">0</span>
@@ -1208,6 +1517,18 @@
             <div class="products" id="searchResults" style="flex-wrap:wrap;gap:8px;"></div>
         </div>
 
+        <!-- ===== ADMIN PAGE ===== -->
+        <div class="page" id="pageAdmin">
+            <div class="page-header">
+                <div class="back" onclick="navigateTo('main')">←</div>
+                <h3>⚙️ Админ-панель</h3>
+                <div style="width:36px;"></div>
+            </div>
+            <div class="admin-content" id="adminContent">
+                <!-- JS fill -->
+            </div>
+        </div>
+
     </div>
 </div>
 
@@ -1215,7 +1536,7 @@
     // ============================================================
     // DATA
     // ============================================================
-    const PRODUCTS_DATA = [
+    let PRODUCTS_DATA = JSON.parse(localStorage.getItem('rubi_products')) || [
         { id: 1, name: 'Аккаунт PRIME', sub: 'CS2', emoji: '⭐', price: 1299 },
         { id: 2, name: 'Скин Dragon Lore', sub: 'CS2', emoji: '🐉', price: 4499 },
         { id: 3, name: 'Аккаунт Bi', sub: 'Brawl Stars', emoji: '🌟', price: 999 },
@@ -1240,7 +1561,7 @@
     let balance = parseInt(localStorage.getItem('rubi_balance')) || 1500;
     let selectedProduct = null;
     let avatarImage = null;
-    let promoApplied = false;
+    let nextProductId = PRODUCTS_DATA.length + 1;
 
     // ============================================================
     // AUTH
@@ -1253,6 +1574,7 @@
             currentUser = { name: 'Admin', username: '@admin_rubi', isAdmin: true, level: 99 };
             localStorage.setItem('rubi_user', JSON.stringify(currentUser));
             document.getElementById('authOverlay').classList.remove('show');
+            document.getElementById('adminBtn').style.display = 'flex';
             initApp();
             return;
         }
@@ -1263,6 +1585,7 @@
             currentUser = { name: found.name, username: found.username, level: found.level || 1 };
             localStorage.setItem('rubi_user', JSON.stringify(currentUser));
             document.getElementById('authOverlay').classList.remove('show');
+            document.getElementById('adminBtn').style.display = 'none';
             initApp();
             return;
         }
@@ -1280,6 +1603,7 @@
             currentUser = { name: login, username: '@' + login + '_tg', level: 1 };
             localStorage.setItem('rubi_user', JSON.stringify(currentUser));
             document.getElementById('authOverlay').classList.remove('show');
+            document.getElementById('adminBtn').style.display = 'none';
             initApp();
         } else {
             document.getElementById('authError').style.display = 'block';
@@ -1294,12 +1618,20 @@
     // INIT
     // ============================================================
     function initApp() {
+        if (currentUser && currentUser.isAdmin) {
+            document.getElementById('adminBtn').style.display = 'flex';
+        } else {
+            document.getElementById('adminBtn').style.display = 'none';
+        }
         updateUI();
         renderProducts();
         renderCart();
         renderChat();
         setupSearch();
         updateBalanceDisplay();
+        if (currentUser && currentUser.isAdmin) {
+            renderAdmin();
+        }
     }
 
     function renderProducts() {
@@ -1357,6 +1689,7 @@
         if (page === 'cart') renderCart();
         if (page === 'profile') updateProfile();
         if (page === 'chat') renderChat();
+        if (page === 'admin') renderAdmin();
     }
 
     // ============================================================
@@ -1429,11 +1762,18 @@
     function applyPromo() {
         const input = document.getElementById('promoInput');
         const code = input.value.trim().toUpperCase();
-        if (code === 'RUBI2026' || code === 'GAMEON' || code === 'STARTER') {
-            balance += 100;
+        const promoCodes = {
+            'RUBI2026': 100,
+            'GAMEON': 100,
+            'RUBI50': 100,
+            'STARTER': 100,
+            'ADMIN1000': 1000,
+        };
+        if (promoCodes[code]) {
+            balance += promoCodes[code];
             localStorage.setItem('rubi_balance', balance);
             updateBalanceDisplay();
-            alert('🎉 Промокод активирован! +100 ★');
+            alert(`🎉 Промокод активирован! +${promoCodes[code]} ★`);
             input.value = '';
         } else {
             alert('❌ Неверный промокод');
@@ -1570,6 +1910,211 @@
     }
 
     // ============================================================
+    // ADMIN PANEL
+    // ============================================================
+    function renderAdmin() {
+        if (!currentUser || !currentUser.isAdmin) {
+            document.getElementById('adminContent').innerHTML = '<div style="color:#ef4444;text-align:center;padding:20px;">⛔ Доступ запрещён</div>';
+            return;
+        }
+
+        const users = JSON.parse(localStorage.getItem('rubi_users')) || [];
+        const allCarts = JSON.parse(localStorage.getItem('rubi_cart')) || [];
+        const totalUsers = users.length;
+        const totalPurchases = allCarts.length;
+        const totalRevenue = allCarts.reduce((sum, item) => sum + (item.price || 0), 0);
+
+        // Получаем промокоды из localStorage
+        const promos = JSON.parse(localStorage.getItem('rubi_promos')) || {};
+
+        let html = `
+            <!-- Статистика -->
+            <div class="admin-card">
+                <h4>📊 Статистика</h4>
+                <div class="admin-stats">
+                    <div class="admin-stat-item">
+                        <div class="num">${totalUsers}</div>
+                        <div class="label">Пользователей</div>
+                    </div>
+                    <div class="admin-stat-item">
+                        <div class="num">${totalPurchases}</div>
+                        <div class="label">Покупок</div>
+                    </div>
+                    <div class="admin-stat-item">
+                        <div class="num">${totalRevenue} ★</div>
+                        <div class="label">Выручка</div>
+                    </div>
+                    <div class="admin-stat-item">
+                        <div class="num">${PRODUCTS_DATA.length}</div>
+                        <div class="label">Товаров</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Управление товарами -->
+            <div class="admin-card">
+                <h4>📦 Управление товарами</h4>
+                <div class="admin-row">
+                    <input id="adminProductName" placeholder="Название">
+                    <input id="adminProductSub" placeholder="Категория">
+                    <input id="adminProductEmoji" placeholder="😀" style="max-width:50px;">
+                    <input id="adminProductPrice" placeholder="Цена" type="number" style="max-width:70px;">
+                    <button onclick="addProduct()" class="success">➕</button>
+                </div>
+                <div class="admin-products-list">
+                    ${PRODUCTS_DATA.map(p => `
+                        <div class="product-row">
+                            <span class="p-name">${p.emoji} ${p.name}</span>
+                            <span class="p-price">${p.price} ★</span>
+                            <button onclick="deleteProduct(${p.id})">✕</button>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+
+            <!-- Управление пользователями -->
+            <div class="admin-card">
+                <h4>👥 Пользователи (${totalUsers})</h4>
+                ${users.length === 0 ? '<div style="color:rgba(255,255,255,0.3);font-size:13px;">Нет зарегистрированных пользователей</div>' : ''}
+                ${users.map(u => `
+                    <div class="admin-user-item">
+                        <span class="user-name">${u.name || u.login}</span>
+                        <span style="color:rgba(255,255,255,0.3);font-size:11px;">${u.login}</span>
+                        <span class="user-bal">${u.balance || 0} ★</span>
+                        <button onclick="deleteUser('${u.login}')">✕</button>
+                    </div>
+                `).join('')}
+            </div>
+
+            <!-- Управление промокодами -->
+            <div class="admin-card">
+                <h4>🎫 Промокоды</h4>
+                <div class="admin-row">
+                    <input id="adminPromoCode" placeholder="Код">
+                    <input id="adminPromoBonus" placeholder="Бонус ★" type="number" style="max-width:80px;">
+                    <button onclick="addPromoCode()" class="success">➕</button>
+                </div>
+                <div class="admin-promo-list">
+                    ${Object.keys(promos).length === 0 ? 'Нет созданных промокодов' : ''}
+                    ${Object.entries(promos).map(([code, bonus]) => `
+                        <span class="promo-item">${code} (+${bonus}★)</span>
+                    `).join('')}
+                    <span class="promo-item">RUBI2026 (+100★)</span>
+                    <span class="promo-item">GAMEON (+100★)</span>
+                    <span class="promo-item">STARTER (+100★)</span>
+                    <span class="promo-item">ADMIN1000 (+1000★)</span>
+                </div>
+                <div class="admin-hint">Промокоды сохраняются и работают на всех пользователей</div>
+            </div>
+
+            <!-- Управление балансом -->
+            <div class="admin-card">
+                <h4>💰 Управление балансом</h4>
+                <div class="admin-row">
+                    <input id="adminUserBalance" placeholder="Имя пользователя">
+                    <input id="adminNewBalance" placeholder="Новый баланс ★" type="number">
+                    <button onclick="setUserBalance()">Установить</button>
+                </div>
+                <div class="admin-hint">Введите имя пользователя (логин) и новый баланс</div>
+            </div>
+        `;
+
+        document.getElementById('adminContent').innerHTML = html;
+    }
+
+    // ============================================================
+    // ADMIN FUNCTIONS
+    // ============================================================
+    function addProduct() {
+        const name = document.getElementById('adminProductName').value.trim();
+        const sub = document.getElementById('adminProductSub').value.trim();
+        const emoji = document.getElementById('adminProductEmoji').value.trim() || '📦';
+        const price = parseInt(document.getElementById('adminProductPrice').value);
+        
+        if (!name || !price) {
+            alert('❌ Введите название и цену');
+            return;
+        }
+
+        PRODUCTS_DATA.push({ id: nextProductId++, name, sub, emoji, price });
+        localStorage.setItem('rubi_products', JSON.stringify(PRODUCTS_DATA));
+        renderProducts();
+        renderAdmin();
+        alert('✅ Товар добавлен!');
+        
+        document.getElementById('adminProductName').value = '';
+        document.getElementById('adminProductSub').value = '';
+        document.getElementById('adminProductEmoji').value = '';
+        document.getElementById('adminProductPrice').value = '';
+    }
+
+    function deleteProduct(id) {
+        if (!confirm('Удалить товар?')) return;
+        PRODUCTS_DATA = PRODUCTS_DATA.filter(p => p.id !== id);
+        localStorage.setItem('rubi_products', JSON.stringify(PRODUCTS_DATA));
+        renderProducts();
+        renderAdmin();
+    }
+
+    function deleteUser(login) {
+        if (!confirm(`Удалить пользователя ${login}?`)) return;
+        let users = JSON.parse(localStorage.getItem('rubi_users')) || [];
+        users = users.filter(u => u.login !== login);
+        localStorage.setItem('rubi_users', JSON.stringify(users));
+        renderAdmin();
+    }
+
+    function addPromoCode() {
+        const code = document.getElementById('adminPromoCode').value.trim().toUpperCase();
+        const bonus = parseInt(document.getElementById('adminPromoBonus').value);
+        
+        if (!code || !bonus) {
+            alert('❌ Введите код и бонус');
+            return;
+        }
+
+        const promos = JSON.parse(localStorage.getItem('rubi_promos')) || {};
+        promos[code] = bonus;
+        localStorage.setItem('rubi_promos', JSON.stringify(promos));
+        
+        alert(`✅ Промокод ${code} добавлен! (+${bonus} ★)`);
+        document.getElementById('adminPromoCode').value = '';
+        document.getElementById('adminPromoBonus').value = '';
+        renderAdmin();
+    }
+
+    function setUserBalance() {
+        const username = document.getElementById('adminUserBalance').value.trim();
+        const newBalance = parseInt(document.getElementById('adminNewBalance').value);
+        
+        if (!username || isNaN(newBalance)) {
+            alert('❌ Введите имя пользователя и баланс');
+            return;
+        }
+
+        if (username === 'admin') {
+            balance = newBalance;
+            localStorage.setItem('rubi_balance', balance);
+            updateBalanceDisplay();
+            alert(`✅ Баланс админа установлен: ${newBalance} ★`);
+        } else {
+            let users = JSON.parse(localStorage.getItem('rubi_users')) || [];
+            const user = users.find(u => u.login === username || u.name === username);
+            if (user) {
+                user.balance = newBalance;
+                localStorage.setItem('rubi_users', JSON.stringify(users));
+                alert(`✅ Баланс ${username} установлен: ${newBalance} ★`);
+            } else {
+                alert('❌ Пользователь не найден');
+            }
+        }
+        
+        document.getElementById('adminUserBalance').value = '';
+        document.getElementById('adminNewBalance').value = '';
+        renderAdmin();
+    }
+
+    // ============================================================
     // UPDATE UI
     // ============================================================
     function updateUI() {
@@ -1577,6 +2122,9 @@
         renderCart();
         renderChat();
         updateBalanceDisplay();
+        if (currentUser && currentUser.isAdmin) {
+            renderAdmin();
+        }
     }
 
     // ============================================================
@@ -1584,6 +2132,9 @@
     // ============================================================
     if (currentUser) {
         document.getElementById('authOverlay').classList.remove('show');
+        if (currentUser.isAdmin) {
+            document.getElementById('adminBtn').style.display = 'flex';
+        }
         initApp();
     } else {
         document.getElementById('authOverlay').classList.add('show');
@@ -1598,6 +2149,7 @@
     console.log('👤 Админ: admin / 123456');
     console.log('📢 Канал: https://t.me/rubishopgame');
     console.log('⭐ Пополнение: @vmvmvq');
+    console.log('⚙️ Кнопка админ-панели: ⚙️ (рядом с поиском)');
 </script>
 </body>
     </html>
