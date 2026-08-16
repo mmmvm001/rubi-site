@@ -156,7 +156,7 @@
         .product-card .game { font-size: 0.65rem; color: #7a8ba8; }
         .product-card .price { font-size: 0.9rem; font-weight: 700; color: #00b4d8; margin-top: 4px; }
 
-        /* ПОПОЛНИТЬ БАЛАНС */
+        /* ПОПОЛНИТЬ БАЛАНС + ПРОМОКОД */
         .balance-card {
             background: #111827;
             border-radius: 1.5rem;
@@ -195,19 +195,54 @@
             justify-content: space-between;
             align-items: center;
             margin-top: 0.3rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
         }
         .balance-card .commission {
             color: #7a8ba8;
             font-size: 0.8rem;
         }
         .balance-card .commission span { color: #00b4d8; font-weight: 700; }
-        .balance-card .promo {
-            color: #00b4d8;
-            font-size: 0.8rem;
-            font-weight: 600;
-            text-decoration: none;
-            cursor: pointer;
+        .promo-block {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            width: 100%;
+            margin-top: 0.3rem;
         }
+        .promo-block input {
+            flex: 1;
+            background: #0a0e1a;
+            border: 1px solid #1e3a5f;
+            border-radius: 30px;
+            padding: 0.5rem 1rem;
+            color: #e8edf5;
+            font-size: 0.8rem;
+            outline: none;
+            min-width: 100px;
+        }
+        .promo-block input:focus { border-color: #00b4d8; }
+        .promo-block .btn-small {
+            background: linear-gradient(135deg, #00b4d8, #0077b6);
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            padding: 0.5rem 1rem;
+            font-weight: 700;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: 0.2s;
+            white-space: nowrap;
+        }
+        .promo-block .btn-small:hover { transform: scale(1.02); }
+        .promo-message {
+            font-size: 0.75rem;
+            margin-top: 0.3rem;
+            display: none;
+        }
+        .promo-message.success { color: #22c55e; }
+        .promo-message.error { color: #ff6b6b; }
+
         .balance-card .btn {
             width: 100%;
             padding: 0.7rem;
@@ -223,36 +258,7 @@
         }
         .balance-card .btn:hover { transform: scale(1.02); box-shadow: 0 0 30px rgba(0, 180, 216, 0.2); }
 
-        /* НИЖНЕЕ МЕНЮ */
-        .bottom-menu {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: #0a0e1a;
-            border-top: 1px solid #1e3a5f;
-            display: flex;
-            justify-content: space-around;
-            padding: 0.6rem 0.5rem 0.8rem;
-            max-width: 500px;
-            margin: 0 auto;
-            border-radius: 20px 20px 0 0;
-        }
-        .bottom-menu a {
-            color: #4a6a8a;
-            text-decoration: none;
-            font-size: 0.65rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 2px;
-            transition: 0.2s;
-        }
-        .bottom-menu a i { font-size: 1.2rem; }
-        .bottom-menu a.active { color: #00b4d8; }
-        .bottom-menu a:hover { color: #00b4d8; }
-
-        /* МОДАЛЬНОЕ ОКНО ДЛЯ ПРОМОКОДОВ */
+        /* МОДАЛЬНОЕ ОКНО (ПРОМОКОДЫ) */
         .promo-modal {
             display: none;
             position: fixed;
@@ -267,9 +273,7 @@
             align-items: center;
             padding: 1.5rem;
         }
-        .promo-modal.active {
-            display: flex;
-        }
+        .promo-modal.active { display: flex; }
         .promo-modal-content {
             background: #111827;
             border-radius: 2rem;
@@ -279,7 +283,6 @@
             border: 1px solid #00b4d8;
             text-align: center;
             animation: fadeIn 0.3s ease;
-            box-shadow: 0 0 60px rgba(0, 180, 216, 0.05);
         }
         .promo-modal-content h3 {
             font-size: 1.3rem;
@@ -307,10 +310,7 @@
             width: 100%;
             justify-content: center;
         }
-        .promo-modal-content .telegram-btn:hover {
-            transform: scale(1.02);
-            box-shadow: 0 0 30px rgba(0, 180, 216, 0.3);
-        }
+        .promo-modal-content .telegram-btn:hover { transform: scale(1.02); box-shadow: 0 0 30px rgba(0, 180, 216, 0.3); }
         .promo-modal-content .close-btn {
             background: none;
             border: none;
@@ -319,9 +319,135 @@
             margin-top: 1rem;
             cursor: pointer;
             text-decoration: underline;
-            transition: 0.2s;
         }
         .promo-modal-content .close-btn:hover { color: #e8edf5; }
+
+        /* СТРАНИЦА ПРОФИЛЯ */
+        #profilePage, #sellPage {
+            display: none;
+            padding: 1rem 0;
+        }
+        #profilePage.active, #sellPage.active {
+            display: block;
+        }
+
+        .profile-card {
+            background: #111827;
+            border-radius: 2rem;
+            padding: 2rem 1.5rem;
+            border: 1px solid #1e3a5f;
+            text-align: center;
+        }
+        .profile-card .avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #00b4d8, #0077b6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: #080c1a;
+            font-weight: 900;
+            margin: 0 auto 0.8rem;
+        }
+        .profile-card .nick {
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+        .profile-card .email {
+            color: #7a8ba8;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+        .profile-card .stats {
+            display: flex;
+            justify-content: space-around;
+            padding: 0.8rem 0;
+            border-top: 1px solid #1e3a5f;
+            border-bottom: 1px solid #1e3a5f;
+            margin: 0.8rem 0;
+        }
+        .profile-card .stats .item { text-align: center; }
+        .profile-card .stats .num { font-size: 1.2rem; font-weight: 700; color: #00b4d8; }
+        .profile-card .stats .label { font-size: 0.7rem; color: #7a8ba8; }
+
+        /* СТРАНИЦА "ПРОДАТЬ" */
+        .sell-card {
+            background: #111827;
+            border-radius: 2rem;
+            padding: 1.5rem;
+            border: 1px solid #1e3a5f;
+        }
+        .sell-card h2 {
+            color: #00b4d8;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+        .sell-card select, .sell-card input, .sell-card textarea {
+            width: 100%;
+            padding: 0.7rem 1rem;
+            border-radius: 12px;
+            border: 1px solid #1e3a5f;
+            background: #0a0e1a;
+            color: #e8edf5;
+            font-size: 0.9rem;
+            outline: none;
+            margin-bottom: 0.6rem;
+            font-family: inherit;
+        }
+        .sell-card select option { background: #111827; }
+        .sell-card select:focus, .sell-card input:focus, .sell-card textarea:focus {
+            border-color: #00b4d8;
+        }
+        .sell-card textarea { resize: vertical; min-height: 60px; }
+        .sell-card .btn {
+            width: 100%;
+            padding: 0.7rem;
+            border: none;
+            border-radius: 40px;
+            background: linear-gradient(135deg, #00b4d8, #0077b6);
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .sell-card .btn:hover { transform: scale(1.02); }
+
+        /* НИЖНЕЕ МЕНЮ */
+        .bottom-menu {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #0a0e1a;
+            border-top: 1px solid #1e3a5f;
+            display: flex;
+            justify-content: space-around;
+            padding: 0.6rem 0.5rem 0.8rem;
+            max-width: 500px;
+            margin: 0 auto;
+            border-radius: 20px 20px 0 0;
+            z-index: 100;
+        }
+        .bottom-menu a {
+            color: #4a6a8a;
+            text-decoration: none;
+            font-size: 0.65rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            transition: 0.2s;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-family: inherit;
+        }
+        .bottom-menu a i { font-size: 1.2rem; }
+        .bottom-menu a.active { color: #00b4d8; }
+        .bottom-menu a:hover { color: #00b4d8; }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: scale(0.95) translateY(20px); }
@@ -335,7 +461,7 @@
 </head>
 <body>
 
-    <!-- ШАПКА -->
+    <!-- ===== ШАПКА ===== -->
     <header class="header">
         <div class="logo">R<span>ubi</span></div>
         <div class="header-icons">
@@ -348,87 +474,135 @@
         </div>
     </header>
 
-    <!-- ПОИСК -->
-    <div class="search-bar">
-        <i class="fas fa-search"></i>
-        <input type="text" placeholder="Поиск игр и приложений">
+    <!-- ===== ГЛАВНАЯ ===== -->
+    <div id="mainPage">
+        <!-- ПОИСК -->
+        <div class="search-bar">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Поиск игр и приложений">
+        </div>
+
+        <!-- КАТЕГОРИИ -->
+        <div class="categories">
+            <a href="#" class="active">🔥 Все</a>
+            <a href="#"><i class="fab fa-telegram" style="margin-right:4px;"></i> Telegram</a>
+            <a href="#"><i class="fas fa-gamepad" style="margin-right:4px;"></i> Brawl Stars</a>
+            <a href="#"><i class="fas fa-robot" style="margin-right:4px;"></i> Roblox</a>
+            <a href="#"><i class="fas fa-crosshairs" style="margin-right:4px;"></i> PUBG Mobile</a>
+            <a href="#"><i class="fab fa-apple" style="margin-right:4px;"></i> Apple</a>
+            <a href="#"><i class="fas fa-skull" style="margin-right:4px;"></i> CS2</a>
+            <a href="#"><i class="fas fa-dragon" style="margin-right:4px;"></i> Dota 2</a>
+            <a href="#"><i class="fas fa-chess-queen" style="margin-right:4px;"></i> Fortnite</a>
+            <a href="#"><i class="fas fa-ghost" style="margin-right:4px;"></i> Valorant</a>
+            <a href="#"><i class="fas fa-car" style="margin-right:4px;"></i> GTA V</a>
+            <a href="#"><i class="fas fa-cube" style="margin-right:4px;"></i> Minecraft</a>
+            <a href="#"><i class="fas fa-users" style="margin-right:4px;"></i> Among Us</a>
+        </div>
+
+        <!-- НОВОЕ -->
+        <div class="section-title">
+            <h2>🆕 Новое</h2>
+            <a href="#">Смотреть всё →</a>
+        </div>
+        <div class="products-scroll">
+            <div class="product-card">
+                <div class="img"><i class="fas fa-crown"></i></div>
+                <div class="name">Аккаунт PRIME</div>
+                <div class="game">CS2</div>
+                <div class="price">1 299 ⭐</div>
+            </div>
+            <div class="product-card">
+                <div class="img"><i class="fas fa-gem"></i></div>
+                <div class="name">Скин Dragon Lore</div>
+                <div class="game">CS2</div>
+                <div class="price">4 499 ⭐</div>
+            </div>
+            <div class="product-card">
+                <div class="img"><i class="fas fa-star"></i></div>
+                <div class="name">Аккаунт Brawl</div>
+                <div class="game">Brawl Stars</div>
+                <div class="price">999 ⭐</div>
+            </div>
+            <div class="product-card">
+                <div class="img"><i class="fas fa-rocket"></i></div>
+                <div class="name">Буст ранга</div>
+                <div class="game">PUBG</div>
+                <div class="price">899 ⭐</div>
+            </div>
+            <div class="product-card">
+                <div class="img"><i class="fas fa-robot"></i></div>
+                <div class="name">Аккаунт Roblox</div>
+                <div class="game">Roblox</div>
+                <div class="price">750 ⭐</div>
+            </div>
+        </div>
+
+        <!-- ПОПОЛНИТЬ БАЛАНС + ПРОМОКОД -->
+        <div class="balance-card">
+            <h3>💰 Пополнить баланс</h3>
+            <div class="field">
+                <i class="fas fa-user"></i>
+                <input type="text" placeholder="Логин Steam">
+            </div>
+            <div class="field">
+                <i class="fas fa-coins"></i>
+                <input type="text" placeholder="Сумма" value="1 000 ₽">
+            </div>
+            <div class="row">
+                <span class="commission">Комиссия <span>5%</span></span>
+                <div class="promo-block">
+                    <input type="text" id="promoInput" placeholder="Введите промокод">
+                    <button class="btn-small" id="applyPromoBtn">Применить</button>
+                </div>
+            </div>
+            <div id="promoMessage" class="promo-message"></div>
+            <button class="btn" id="balanceBtn"><i class="fas fa-arrow-right"></i> Пополнить</button>
+        </div>
     </div>
 
-    <!-- КАТЕГОРИИ -->
-    <div class="categories">
-        <a href="#" class="active">🔥 Все</a>
-        <a href="#"><i class="fab fa-telegram" style="margin-right:4px;"></i> Telegram</a>
-        <a href="#"><i class="fas fa-gamepad" style="margin-right:4px;"></i> Brawl Stars</a>
-        <a href="#"><i class="fas fa-robot" style="margin-right:4px;"></i> Roblox</a>
-        <a href="#"><i class="fas fa-crosshairs" style="margin-right:4px;"></i> PUBG Mobile</a>
-        <a href="#"><i class="fab fa-apple" style="margin-right:4px;"></i> Apple</a>
-        <a href="#"><i class="fas fa-skull" style="margin-right:4px;"></i> CS2</a>
-        <a href="#"><i class="fas fa-dragon" style="margin-right:4px;"></i> Dota 2</a>
-        <a href="#"><i class="fas fa-chess-queen" style="margin-right:4px;"></i> Fortnite</a>
-        <a href="#"><i class="fas fa-ghost" style="margin-right:4px;"></i> Valorant</a>
-        <a href="#"><i class="fas fa-car" style="margin-right:4px;"></i> GTA V</a>
-        <a href="#"><i class="fas fa-cube" style="margin-right:4px;"></i> Minecraft</a>
-        <a href="#"><i class="fas fa-users" style="margin-right:4px;"></i> Among Us</a>
-    </div>
-
-    <!-- НОВОЕ -->
-    <div class="section-title">
-        <h2>🆕 Новое</h2>
-        <a href="#">Смотреть всё →</a>
-    </div>
-
-    <div class="products-scroll">
-        <div class="product-card">
-            <div class="img"><i class="fas fa-crown"></i></div>
-            <div class="name">Аккаунт PRIME</div>
-            <div class="game">CS2</div>
-            <div class="price">1 299 ⭐</div>
-        </div>
-        <div class="product-card">
-            <div class="img"><i class="fas fa-gem"></i></div>
-            <div class="name">Скин Dragon Lore</div>
-            <div class="game">CS2</div>
-            <div class="price">4 499 ⭐</div>
-        </div>
-        <div class="product-card">
-            <div class="img"><i class="fas fa-star"></i></div>
-            <div class="name">Аккаунт Brawl</div>
-            <div class="game">Brawl Stars</div>
-            <div class="price">999 ⭐</div>
-        </div>
-        <div class="product-card">
-            <div class="img"><i class="fas fa-rocket"></i></div>
-            <div class="name">Буст ранга</div>
-            <div class="game">PUBG</div>
-            <div class="price">899 ⭐</div>
-        </div>
-        <div class="product-card">
-            <div class="img"><i class="fas fa-robot"></i></div>
-            <div class="name">Аккаунт Roblox</div>
-            <div class="game">Roblox</div>
-            <div class="price">750 ⭐</div>
+    <!-- ===== СТРАНИЦА ПРОФИЛЯ ===== -->
+    <div id="profilePage">
+        <div class="profile-card">
+            <div class="avatar">R</div>
+            <div class="nick">RubiUser</div>
+            <div class="email">rubi@example.com</div>
+            <div class="stats">
+                <div class="item"><div class="num">12</div><div class="label">Продаж</div></div>
+                <div class="item"><div class="num">4.9</div><div class="label">Рейтинг</div></div>
+                <div class="item"><div class="num">3</div><div class="label">Отзывов</div></div>
+            </div>
+            <button class="btn" onclick="showMain()" style="width:100%; justify-content:center;"><i class="fas fa-arrow-left"></i> На главную</button>
         </div>
     </div>
 
-    <!-- ПОПОЛНИТЬ БАЛАНС -->
-    <div class="balance-card">
-        <h3>💰 Пополнить баланс</h3>
-        <div class="field">
-            <i class="fas fa-user"></i>
-            <input type="text" placeholder="Логин Steam">
+    <!-- ===== СТРАНИЦА "ПРОДАТЬ" ===== -->
+    <div id="sellPage">
+        <div class="sell-card">
+            <h2>📦 Продать товар</h2>
+            <select id="sellGame">
+                <option value="">Выберите игру</option>
+                <option value="Brawl Stars">Brawl Stars</option>
+                <option value="CS2">CS2</option>
+                <option value="Dota 2">Dota 2</option>
+                <option value="PUBG Mobile">PUBG Mobile</option>
+                <option value="Roblox">Roblox</option>
+                <option value="Fortnite">Fortnite</option>
+                <option value="Valorant">Valorant</option>
+                <option value="GTA V">GTA V</option>
+                <option value="Minecraft">Minecraft</option>
+                <option value="Among Us">Among Us</option>
+                <option value="Apple">Apple</option>
+                <option value="Telegram">Telegram</option>
+            </select>
+            <input type="text" id="sellName" placeholder="Название товара (например, Аккаунт PRIME)">
+            <input type="text" id="sellPrice" placeholder="Цена в Stars ⭐ (например, 1299)">
+            <textarea id="sellDesc" placeholder="Описание товара..."></textarea>
+            <button class="btn" onclick="submitSell()"><i class="fas fa-plus-circle"></i> Опубликовать</button>
+            <button class="btn btn-outline" onclick="showMain()" style="margin-top:0.5rem; background:transparent; border:1px solid #1e3a5f; color:#7a8ba8;"><i class="fas fa-arrow-left"></i> На главную</button>
         </div>
-        <div class="field">
-            <i class="fas fa-coins"></i>
-            <input type="text" placeholder="Сумма" value="1 000 ₽">
-        </div>
-        <div class="row">
-            <span class="commission">Комиссия <span>5%</span></span>
-            <a href="#" class="promo" id="promoBtn">Ввести промокод</a>
-        </div>
-        <button class="btn"><i class="fas fa-arrow-right"></i> Пополнить</button>
     </div>
 
-    <!-- МОДАЛЬНОЕ ОКНО ДЛЯ ПРОМОКОДОВ -->
+    <!-- ===== МОДАЛКА ПРОМОКОДОВ ===== -->
     <div class="promo-modal" id="promoModal">
         <div class="promo-modal-content">
             <h3>🎁 Промокоды</h3>
@@ -440,33 +614,124 @@
         </div>
     </div>
 
-    <!-- НИЖНЕЕ МЕНЮ -->
+    <!-- ===== НИЖНЕЕ МЕНЮ ===== -->
     <nav class="bottom-menu">
-        <a href="#" class="active"><i class="fas fa-search"></i> Поиск</a>
-        <a href="#"><i class="fas fa-plus-circle"></i> Продать</a>
-        <a href="#"><i class="fas fa-comments"></i> Чаты</a>
-        <a href="#"><i class="fas fa-user"></i> Профиль</a>
+        <a class="active" id="menuMain"><i class="fas fa-search"></i> Поиск</a>
+        <a id="menuSell"><i class="fas fa-plus-circle"></i> Продать</a>
+        <a><i class="fas fa-comments"></i> Чаты</a>
+        <a id="menuProfile"><i class="fas fa-user"></i> Профиль</a>
     </nav>
 
     <script>
-        // Открыть модальное окно по клику на "Ввести промокод"
-        document.getElementById('promoBtn').addEventListener('click', function(e) {
-            e.preventDefault();
-            document.getElementById('promoModal').classList.add('active');
+        // ===== ПЕРЕКЛЮЧЕНИЕ МЕЖДУ СТРАНИЦАМИ =====
+        const mainPage = document.getElementById('mainPage');
+        const profilePage = document.getElementById('profilePage');
+        const sellPage = document.getElementById('sellPage');
+        const menuMain = document.getElementById('menuMain');
+        const menuSell = document.getElementById('menuSell');
+        const menuProfile = document.getElementById('menuProfile');
+
+        function showMain() {
+            mainPage.style.display = 'block';
+            profilePage.classList.remove('active');
+            sellPage.classList.remove('active');
+            document.querySelectorAll('.bottom-menu a').forEach(el => el.classList.remove('active'));
+            menuMain.classList.add('active');
+        }
+
+        function showProfile() {
+            mainPage.style.display = 'none';
+            profilePage.classList.add('active');
+            sellPage.classList.remove('active');
+            document.querySelectorAll('.bottom-menu a').forEach(el => el.classList.remove('active'));
+            menuProfile.classList.add('active');
+        }
+
+        function showSell() {
+            mainPage.style.display = 'none';
+            profilePage.classList.remove('active');
+            sellPage.classList.add('active');
+            document.querySelectorAll('.bottom-menu a').forEach(el => el.classList.remove('active'));
+            menuSell.classList.add('active');
+        }
+
+        menuMain.addEventListener('click', showMain);
+        menuProfile.addEventListener('click', showProfile);
+        menuSell.addEventListener('click', showSell);
+
+        // ===== ПРОМОКОДЫ =====
+        document.getElementById('applyPromoBtn').addEventListener('click', function() {
+            const input = document.getElementById('promoInput');
+            const msg = document.getElementById('promoMessage');
+            const code = input.value.trim().toLowerCase();
+
+            if (!code) {
+                msg.textContent = '❌ Введите промокод';
+                msg.className = 'promo-message error';
+                msg.style.display = 'block';
+                return;
+            }
+
+            // Список промокодов (можно добавить свои)
+            const validCodes = ['rubi2026', 'star10', 'brawl20', 'cs2pro'];
+            if (validCodes.includes(code)) {
+                msg.textContent = '✅ Промокод активирован! Скидка 10%';
+                msg.className = 'promo-message success';
+                msg.style.display = 'block';
+                document.getElementById('balanceBtn').textContent = '🎉 Пополнить со скидкой';
+            } else {
+                msg.textContent = '❌ Неверный промокод. Попробуйте ещё раз.';
+                msg.className = 'promo-message error';
+                msg.style.display = 'block';
+            }
         });
 
-        // Закрыть модальное окно по клику на кнопку "Закрыть"
+        // ===== МОДАЛКА ПРОМОКОДОВ (отдельная кнопка) =====
         document.getElementById('closePromoBtn').addEventListener('click', function() {
             document.getElementById('promoModal').classList.remove('active');
         });
-
-        // Закрыть модальное окно по клику на фон
         document.getElementById('promoModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                this.classList.remove('active');
-            }
+            if (e.target === this) this.classList.remove('active');
         });
+
+        // ===== ПРОДАТЬ =====
+        function submitSell() {
+            const game = document.getElementById('sellGame').value;
+            const name = document.getElementById('sellName').value.trim();
+            const price = document.getElementById('sellPrice').value.trim();
+            const desc = document.getElementById('sellDesc').value.trim();
+
+            if (!game || !name || !price) {
+                alert('Заполните все обязательные поля (игра, название, цена)!');
+                return;
+            }
+            if (isNaN(price) || Number(price) <= 0) {
+                alert('Цена должна быть числом больше 0!');
+                return;
+            }
+
+            alert(`✅ Товар "${name}" (${game}) опубликован!\nЦена: ${price} ⭐\nОписание: ${desc || 'без описания'}`);
+            // Здесь можно добавить сохранение в localStorage
+            document.getElementById('sellGame').value = '';
+            document.getElementById('sellName').value = '';
+            document.getElementById('sellPrice').value = '';
+            document.getElementById('sellDesc').value = '';
+            showMain();
+        }
+
+        // ===== КОРЗИНА (заглушка) =====
+        document.querySelector('.cart').addEventListener('click', function() {
+            alert('🛒 В корзине 3 товара.\nСкоро здесь будет полноценная корзина!');
+        });
+
+        // ===== ПОПОЛНЕНИЕ БАЛАНСА =====
+        document.getElementById('balanceBtn').addEventListener('click', function() {
+            alert('💰 Баланс пополнен! (демо-режим)');
+        });
+
+        // ===== АВТОМАТИЧЕСКИ ПОКАЗЫВАЕМ ГЛАВНУЮ =====
+        showMain();
     </script>
 
 </body>
-</html>
+    </html>
