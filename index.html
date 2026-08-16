@@ -9,7 +9,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
         }
 
         body {
@@ -17,11 +17,63 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background: #0a0612;
+            background: #0b0710;
+            background-image: radial-gradient(circle at 20% 30%, #1f1433 0%, #0a0612 80%);
             padding: 12px;
         }
 
-        /* Auth Modal */
+        .phone-frame {
+            width: 100%;
+            max-width: 390px;
+            aspect-ratio: 9 / 16;
+            background: #0d081a;
+            border-radius: 48px;
+            padding: 14px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), 0 0 0 2px rgba(180, 80, 255, 0.15), 0 0 40px #6f2bff40;
+            position: relative;
+        }
+
+        .app-screen {
+            width: 100%;
+            height: 100%;
+            border-radius: 36px;
+            background: linear-gradient(145deg, #130c21 0%, #0b0618 100%);
+            overflow: hidden;
+            position: relative;
+            padding: 20px 16px 18px;
+            box-shadow: inset 0 0 30px rgba(90, 0, 255, 0.2);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .floating-items {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+            opacity: 0.5;
+        }
+
+        .float-icon {
+            position: absolute;
+            font-size: 2.8rem;
+            filter: drop-shadow(0 0 20px #a855f7) drop-shadow(0 0 40px #3b82f6);
+            animation: float 8s infinite alternate ease-in-out;
+        }
+
+        .float-icon:nth-child(1) { top: 12%; left: 5%; font-size: 3.2rem; animation-delay: 0s; }
+        .float-icon:nth-child(2) { top: 25%; right: 8%; font-size: 3.8rem; animation-delay: 1.5s; }
+        .float-icon:nth-child(3) { bottom: 30%; left: 2%; font-size: 4.2rem; animation-delay: 0.7s; }
+        .float-icon:nth-child(4) { bottom: 15%; right: 4%; font-size: 3rem; animation-delay: 2.2s; }
+        .float-icon:nth-child(5) { top: 55%; left: 20%; font-size: 2.6rem; animation-delay: 3s; }
+        .float-icon:nth-child(6) { top: 70%; right: 18%; font-size: 3.4rem; animation-delay: 1s; }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg) scale(0.9); opacity: 0.6; }
+            100% { transform: translateY(-25px) rotate(8deg) scale(1.2); opacity: 1; }
+        }
+
         .auth-overlay {
             position: fixed;
             inset: 0;
@@ -32,21 +84,18 @@
             align-items: center;
             z-index: 99999;
         }
-
-        .auth-overlay.show {
-            display: flex;
-        }
+        .auth-overlay.show { display: flex; }
 
         .auth-modal {
             background: #1a1030;
             padding: 40px 30px;
             border-radius: 32px;
-            max-width: 360px;
+            max-width: 380px;
             width: 100%;
             border: 1px solid rgba(255, 255, 255, 0.08);
             box-shadow: 0 0 80px rgba(139, 92, 246, 0.2);
+            backdrop-filter: blur(20px);
         }
-
         .auth-modal h2 {
             text-align: center;
             font-size: 32px;
@@ -55,29 +104,30 @@
             -webkit-text-fill-color: transparent;
             margin-bottom: 4px;
         }
-
         .auth-modal .sub {
             text-align: center;
             color: #888;
             font-size: 14px;
             margin-bottom: 24px;
+            opacity: 0.6;
         }
-
         .auth-input {
             width: 100%;
             padding: 14px 18px;
             border-radius: 16px;
             border: 1px solid rgba(255, 255, 255, 0.08);
             background: rgba(255, 255, 255, 0.05);
-            color: #fff;
+            color: #f0eeff;
             font-size: 15px;
             margin-bottom: 12px;
+            transition: 0.3s;
         }
-
         .auth-input:focus {
             outline: none;
             border-color: #8b5cf6;
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.2);
         }
+        .auth-input::placeholder { color: rgba(255, 255, 255, 0.3); }
 
         .auth-btn {
             width: 100%;
@@ -91,12 +141,10 @@
             cursor: pointer;
             transition: 0.3s;
         }
-
         .auth-btn:hover {
             transform: scale(0.98);
             box-shadow: 0 0 50px rgba(139, 92, 246, 0.4);
         }
-
         .auth-error {
             color: #ef4444;
             font-size: 13px;
@@ -104,257 +152,341 @@
             margin-top: 8px;
             display: none;
         }
-
         .auth-switch {
             text-align: center;
             margin-top: 14px;
             font-size: 13px;
             color: rgba(255, 255, 255, 0.4);
         }
-
         .auth-switch span {
             color: #8b5cf6;
             cursor: pointer;
             font-weight: 600;
         }
+        .auth-switch span:hover { text-decoration: underline; }
 
-        .auth-switch span:hover {
-            text-decoration: underline;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
         }
 
-        /* Phone */
-        .phone-frame {
-            width: 100%;
-            max-width: 390px;
-            aspect-ratio: 9 / 16;
-            background: #0d081a;
-            border-radius: 48px;
-            padding: 12px;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), 0 0 0 2px rgba(139, 92, 246, 0.15);
-        }
-
-        .app-screen {
-            width: 100%;
-            height: 100%;
-            border-radius: 38px;
-            background: #0f0a1a;
-            padding: 16px 14px 12px;
+        .content {
+            position: relative;
+            z-index: 10;
             display: flex;
             flex-direction: column;
+            height: 100%;
+            gap: 12px;
+        }
+        .page {
+            display: none;
+            flex-direction: column;
+            height: 100%;
+            gap: 12px;
+            animation: fadeIn 0.3s ease;
+        }
+        .page.active { display: flex; }
+
+        .top-bar {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .avatar-click {
+            cursor: pointer;
             position: relative;
-            overflow: hidden;
+            flex-shrink: 0;
         }
-
-        /* Header */
-        .header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 12px;
-        }
-
-        .header h1 {
-            font-size: 24px;
-            font-weight: 700;
-            background: linear-gradient(135deg, #8b5cf6, #ec4899);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .header-actions {
-            display: flex;
-            gap: 6px;
-            align-items: center;
-        }
-
-        .header-btn {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+        .avatar-img {
+            width: 48px;
+            height: 48px;
             border-radius: 50%;
-            width: 36px;
-            height: 36px;
+            background: linear-gradient(135deg, #b37aff, #6f3bff);
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 24px;
+            font-weight: 600;
+            color: white;
+            box-shadow: 0 0 20px #a855f7;
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            overflow: hidden;
+        }
+        .avatar-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .badge-level {
+            position: absolute;
+            bottom: -2px;
+            right: -4px;
+            background: #facc15;
+            color: #0b0710;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 30px;
+            border: 1px solid #0b0710;
+            box-shadow: 0 0 12px #facc15;
+            min-width: 18px;
+            text-align: center;
+        }
+
+        .search-wrap {
+            flex: 1;
+            position: relative;
+        }
+        .search-bar {
+            width: 100%;
+            padding: 12px 18px 12px 48px;
+            border-radius: 40px;
+            border: none;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #f0eeff;
             font-size: 16px;
+            font-weight: 400;
+            letter-spacing: 0.3px;
+            box-shadow: 0 0 20px rgba(100, 50, 255, 0.15);
+            transition: 0.3s;
+        }
+        .search-bar::placeholder {
+            color: rgba(255, 255, 255, 0.35);
+            font-weight: 300;
+        }
+        .search-bar:focus {
+            outline: none;
+            border-color: #8b5cf6;
+            box-shadow: 0 0 30px #6d28d9;
+            background: rgba(30, 20, 50, 0.6);
+        }
+        .search-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 18px;
+        }
+
+        .top-icons {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        .icon-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
             cursor: pointer;
             color: rgba(255, 255, 255, 0.6);
             transition: 0.3s;
             position: relative;
         }
-
-        .header-btn:hover {
+        .icon-btn:hover {
             border-color: #8b5cf6;
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
         }
-
-        .header-btn .badge {
+        .icon-btn .badge {
             position: absolute;
             top: -4px;
             right: -4px;
             background: #ef4444;
             color: white;
-            font-size: 8px;
+            font-size: 9px;
             padding: 2px 6px;
             border-radius: 30px;
             font-weight: 700;
-            min-width: 16px;
+            min-width: 18px;
             text-align: center;
+            box-shadow: 0 0 10px rgba(239, 68, 68, 0.4);
         }
-
-        .header-btn.admin-btn {
-            border-color: #facc15;
-            color: #facc15;
-            font-size: 18px;
-            display: none;
-        }
-
-        .header-btn.admin-btn:hover {
-            background: rgba(250, 204, 21, 0.1);
-            box-shadow: 0 0 20px rgba(250, 204, 21, 0.2);
-        }
-
         .theme-toggle {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 50%;
-            width: 36px;
-            height: 36px;
+            width: 44px;
+            height: 44px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 16px;
+            font-size: 20px;
             cursor: pointer;
             color: rgba(255, 255, 255, 0.6);
             transition: 0.3s;
         }
-
         .theme-toggle:hover {
             border-color: #8b5cf6;
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
         }
 
-        /* Promo Banner */
-        .promo-banner {
-            background: linear-gradient(135deg, rgba(184, 28, 92, 0.2), rgba(139, 92, 246, 0.2));
-            border-radius: 16px;
-            padding: 10px 14px;
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            margin: 4px 0 8px;
+        .action-buttons {
             display: flex;
-            align-items: center;
-            justify-content: space-between;
+            gap: 12px;
         }
-
-        .promo-banner .text {
-            font-size: 13px;
-            color: #facc15;
-            font-weight: 600;
-        }
-
-        .promo-banner .text span {
-            color: rgba(255, 255, 255, 0.3);
-            font-weight: 400;
-        }
-
-        .promo-banner .countdown {
-            font-size: 12px;
-            color: rgba(255, 255, 255, 0.5);
-            background: rgba(0, 0, 0, 0.3);
-            padding: 4px 12px;
-            border-radius: 20px;
-        }
-
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 4px 0 8px;
-        }
-
-        .section-header h2 {
-            font-size: 17px;
+        .btn-buy, .btn-sell {
+            flex: 1;
+            padding: 16px 0;
+            border: none;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 18px;
+            letter-spacing: 0.6px;
+            background: rgba(20, 10, 40, 0.6);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             color: #f0eeff;
-            font-weight: 600;
-        }
-
-        .section-header a {
-            color: #8b5cf6;
-            font-size: 13px;
-            text-decoration: none;
+            text-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
+            transition: 0.3s;
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(255, 0, 100, 0.2);
+        }
+        .btn-buy {
+            background: linear-gradient(145deg, #b81c5c, #8b1a4a);
+            border-color: #ff3b7f;
+            box-shadow: 0 0 40px #ff2d7c80, inset 0 0 20px #ff6aa6;
+            color: white;
+        }
+        .btn-sell {
+            background: linear-gradient(145deg, #1c3b8b, #142a6b);
+            border-color: #3b7bff;
+            box-shadow: 0 0 40px #2d7bff80, inset 0 0 20px #6aa6ff;
+            color: white;
+        }
+        .btn-buy::after, .btn-sell::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -20%;
+            width: 140%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 40%, rgba(255, 255, 255, 0.15), transparent 60%);
+            pointer-events: none;
+        }
+        .btn-buy:hover, .btn-sell:hover {
+            transform: scale(0.98);
+            filter: brightness(1.3);
         }
 
-        /* Products */
-        .products {
+        .categories-wrap {
+            overflow-x: auto;
+            padding: 2px 0 4px;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        .categories-wrap::-webkit-scrollbar { display: none; }
+        .categories {
             display: flex;
             gap: 10px;
-            overflow-x: auto;
-            padding-bottom: 8px;
-            scrollbar-width: none;
         }
-
-        .products::-webkit-scrollbar {
-            display: none;
-        }
-
-        .product-card {
-            min-width: 130px;
-            background: rgba(255, 255, 255, 0.04);
-            border-radius: 16px;
-            padding: 12px;
+        .category-item {
+            flex-shrink: 0;
+            padding: 8px 20px;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 40px;
+            color: #c8c0e6;
+            font-weight: 500;
+            font-size: 15px;
+            letter-spacing: 0.4px;
+            box-shadow: 0 0 15px rgba(100, 50, 255, 0.1);
+            transition: 0.25s;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        .category-item.active {
+            background: rgba(139, 92, 246, 0.25);
+            border-color: #8b5cf6;
+            color: white;
+            box-shadow: 0 0 30px #6d28d9;
+        }
+        .category-item:hover {
+            border-color: #8b5cf6;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-radius: 32px;
+            padding: 18px 16px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), inset 0 0 60px rgba(120, 80, 255, 0.08);
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            min-height: 0;
+        }
+        .glass-card::-webkit-scrollbar { width: 2px; }
+        .glass-card::-webkit-scrollbar-thumb { background: #8b5cf6; border-radius: 10px; }
+
+        .glass-title {
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            flex-shrink: 0;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+        .product-item {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            padding: 12px 8px;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            box-shadow: 0 0 20px rgba(100, 50, 255, 0.1);
+            text-align: center;
             cursor: pointer;
             transition: 0.3s;
-            flex-shrink: 0;
             position: relative;
         }
-
-        .product-card:hover {
+        .product-item:hover {
             border-color: #8b5cf6;
-            transform: translateY(-2px);
-            box-shadow: 0 0 30px rgba(139, 92, 246, 0.15);
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
+            transform: translateY(-3px);
         }
-
-        .product-card .emoji {
-            font-size: 28px;
+        .product-item .emoji {
+            font-size: 32px;
             display: block;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
         }
-
-        .product-card .title {
-            font-size: 13px;
+        .product-item .name {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 500;
+        }
+        .product-item .price {
+            font-size: 14px;
             font-weight: 600;
-            color: #f0eeff;
-        }
-
-        .product-card .sub {
-            font-size: 11px;
-            color: rgba(255, 255, 255, 0.4);
-            margin: 2px 0 6px;
-        }
-
-        .product-card .price-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .product-card .price {
-            font-size: 15px;
-            font-weight: 700;
             color: #facc15;
+            text-shadow: 0 0 20px #facc15;
+            margin-top: 2px;
         }
-
-        .product-card .old-price {
-            font-size: 11px;
-            color: rgba(255, 255, 255, 0.3);
-            text-decoration: line-through;
-            margin-left: 4px;
-        }
-
-        .product-card .discount-badge {
+        .product-item .discount-badge {
             position: absolute;
-            top: 8px;
-            right: 8px;
+            top: 4px;
+            right: 4px;
             background: #ef4444;
             color: white;
             font-size: 9px;
@@ -363,192 +495,106 @@
             border-radius: 10px;
         }
 
-        .product-card .favorite-btn {
-            background: none;
-            border: none;
-            font-size: 16px;
-            cursor: pointer;
-            color: rgba(255, 255, 255, 0.2);
-            transition: 0.3s;
-            padding: 2px 4px;
-        }
-
-        .product-card .favorite-btn.active {
-            color: #ef4444;
-        }
-
-        .product-card .favorite-btn:hover {
-            transform: scale(1.2);
-        }
-
-        /* Balance */
-        .balance-block {
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 16px;
-            padding: 14px 16px;
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            margin: 4px 0 8px;
-        }
-
-        .balance-block .label {
-            color: rgba(255, 255, 255, 0.4);
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .balance-row {
-            display: flex;
-            gap: 10px;
-            margin-top: 8px;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .balance-row input {
-            flex: 1;
-            padding: 10px 14px;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            background: rgba(255, 255, 255, 0.05);
-            color: #f0eeff;
-            font-size: 14px;
-            min-width: 60px;
-        }
-
-        .balance-row input:focus {
-            outline: none;
-            border-color: #8b5cf6;
-        }
-
-        .balance-row input::placeholder {
-            color: rgba(255, 255, 255, 0.3);
-        }
-
-        .balance-row .amount {
-            font-size: 18px;
-            font-weight: 700;
-            color: #facc15;
-            white-space: nowrap;
-        }
-
-        .balance-row button {
-            padding: 10px 16px;
-            border: none;
-            border-radius: 12px;
-            background: #8b5cf6;
-            color: white;
-            font-weight: 600;
-            cursor: pointer;
-            font-size: 13px;
-            transition: 0.3s;
-        }
-
-        .balance-row button:hover {
-            transform: scale(0.95);
-        }
-
-        .balance-hint {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 8px;
-            font-size: 12px;
-            color: rgba(255, 255, 255, 0.3);
-            flex-wrap: wrap;
-        }
-
-        .balance-hint .promo {
-            display: flex;
-            gap: 8px;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .balance-hint .promo input {
-            width: 100px;
-            padding: 6px 10px;
-            border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            background: rgba(255, 255, 255, 0.05);
-            color: #f0eeff;
-            font-size: 12px;
-        }
-
-        .balance-hint .promo button {
-            padding: 6px 14px;
-            border: none;
-            border-radius: 8px;
-            background: #8b5cf6;
-            color: white;
-            font-size: 12px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .balance-hint .promo button:hover {
-            transform: scale(0.95);
-        }
-
-        /* Bottom Nav */
         .bottom-nav {
             display: flex;
             justify-content: space-around;
-            padding: 8px 0 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            align-items: center;
+            padding: 6px 0 4px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
             margin-top: auto;
             flex-shrink: 0;
+            background: rgba(10, 6, 24, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 30px;
+            margin-bottom: 2px;
+            width: 100%;
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.3);
         }
 
         .nav-item {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 2px;
-            font-size: 9px;
+            gap: 1px;
+            font-size: 8px;
             color: rgba(255, 255, 255, 0.3);
             cursor: pointer;
             transition: 0.3s;
             background: none;
             border: none;
             padding: 4px 8px;
+            flex: 1;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            font-weight: 500;
         }
-
         .nav-item .icon {
-            font-size: 18px;
+            font-size: 20px;
+            margin-bottom: 1px;
         }
-
+        .nav-item .label {
+            font-size: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 500;
+        }
         .nav-item.active {
             color: #8b5cf6;
+            background: rgba(139, 92, 246, 0.08);
         }
-
+        .nav-item.active .icon {
+            text-shadow: 0 0 20px #8b5cf6;
+        }
         .nav-item:hover {
             color: #8b5cf6;
+            background: rgba(139, 92, 246, 0.05);
         }
-
         .nav-item .badge-nav {
             background: #ef4444;
             color: white;
             font-size: 7px;
-            padding: 1px 5px;
+            padding: 1px 6px;
             border-radius: 30px;
             font-weight: 700;
             position: relative;
             top: -6px;
             margin-top: -10px;
+            min-width: 16px;
+            text-align: center;
         }
 
-        /* Pages */
-        .page {
-            display: none;
-            flex-direction: column;
-            height: 100%;
-            gap: 8px;
-        }
-
-        .page.active {
+        .bottom-bar {
             display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .bottom-stat {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: #b6abdf;
+            font-size: 13px;
+        }
+        .bottom-stat span {
+            font-weight: 600;
+            color: #ffffff;
+            text-shadow: 0 0 20px #a855f7;
+        }
+        .appstore-badge {
+            color: rgba(255, 255, 255, 0.12);
+            font-size: 9px;
+            letter-spacing: 2px;
+            font-weight: 300;
+        }
+        .appstore-badge::before {
+            content: "⬡  ";
+            opacity: 0.4;
         }
 
         .page-header {
@@ -558,29 +604,124 @@
             padding-bottom: 10px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
-
         .page-header .back {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 50%;
-            width: 36px;
-            height: 36px;
+            width: 40px;
+            height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            font-size: 18px;
+            font-size: 20px;
             color: rgba(255, 255, 255, 0.6);
             transition: 0.3s;
         }
-
         .page-header .back:hover {
             border-color: #8b5cf6;
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+        }
+        .page-header h3 {
+            flex: 1;
+            font-size: 20px;
+            color: #f0eeff;
+            font-weight: 700;
         }
 
-        .page-header h3 {
-            font-size: 18px;
+        /* ===== МОДАЛКА (без поля для кода) ===== */
+        .product-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            padding: 20px;
+        }
+        .product-modal.show { display: flex; }
+        .product-modal-content {
+            background: linear-gradient(145deg, #1a1030, #0f0820);
+            border-radius: 32px;
+            padding: 32px 28px;
+            max-width: 360px;
+            width: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 80px rgba(139, 92, 246, 0.2);
+            animation: fadeIn 0.3s ease;
+        }
+        .product-modal-content .emoji {
+            font-size: 56px;
+            text-align: center;
+            display: block;
+        }
+        .product-modal-content h3 {
+            text-align: center;
+            margin: 8px 0 4px;
+            font-size: 22px;
             color: #f0eeff;
+        }
+        .product-modal-content .price {
+            text-align: center;
+            font-size: 28px;
+            font-weight: 700;
+            color: #facc15;
+            margin-bottom: 16px;
+            text-shadow: 0 0 30px rgba(250, 204, 21, 0.2);
+        }
+        .product-modal-content .btn-group {
+            display: flex;
+            gap: 10px;
+        }
+        .product-modal-content .btn-group button {
+            flex: 1;
+            padding: 14px;
+            border: none;
+            border-radius: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+        .btn-buy-product {
+            background: linear-gradient(145deg, #b81c5c, #8b1a4a);
+            color: white;
+            box-shadow: 0 0 30px rgba(220, 28, 92, 0.2);
+        }
+        .btn-buy-product:hover {
+            transform: scale(0.95);
+            box-shadow: 0 0 50px rgba(220, 28, 92, 0.4);
+        }
+        .btn-close-modal {
+            background: rgba(255, 255, 255, 0.05);
+            color: #f0eeff;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .btn-close-modal:hover { border-color: #8b5cf6; }
+        .btn-contact {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            color: white;
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+        .btn-contact:hover {
+            transform: scale(0.95);
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
+        }
+        .modal-hint {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.2);
+            text-align: center;
+            margin-top: 12px;
         }
 
         /* Profile */
@@ -589,9 +730,13 @@
             overflow-y: auto;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 14px;
+            padding-bottom: 4px;
         }
-
+        .profile-info {
+            text-align: center;
+            padding: 8px 0 12px;
+        }
         .profile-avatar {
             width: 80px;
             height: 80px;
@@ -609,13 +754,11 @@
             position: relative;
             box-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
         }
-
         .profile-avatar img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-
         .profile-avatar .edit-overlay {
             position: absolute;
             inset: 0;
@@ -629,90 +772,73 @@
             color: white;
             border-radius: 50%;
         }
-
-        .profile-avatar:hover .edit-overlay {
-            opacity: 1;
-        }
-
+        .profile-avatar:hover .edit-overlay { opacity: 1; }
         .profile-name {
             text-align: center;
-            font-size: 20px;
+            font-size: 22px;
             font-weight: 700;
             color: #f0eeff;
             cursor: pointer;
         }
-
-        .profile-name:hover {
-            color: #8b5cf6;
-        }
-
+        .profile-name:hover { color: #8b5cf6; }
         .profile-username {
             text-align: center;
             color: rgba(255, 255, 255, 0.4);
             font-size: 14px;
             margin-bottom: 4px;
         }
-
         .profile-balance {
-            background: rgba(255, 255, 255, 0.03);
-            padding: 14px 18px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 14px 20px;
             border-radius: 16px;
             border: 1px solid rgba(255, 255, 255, 0.06);
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-
         .profile-balance .label {
-            color: rgba(255, 255, 255, 0.4);
-            font-size: 13px;
+            color: #b6abdf;
+            font-size: 14px;
         }
-
         .profile-balance .amount {
-            font-size: 22px;
+            font-size: 24px;
             font-weight: 700;
             color: #facc15;
+            text-shadow: 0 0 30px rgba(250, 204, 21, 0.2);
         }
-
         .profile-menu {
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            gap: 8px;
         }
-
         .profile-menu-item {
             display: flex;
             align-items: center;
-            gap: 12px;
-            padding: 12px 16px;
+            gap: 14px;
+            padding: 14px 18px;
             background: rgba(255, 255, 255, 0.03);
-            border-radius: 14px;
+            border-radius: 16px;
             border: 1px solid rgba(255, 255, 255, 0.06);
             cursor: pointer;
             transition: 0.3s;
             color: #f0eeff;
             text-decoration: none;
         }
-
         .profile-menu-item:hover {
             border-color: #8b5cf6;
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.2);
+            transform: translateX(3px);
             background: rgba(139, 92, 246, 0.05);
         }
-
-        .profile-menu-item .icon {
-            font-size: 20px;
-        }
-
+        .profile-menu-item .icon { font-size: 22px; }
         .profile-menu-item .arrow {
             margin-left: auto;
             color: rgba(255, 255, 255, 0.2);
         }
-
         .profile-menu-item .highlight {
             color: #3b82f6;
             animation: pulse 2s infinite;
         }
-
         @keyframes pulse {
             0%, 100% { opacity: 0.6; }
             50% { opacity: 1; }
@@ -724,62 +850,53 @@
             overflow-y: auto;
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            gap: 8px;
         }
-
         .cart-item {
             display: flex;
             align-items: center;
-            gap: 12px;
-            padding: 10px 14px;
+            gap: 14px;
+            padding: 12px 16px;
             background: rgba(255, 255, 255, 0.03);
-            border-radius: 14px;
+            border-radius: 16px;
             border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: 0.3s;
         }
-
-        .cart-item .emoji {
-            font-size: 24px;
-        }
-
-        .cart-item .info {
-            flex: 1;
-        }
-
+        .cart-item:hover { border-color: #8b5cf6; }
+        .cart-item .emoji { font-size: 28px; }
+        .cart-item .info { flex: 1; }
         .cart-item .info .name {
             font-weight: 600;
-            font-size: 14px;
+            font-size: 15px;
             color: #f0eeff;
         }
-
         .cart-item .info .date {
-            font-size: 10px;
+            font-size: 11px;
             color: rgba(255, 255, 255, 0.3);
         }
-
         .cart-item .price {
             font-weight: 700;
             color: #facc15;
-            font-size: 15px;
+            font-size: 16px;
         }
-
         .cart-empty {
             text-align: center;
             color: rgba(255, 255, 255, 0.3);
-            padding: 30px 0;
+            padding: 40px 0;
+            font-size: 15px;
         }
-
         .cart-total {
-            padding: 10px 0 0;
+            padding: 12px 0 0;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
             display: flex;
             justify-content: space-between;
             font-weight: 600;
+            font-size: 16px;
             color: #f0eeff;
         }
-
         .cart-total .total-price {
             color: #facc15;
-            font-size: 18px;
+            font-size: 20px;
         }
 
         /* Chat */
@@ -788,65 +905,57 @@
             overflow-y: auto;
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            gap: 8px;
             padding: 4px 0;
         }
-
         .chat-message {
-            padding: 10px 14px;
-            border-radius: 16px;
+            padding: 12px 16px;
+            border-radius: 18px;
             max-width: 80%;
-            font-size: 13px;
+            font-size: 14px;
+            animation: fadeIn 0.3s ease;
         }
-
         .chat-message.incoming {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.06);
             align-self: flex-start;
             color: #f0eeff;
         }
-
         .chat-message.outgoing {
             background: linear-gradient(135deg, #8b5cf6, #6d28d9);
             color: white;
             align-self: flex-end;
         }
-
         .chat-message .time {
-            font-size: 9px;
+            font-size: 10px;
             opacity: 0.4;
             margin-top: 4px;
             display: block;
         }
-
         .chat-input {
             display: flex;
-            gap: 8px;
-            padding-top: 8px;
+            gap: 10px;
+            padding-top: 10px;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
-
         .chat-input input {
             flex: 1;
-            padding: 10px 16px;
+            padding: 12px 18px;
             border-radius: 40px;
             border: 1px solid rgba(255, 255, 255, 0.08);
             background: rgba(255, 255, 255, 0.05);
             color: #f0eeff;
-            font-size: 13px;
+            font-size: 14px;
+            transition: 0.3s;
         }
-
         .chat-input input:focus {
             outline: none;
             border-color: #8b5cf6;
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.2);
         }
-
-        .chat-input input::placeholder {
-            color: rgba(255, 255, 255, 0.3);
-        }
-
+        .chat-input input::placeholder { color: rgba(255, 255, 255, 0.3); }
         .chat-input button {
-            padding: 10px 20px;
+            padding: 12px 24px;
             border: none;
             border-radius: 40px;
             background: linear-gradient(135deg, #8b5cf6, #6d28d9);
@@ -854,137 +963,11 @@
             font-weight: 600;
             cursor: pointer;
             transition: 0.3s;
+            font-size: 16px;
         }
-
         .chat-input button:hover {
             transform: scale(0.95);
-        }
-
-        /* Product Modal */
-        .product-modal {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(20px);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            padding: 20px;
-        }
-
-        .product-modal.show {
-            display: flex;
-        }
-
-        .product-modal-content {
-            background: #1a1030;
-            border-radius: 32px;
-            padding: 30px 24px;
-            max-width: 360px;
-            width: 100%;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 0 80px rgba(139, 92, 246, 0.2);
-        }
-
-        .product-modal-content .emoji {
-            font-size: 48px;
-            text-align: center;
-            display: block;
-        }
-
-        .product-modal-content h3 {
-            text-align: center;
-            margin: 8px 0 4px;
-            font-size: 20px;
-            color: #f0eeff;
-        }
-
-        .product-modal-content .price {
-            text-align: center;
-            font-size: 26px;
-            font-weight: 700;
-            color: #facc15;
-            margin-bottom: 16px;
-        }
-
-        .product-modal-content input {
-            width: 100%;
-            padding: 12px 16px;
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            background: rgba(255, 255, 255, 0.05);
-            color: #f0eeff;
-            margin-bottom: 12px;
-            font-size: 14px;
-        }
-
-        .product-modal-content input:focus {
-            outline: none;
-            border-color: #8b5cf6;
-        }
-
-        .product-modal-content input::placeholder {
-            color: rgba(255, 255, 255, 0.3);
-        }
-
-        .product-modal-content .btn-group {
-            display: flex;
-            gap: 8px;
-        }
-
-        .product-modal-content .btn-group button {
-            flex: 1;
-            padding: 12px;
-            border: none;
-            border-radius: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            font-size: 14px;
-            transition: 0.3s;
-        }
-
-        .btn-buy-product {
-            background: linear-gradient(145deg, #b81c5c, #8b1a4a);
-            color: white;
-        }
-
-        .btn-buy-product:hover {
-            transform: scale(0.95);
-        }
-
-        .btn-close-modal {
-            background: rgba(255, 255, 255, 0.05);
-            color: #f0eeff;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-
-        .btn-close-modal:hover {
-            border-color: #8b5cf6;
-        }
-
-        .btn-contact {
-            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
-            color: white;
-            width: 100%;
-            padding: 12px;
-            border: none;
-            border-radius: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            margin-top: 8px;
-            transition: 0.3s;
-        }
-
-        .btn-contact:hover {
-            transform: scale(0.95);
-        }
-
-        .modal-hint {
-            font-size: 10px;
-            color: rgba(255, 255, 255, 0.2);
-            text-align: center;
-            margin-top: 10px;
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
         }
 
         /* Admin */
@@ -996,29 +979,17 @@
             gap: 12px;
             padding-bottom: 4px;
         }
-
-        .admin-content::-webkit-scrollbar {
-            width: 2px;
-        }
-
-        .admin-content::-webkit-scrollbar-thumb {
-            background: #8b5cf6;
-            border-radius: 10px;
-        }
-
         .admin-card {
             background: rgba(255, 255, 255, 0.03);
             border-radius: 16px;
             padding: 14px 16px;
             border: 1px solid rgba(255, 255, 255, 0.06);
         }
-
         .admin-card h4 {
             color: #facc15;
             font-size: 14px;
             margin-bottom: 10px;
         }
-
         .admin-card .admin-row {
             display: flex;
             gap: 6px;
@@ -1026,10 +997,8 @@
             align-items: center;
             flex-wrap: wrap;
         }
-
         .admin-card .admin-row input,
-        .admin-card .admin-row select,
-        .admin-card .admin-row textarea {
+        .admin-card .admin-row select {
             flex: 1;
             min-width: 60px;
             padding: 8px 12px;
@@ -1039,25 +1008,12 @@
             color: #f0eeff;
             font-size: 13px;
         }
-
-        .admin-card .admin-row textarea {
-            min-height: 80px;
-            resize: vertical;
-            flex-basis: 100%;
-        }
-
         .admin-card .admin-row input:focus,
-        .admin-card .admin-row select:focus,
-        .admin-card .admin-row textarea:focus {
+        .admin-card .admin-row select:focus {
             outline: none;
             border-color: #8b5cf6;
         }
-
-        .admin-card .admin-row input::placeholder,
-        .admin-card .admin-row textarea::placeholder {
-            color: rgba(255, 255, 255, 0.3);
-        }
-
+        .admin-card .admin-row input::placeholder { color: rgba(255, 255, 255, 0.3); }
         .admin-card .admin-row button {
             padding: 8px 14px;
             border: none;
@@ -1070,131 +1026,9 @@
             transition: 0.3s;
             white-space: nowrap;
         }
-
-        .admin-card .admin-row button:hover {
-            transform: scale(0.95);
-        }
-
-        .admin-card .admin-row button.danger {
-            background: #ef4444;
-        }
-
-        .admin-card .admin-row button.success {
-            background: #22c55e;
-        }
-
-        .admin-stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
-        }
-
-        .admin-stat-item {
-            background: rgba(255, 255, 255, 0.03);
-            padding: 10px;
-            border-radius: 12px;
-            text-align: center;
-        }
-
-        .admin-stat-item .num {
-            font-size: 20px;
-            font-weight: 700;
-            color: #8b5cf6;
-        }
-
-        .admin-stat-item .label {
-            font-size: 10px;
-            color: rgba(255, 255, 255, 0.4);
-            margin-top: 2px;
-        }
-
-        .admin-user-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 6px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-            font-size: 13px;
-        }
-
-        .admin-user-item .user-name {
-            color: #f0eeff;
-        }
-
-        .admin-user-item .user-bal {
-            color: #facc15;
-        }
-
-        .admin-user-item button {
-            padding: 2px 12px;
-            border: none;
-            border-radius: 6px;
-            font-size: 11px;
-            cursor: pointer;
-            background: #ef4444;
-            color: white;
-            transition: 0.3s;
-        }
-
-        .admin-user-item button:hover {
-            transform: scale(0.9);
-        }
-
-        .admin-products-list {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-            max-height: 150px;
-            overflow-y: auto;
-        }
-
-        .admin-products-list::-webkit-scrollbar {
-            width: 2px;
-        }
-
-        .admin-products-list::-webkit-scrollbar-thumb {
-            background: #8b5cf6;
-            border-radius: 10px;
-        }
-
-        .admin-products-list .product-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 4px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-            font-size: 12px;
-        }
-
-        .admin-products-list .product-row .p-name {
-            color: #f0eeff;
-        }
-
-        .admin-products-list .product-row .p-price {
-            color: #facc15;
-        }
-
-        .admin-products-list .product-row button {
-            padding: 2px 10px;
-            border: none;
-            border-radius: 4px;
-            font-size: 10px;
-            cursor: pointer;
-            background: #ef4444;
-            color: white;
-            transition: 0.3s;
-        }
-
-        .admin-products-list .product-row button:hover {
-            transform: scale(0.9);
-        }
-
-        .admin-promo-list {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-            padding: 4px 0;
-        }
+        .admin-card .admin-row button:hover { transform: scale(0.95); }
+        .admin-card .admin-row button.danger { background: #ef4444; }
+        .admin-card .admin-row button.success { background: #22c55e; }
 
         .admin-promo-item {
             display: flex;
@@ -1204,112 +1038,16 @@
             padding: 4px 12px;
             border-radius: 8px;
             font-size: 12px;
+            margin-bottom: 4px;
         }
 
-        .admin-promo-item .promo-code {
-            color: #facc15;
-            font-weight: 600;
-        }
-
-        .admin-promo-item .promo-bonus {
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        .admin-promo-item .promo-uses {
-            color: rgba(255, 255, 255, 0.3);
-            font-size: 10px;
-        }
-
-        .admin-promo-item button {
-            padding: 2px 10px;
-            border: none;
-            border-radius: 4px;
-            font-size: 10px;
-            cursor: pointer;
-            background: #ef4444;
-            color: white;
-            transition: 0.3s;
-        }
-
-        .admin-promo-item button:hover {
-            transform: scale(0.9);
-        }
-
-        .admin-hint {
-            font-size: 11px;
-            color: rgba(255, 255, 255, 0.2);
-            margin-top: 4px;
-        }
-
-        .admin-topup-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 6px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-            font-size: 13px;
-        }
-
-        .admin-topup-item .topup-user {
-            color: #f0eeff;
-        }
-
-        .admin-topup-item .topup-amount {
-            color: #facc15;
-        }
-
-        .admin-topup-item .topup-status {
-            font-size: 10px;
-            padding: 2px 10px;
-            border-radius: 10px;
-        }
-
-        .admin-topup-item .topup-status.pending {
-            background: rgba(250, 204, 21, 0.2);
-            color: #facc15;
-        }
-
-        .admin-topup-item .topup-status.approved {
-            background: rgba(34, 197, 94, 0.2);
-            color: #22c55e;
-        }
-
-        .admin-topup-item .topup-status.rejected {
-            background: rgba(239, 68, 68, 0.2);
-            color: #ef4444;
-        }
-
-        .admin-topup-item button {
-            padding: 2px 12px;
-            border: none;
-            border-radius: 6px;
-            font-size: 10px;
-            cursor: pointer;
-            color: white;
-            transition: 0.3s;
-        }
-
-        .admin-topup-item button.approve {
-            background: #22c55e;
-        }
-
-        .admin-topup-item button.reject {
-            background: #ef4444;
-        }
-
-        .admin-topup-item button:hover {
-            transform: scale(0.9);
-        }
-
-        /* ===== НОВЫЙ СТИЛЬ ДЛЯ СТРАНИЦЫ ПРОДАЖИ ===== */
+        /* Sell page */
         .sell-form {
             display: flex;
             flex-direction: column;
             gap: 10px;
         }
-
         .sell-form input,
-        .sell-form select,
         .sell-form textarea {
             width: 100%;
             padding: 12px 16px;
@@ -1319,19 +1057,15 @@
             color: #f0eeff;
             font-size: 14px;
         }
-
         .sell-form input:focus,
-        .sell-form select:focus,
         .sell-form textarea:focus {
             outline: none;
             border-color: #8b5cf6;
         }
-
         .sell-form textarea {
             min-height: 100px;
             resize: vertical;
         }
-
         .sell-form .sell-btn {
             padding: 14px;
             border: none;
@@ -1343,455 +1077,32 @@
             cursor: pointer;
             transition: 0.3s;
         }
-
         .sell-form .sell-btn:hover {
             transform: scale(0.97);
             box-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
         }
 
-        /* Light Theme */
-        [data-theme="light"] .app-screen {
-            background: #f5f0fa;
-        }
-
-        [data-theme="light"] .phone-frame {
-            background: #e8e0f0;
-        }
-
-        [data-theme="light"] .header h1 {
-            background: linear-gradient(135deg, #6d28d9, #db2777);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        [data-theme="light"] .section-header h2 {
-            color: #1a1428;
-        }
-
-        [data-theme="light"] .section-header a {
-            color: #6d28d9;
-            font-weight: 600;
-        }
-
-        [data-theme="light"] .product-card {
-            background: #ffffff;
-            border: 1px solid #d5cce0;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-        }
-
-        [data-theme="light"] .product-card:hover {
-            border-color: #6d28d9;
-            box-shadow: 0 8px 24px rgba(109, 40, 217, 0.15);
-        }
-
-        [data-theme="light"] .product-card .title {
-            color: #1a1428;
-        }
-
-        [data-theme="light"] .product-card .sub {
-            color: #6a5f7a;
-        }
-
-        [data-theme="light"] .product-card .price {
-            color: #d97706;
-            text-shadow: none;
-        }
-
-        [data-theme="light"] .product-card .old-price {
-            color: #a090b0;
-        }
-
-        [data-theme="light"] .product-card .favorite-btn {
-            color: #c0b0d0;
-        }
-
-        [data-theme="light"] .product-card .favorite-btn.active {
-            color: #ef4444;
-        }
-
-        [data-theme="light"] .balance-block {
-            background: #ffffff;
-            border: 1px solid #d5cce0;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-        }
-
-        [data-theme="light"] .balance-block .label {
-            color: #5a4f6a;
-        }
-
-        [data-theme="light"] .balance-row input {
-            background: #f5f0fa;
-            border: 1px solid #d5cce0;
-            color: #1a1428;
-        }
-
-        [data-theme="light"] .balance-row input::placeholder {
-            color: #a090b0;
-        }
-
-        [data-theme="light"] .balance-row .amount {
-            color: #d97706;
-            text-shadow: none;
-        }
-
-        [data-theme="light"] .balance-row button {
-            background: #6d28d9;
-            color: white;
-        }
-
-        [data-theme="light"] .balance-hint {
-            color: #6a5f7a;
-        }
-
-        [data-theme="light"] .balance-hint .promo input {
-            background: #f5f0fa;
-            border: 1px solid #d5cce0;
-            color: #1a1428;
-        }
-
-        [data-theme="light"] .balance-hint .promo button {
-            background: #6d28d9;
-            color: white;
-        }
-
-        [data-theme="light"] .promo-banner {
-            background: linear-gradient(135deg, rgba(184, 28, 92, 0.12), rgba(109, 40, 217, 0.12));
-            border: 1px solid #d5cce0;
-        }
-
-        [data-theme="light"] .promo-banner .text {
-            color: #d97706;
-        }
-
-        [data-theme="light"] .promo-banner .text span {
-            color: #6a5f7a;
-        }
-
-        [data-theme="light"] .promo-banner .countdown {
-            background: rgba(0,0,0,0.06);
-            color: #5a4f6a;
-        }
-
-        [data-theme="light"] .bottom-nav {
-            border-top-color: #d5cce0;
-        }
-
-        [data-theme="light"] .nav-item {
-            color: #8a7f9a;
-        }
-
-        [data-theme="light"] .nav-item.active {
-            color: #6d28d9;
-        }
-
-        [data-theme="light"] .nav-item:hover {
-            color: #6d28d9;
-        }
-
-        [data-theme="light"] .header-btn {
-            background: #ffffff;
-            border: 1px solid #d5cce0;
-            color: #4a3f5a;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-        }
-
-        [data-theme="light"] .header-btn:hover {
-            border-color: #6d28d9;
-            box-shadow: 0 4px 12px rgba(109, 40, 217, 0.12);
-        }
-
-        [data-theme="light"] .header-btn .badge {
-            background: #ef4444;
-            color: white;
-        }
-
-        [data-theme="light"] .theme-toggle {
-            background: #ffffff;
-            border: 1px solid #d5cce0;
-            color: #4a3f5a;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-        }
-
-        [data-theme="light"] .theme-toggle:hover {
-            border-color: #6d28d9;
-        }
-
-        [data-theme="light"] .page-header .back {
-            background: #ffffff;
-            border: 1px solid #d5cce0;
-            color: #4a3f5a;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        }
-
-        [data-theme="light"] .page-header .back:hover {
-            border-color: #6d28d9;
-            box-shadow: 0 4px 16px rgba(109, 40, 217, 0.15);
-        }
-
-        [data-theme="light"] .page-header h3 {
-            color: #1a1428;
-        }
-
-        [data-theme="light"] .profile-name {
-            color: #1a1428;
-        }
-
-        [data-theme="light"] .profile-username {
-            color: #6a5f7a;
-        }
-
-        [data-theme="light"] .profile-balance {
-            background: #ffffff;
-            border: 1px solid #d5cce0;
-        }
-
-        [data-theme="light"] .profile-balance .label {
-            color: #5a4f6a;
-        }
-
-        [data-theme="light"] .profile-balance .amount {
-            color: #d97706;
-            text-shadow: none;
-        }
-
-        [data-theme="light"] .profile-menu-item {
-            background: #ffffff;
-            border: 1px solid #d5cce0;
-            color: #1a1428;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-        }
-
-        [data-theme="light"] .profile-menu-item:hover {
-            border-color: #6d28d9;
-            background: #f8f4ff;
-            box-shadow: 0 4px 16px rgba(109, 40, 217, 0.1);
-        }
-
-        [data-theme="light"] .profile-menu-item .arrow {
-            color: #a090b0;
-        }
-
-        [data-theme="light"] .cart-item {
-            background: #ffffff;
-            border: 1px solid #d5cce0;
-        }
-
-        [data-theme="light"] .cart-item .info .name {
-            color: #1a1428;
-        }
-
-        [data-theme="light"] .cart-item .info .date {
-            color: #8a7f9a;
-        }
-
-        [data-theme="light"] .cart-total {
-            color: #1a1428;
-            border-top-color: #d5cce0;
-        }
-
-        [data-theme="light"] .cart-total .total-price {
-            color: #d97706;
-        }
-
-        [data-theme="light"] .chat-message.incoming {
-            background: #ffffff;
-            border: 1px solid #d5cce0;
-            color: #1a1428;
-        }
-
-        [data-theme="light"] .chat-message.outgoing {
-            background: linear-gradient(135deg, #8b5cf6, #6d28d9);
-            color: white;
-        }
-
-        [data-theme="light"] .chat-input input {
-            background: #ffffff;
-            border: 1px solid #d5cce0;
-            color: #1a1428;
-        }
-
-        [data-theme="light"] .chat-input input::placeholder {
-            color: #8a7f9a;
-        }
-
-        [data-theme="light"] .chat-input input:focus {
-            border-color: #6d28d9;
-        }
-
-        [data-theme="light"] .product-modal-content {
-            background: #f5f0fa;
-            border: 1px solid #d5cce0;
-        }
-
-        [data-theme="light"] .product-modal-content h3 {
-            color: #1a1428;
-        }
-
-        [data-theme="light"] .product-modal-content input {
-            background: #ffffff;
-            border: 1px solid #d5cce0;
-            color: #1a1428;
-        }
-
-        [data-theme="light"] .product-modal-content input::placeholder {
-            color: #8a7f9a;
-        }
-
-        [data-theme="light"] .btn-close-modal {
-            background: #e8e0f0;
-            color: #1a1428;
-            border: 1px solid #d5cce0;
-        }
-
-        [data-theme="light"] .btn-close-modal:hover {
-            border-color: #6d28d9;
-        }
-
-        [data-theme="light"] .auth-modal {
-            background: #f5f0fa;
-            border: 1px solid #d5cce0;
-        }
-
-        [data-theme="light"] .auth-modal .sub {
-            color: #5a4f6a;
-        }
-
-        [data-theme="light"] .auth-input {
-            background: #ffffff;
-            border: 1px solid #d5cce0;
-            color: #1a1428;
-        }
-
-        [data-theme="light"] .auth-input::placeholder {
-            color: #8a7f9a;
-        }
-
-        [data-theme="light"] .auth-input:focus {
-            border-color: #6d28d9;
-        }
-
-        [data-theme="light"] .auth-switch {
-            color: #5a4f6a;
-        }
-
-        [data-theme="light"] .auth-switch span {
-            color: #6d28d9;
-        }
-
-        [data-theme="light"] .admin-card {
-            background: #ffffff;
-            border: 1px solid #d5cce0;
-        }
-
-        [data-theme="light"] .admin-card .admin-row input,
-        [data-theme="light"] .admin-card .admin-row select,
-        [data-theme="light"] .admin-card .admin-row textarea {
-            background: #f5f0fa;
-            border: 1px solid #d5cce0;
-            color: #1a1428;
-        }
-
-        [data-theme="light"] .admin-stat-item {
-            background: #f5f0fa;
-            border: 1px solid #d5cce0;
-        }
-
-        [data-theme="light"] .admin-stat-item .num {
-            color: #6d28d9;
-        }
-
-        [data-theme="light"] .admin-user-item .user-name {
-            color: #1a1428;
-        }
-
-        [data-theme="light"] .admin-products-list .product-row .p-name {
-            color: #1a1428;
-        }
-
-        [data-theme="light"] .admin-hint {
-            color: #8a7f9a;
-        }
-
-        [data-theme="light"] .admin-promo-item {
-            background: rgba(109, 40, 217, 0.06);
-            border: 1px solid #d5cce0;
-        }
-
-        [data-theme="light"] .admin-promo-item .promo-code {
-            color: #6d28d9;
-        }
-
-        [data-theme="light"] .sell-form input,
-        [data-theme="light"] .sell-form select,
-        [data-theme="light"] .sell-form textarea {
-            background: #ffffff;
-            border: 1px solid #d5cce0;
-            color: #1a1428;
-        }
-
-        [data-theme="light"] .sell-form input::placeholder,
-        [data-theme="light"] .sell-form textarea::placeholder {
-            color: #8a7f9a;
-        }
-
-        [data-theme="light"] .admin-topup-item .topup-user {
-            color: #1a1428;
-        }
-
         @media (max-width: 420px) {
             .phone-frame {
-                border-radius: 28px;
-                padding: 6px;
+                border-radius: 32px;
+                padding: 8px;
                 max-width: 100%;
             }
             .app-screen {
-                padding: 12px 10px;
-                border-radius: 24px;
+                padding: 16px 12px;
+                border-radius: 28px;
             }
-            .product-card {
-                min-width: 110px;
-                padding: 10px;
-            }
-            .product-card .emoji {
-                font-size: 22px;
-            }
-            .product-card .title {
-                font-size: 12px;
-            }
-            .header h1 {
-                font-size: 20px;
-            }
-            .admin-stats {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .header-btn {
-                width: 32px;
-                height: 32px;
-                font-size: 14px;
-            }
-            .theme-toggle {
-                width: 32px;
-                height: 32px;
-                font-size: 14px;
-            }
-            .admin-card .admin-row input {
-                min-width: 40px;
-                font-size: 11px;
-                padding: 6px 8px;
-            }
-            .admin-card .admin-row button {
-                font-size: 11px;
-                padding: 6px 10px;
-            }
-            .balance-row {
-                flex-direction: column;
-            }
-            .balance-row input {
-                width: 100%;
-            }
-            .balance-row button {
-                width: 100%;
-            }
+            .float-icon { font-size: 2rem; }
+            .btn-buy, .btn-sell { font-size: 15px; padding: 14px 0; }
+            .category-item { font-size: 13px; padding: 6px 14px; }
+            .avatar-img { width: 40px; height: 40px; font-size: 18px; }
+            .icon-btn, .theme-toggle { width: 38px; height: 38px; font-size: 17px; }
+            .product-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+            .product-item { padding: 10px 6px; }
+            .product-item .emoji { font-size: 26px; }
+            .product-item .name { font-size: 10px; }
+            .product-item .price { font-size: 12px; }
+            .auth-modal { padding: 30px 20px; }
         }
     </style>
 </head>
@@ -1819,7 +1130,6 @@
         <span class="emoji" id="modalEmoji">🎯</span>
         <h3 id="modalName">Товар</h3>
         <div class="price" id="modalPrice">$0</div>
-        <input id="modalCode" placeholder="Введите код для покупки">
         <div class="btn-group">
             <button class="btn-buy-product" onclick="buyProduct()">💎 Купить</button>
             <button class="btn-close-modal" onclick="closeModal()">Закрыть</button>
@@ -1832,88 +1142,81 @@
 <!-- Phone -->
 <div class="phone-frame">
     <div class="app-screen">
+        <!-- Floating Items -->
+        <div class="floating-items">
+            <div class="float-icon">🔫</div>
+            <div class="float-icon">🗡️</div>
+            <div class="float-icon">📦</div>
+            <div class="float-icon">🪙</div>
+            <div class="float-icon">💎</div>
+        </div>
 
         <!-- MAIN PAGE -->
-        <div class="page active" id="pageMain">
-            <div class="header">
-                <h1>Rubi</h1>
-                <div class="header-actions">
+        <div class="content page active" id="pageMain">
+            <div class="top-bar">
+                <div class="avatar-click" onclick="navigateTo('profile')">
+                    <div class="avatar-img" id="mainAvatar">R</div>
+                    <span class="badge-level" id="mainLevel">1</span>
+                </div>
+                <div class="search-wrap">
+                    <span class="search-icon">🔍</span>
+                    <input class="search-bar" id="mainSearch" placeholder="Поиск предметов, скинов...">
+                </div>
+                <div class="top-icons">
                     <div class="theme-toggle" onclick="toggleTheme()">🌓</div>
-                    <div class="header-btn admin-btn" onclick="navigateTo('admin')" id="adminBtn">⚙️</div>
-                    <div class="header-btn" onclick="navigateTo('cart')">
+                    <div class="icon-btn admin-btn" onclick="navigateTo('admin')" id="adminBtn" style="display:none;">⚙️</div>
+                    <div class="icon-btn" onclick="navigateTo('cart')">
                         🛒
                         <span class="badge" id="cartBadge">0</span>
                     </div>
-                    <div class="header-btn" onclick="navigateTo('chat')">
+                    <div class="icon-btn" onclick="navigateTo('chat')">
                         💬
                         <span class="badge" id="chatBadge">0</span>
                     </div>
-                    <div class="header-btn" onclick="navigateTo('profile')" style="background:linear-gradient(135deg,#b37aff,#6f3bff);color:white;border:none;">
-                        👤
-                    </div>
                 </div>
             </div>
 
-            <div class="promo-banner" id="promoBanner">
-                <div class="text">🔥 <span>Акция:</span> Скидка 20% на все скины CS2!</div>
-                <div class="countdown" id="countdownTimer">⏳ 2д 14ч</div>
+            <div class="action-buttons">
+                <div class="btn-buy" onclick="navigateTo('cart')">💎 КУПИТЬ</div>
+                <div class="btn-sell" onclick="alert('📤 Продажа предметов на Rubi')">⚡ ПРОДАТЬ</div>
             </div>
 
-            <div class="section-header">
-                <h2>❤️ Избранное</h2>
-                <a onclick="navigateTo('favorites')">Смотреть всё →</a>
-            </div>
-            <div class="products" id="favoritesContainer"></div>
-
-            <div class="section-header">
-                <h2>Новое</h2>
-                <a onclick="alert('Все товары')">Смотреть всё →</a>
-            </div>
-            <div class="products" id="productsContainer"></div>
-
-            <!-- ===== НОВЫЙ БЛОК: ТОВАРЫ ПОЛЬЗОВАТЕЛЕЙ ===== -->
-            <div class="section-header">
-                <h2>👤 Товары пользователей</h2>
-                <a onclick="alert('Все товары')">Смотреть всё →</a>
-            </div>
-            <div class="products" id="userProductsContainer"></div>
-
-            <!-- ===== НОВЫЙ БЛОК: ПОПОЛНЕНИЕ БАЛАНСА ===== -->
-            <div class="balance-block">
-                <div class="label">💳 Пополнить баланс</div>
-                <div class="balance-row">
-                    <input id="topupUsername" placeholder="Ваш логин">
-                    <input id="topupAmount" placeholder="Сумма ★" type="number">
-                    <button onclick="createTopupRequest()">Пополнить</button>
-                </div>
-                <div class="balance-hint">
-                    <span>После оплаты на ваш баланс поступят средства</span>
+            <div class="categories-wrap">
+                <div class="categories" id="categoriesContainer">
+                    <span class="category-item active" data-cat="games">🎮 Игры</span>
+                    <span class="category-item" data-cat="apps">📱 Приложения</span>
+                    <span class="category-item" data-cat="skins">🔫 Скины</span>
+                    <span class="category-item" data-cat="boost">🚀 Бусты</span>
                 </div>
             </div>
 
-            <div class="balance-block">
-                <div class="label">🎫 Промокод</div>
-                <div class="balance-row">
-                    <input id="promoInput" placeholder="Введите промокод">
-                    <button onclick="applyPromo()">Применить</button>
-                </div>
+            <div class="glass-card">
+                <div class="glass-title">✦ ПОПУЛЯРНЫЕ ЛОТЫ</div>
+                <div class="product-grid" id="productGrid"></div>
             </div>
 
+            <!-- ===== НОВАЯ НИЖНЯЯ ПАНЕЛЬ ===== -->
             <div class="bottom-nav">
                 <button class="nav-item active" onclick="navigateTo('main')">
-                    <span class="icon">🏠</span> Главная
+                    <span class="icon">🏠</span>
+                    <span class="label">Главная</span>
                 </button>
                 <button class="nav-item" onclick="navigateTo('search')">
-                    <span class="icon">🔍</span> Поиск
+                    <span class="icon">🔍</span>
+                    <span class="label">Поиск</span>
                 </button>
                 <button class="nav-item" onclick="navigateTo('sell')">
-                    <span class="icon">📤</span> Продать
+                    <span class="icon">📤</span>
+                    <span class="label">Продать</span>
                 </button>
                 <button class="nav-item" onclick="navigateTo('chat')">
-                    <span class="icon">💬</span> Чаты
+                    <span class="icon">💬</span>
+                    <span class="label">Чаты</span>
+                    <span class="badge-nav" id="chatBadgeNav">0</span>
                 </button>
                 <button class="nav-item" onclick="navigateTo('profile')">
-                    <span class="icon">👤</span> Профиль
+                    <span class="icon">👤</span>
+                    <span class="label">Профиль</span>
                 </button>
             </div>
         </div>
@@ -1923,18 +1226,20 @@
             <div class="page-header">
                 <div class="back" onclick="navigateTo('main')">←</div>
                 <h3>Профиль</h3>
-                <div style="width:36px;"></div>
+                <div style="width:40px;"></div>
             </div>
             <div class="profile-content">
-                <div class="profile-avatar" id="profileAvatar" onclick="editAvatar()">
-                    <span id="profileAvatarText">R</span>
-                    <div class="edit-overlay">✎</div>
-                </div>
-                <div class="profile-name" id="profileNameDisplay" onclick="editName()">Rubi User</div>
-                <div class="profile-username" id="profileUsername">@telegram_user</div>
-                <div class="profile-balance">
-                    <span class="label">💰 Баланс</span>
-                    <span class="amount" id="profileBalance">$0</span>
+                <div class="profile-info">
+                    <div class="profile-avatar" id="profileAvatar" onclick="editAvatar()">
+                        <span id="profileAvatarText">R</span>
+                        <div class="edit-overlay">✎</div>
+                    </div>
+                    <div class="profile-name" id="profileNameDisplay" onclick="editName()">Rubi User</div>
+                    <div class="profile-username" id="profileUsername">@telegram_user</div>
+                    <div class="profile-balance">
+                        <span class="label">💰 Баланс</span>
+                        <span class="amount" id="profileBalance">$0</span>
+                    </div>
                 </div>
                 <div class="profile-menu">
                     <div class="profile-menu-item" onclick="getPromoCode()">
@@ -1943,6 +1248,9 @@
                     <a class="profile-menu-item" href="https://t.me/rubishopgame" target="_blank">
                         <span class="icon">📢</span> Telegram-канал <span class="arrow highlight">✦</span>
                     </a>
+                    <div class="profile-menu-item" onclick="topUpBalance()">
+                        <span class="icon">⭐</span> Пополнить баланс <span class="arrow">→</span>
+                    </div>
                     <div class="profile-menu-item" onclick="logout()">
                         <span class="icon">🚪</span> Выйти <span class="arrow">→</span>
                     </div>
@@ -1955,7 +1263,7 @@
             <div class="page-header">
                 <div class="back" onclick="navigateTo('main')">←</div>
                 <h3>🛒 Корзина</h3>
-                <div style="width:36px;"></div>
+                <div style="width:40px;"></div>
             </div>
             <div class="cart-list" id="cartList">
                 <div class="cart-empty">Корзина пуста</div>
@@ -1971,7 +1279,7 @@
             <div class="page-header">
                 <div class="back" onclick="navigateTo('main')">←</div>
                 <h3>💬 Чат</h3>
-                <div style="width:36px;"></div>
+                <div style="width:40px;"></div>
             </div>
             <div class="chat-messages" id="chatMessages"></div>
             <div class="chat-input">
@@ -1985,34 +1293,24 @@
             <div class="page-header">
                 <div class="back" onclick="navigateTo('main')">←</div>
                 <h3>🔍 Поиск</h3>
-                <div style="width:36px;"></div>
+                <div style="width:40px;"></div>
             </div>
             <input class="search-bar" id="searchInput" placeholder="Поиск товаров..." style="width:100%;padding:12px 16px;border-radius:16px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.05);color:#f0eeff;font-size:15px;">
             <div class="products" id="searchResults" style="flex-wrap:wrap;gap:8px;"></div>
         </div>
 
-        <!-- FAVORITES PAGE -->
-        <div class="page" id="pageFavorites">
-            <div class="page-header">
-                <div class="back" onclick="navigateTo('main')">←</div>
-                <h3>❤️ Избранное</h3>
-                <div style="width:36px;"></div>
-            </div>
-            <div class="products" id="favoritesPageContainer" style="flex-wrap:wrap;gap:8px;"></div>
-        </div>
-
-        <!-- ===== НОВАЯ СТРАНИЦА: ПРОДАЖА ===== -->
+        <!-- SELL PAGE -->
         <div class="page" id="pageSell">
             <div class="page-header">
                 <div class="back" onclick="navigateTo('main')">←</div>
                 <h3>📤 Продать товар</h3>
-                <div style="width:36px;"></div>
+                <div style="width:40px;"></div>
             </div>
             <div class="profile-content">
                 <div class="admin-card">
                     <h4>📦 Создать объявление</h4>
                     <div class="sell-form">
-                        <input id="sellCategory" placeholder="Категория (CS2, Dota, Rust, и т.д.)">
+                        <input id="sellCategory" placeholder="Категория (CS2, Dota, Rust...)">
                         <input id="sellName" placeholder="Название товара*">
                         <input id="sellEmoji" placeholder="Эмодзи (например, 🔫)" style="max-width:80px;">
                         <input id="sellPrice" placeholder="Цена ★*" type="number">
@@ -2032,30 +1330,28 @@
             <div class="page-header">
                 <div class="back" onclick="navigateTo('main')">←</div>
                 <h3>⚙️ Админ-панель</h3>
-                <div style="width:36px;"></div>
+                <div style="width:40px;"></div>
             </div>
             <div class="admin-content" id="adminContent"></div>
         </div>
-
     </div>
 </div>
 
 <script>
     // ============================================================
-    // КОНФИГУРАЦИЯ
+    // НАСТРОЙКИ API
     // ============================================================
     const API_URL = 'http://localhost:5000/api';
     let isLoginMode = true;
 
     // ============================================================
-    // ПЕРЕКЛЮЧЕНИЕ МЕЖДУ ВХОДОМ И РЕГИСТРАЦИЕЙ
+    // AUTH
     // ============================================================
     function toggleAuthMode() {
         isLoginMode = !isLoginMode;
         const btn = document.getElementById('authBtn');
         const sub = document.getElementById('authSub');
         const switchLink = document.getElementById('authSwitch');
-        
         if (isLoginMode) {
             btn.textContent = 'Войти';
             sub.textContent = 'Войдите в свой аккаунт';
@@ -2068,9 +1364,6 @@
         document.getElementById('authError').style.display = 'none';
     }
 
-    // ============================================================
-    // AUTH
-    // ============================================================
     async function handleAuth() {
         const login = document.getElementById('authLogin').value.trim();
         const password = document.getElementById('authPassword').value.trim();
@@ -2120,21 +1413,21 @@
     document.getElementById('authLogin').addEventListener('keydown', e => { if (e.key === 'Enter') handleAuth(); });
 
     // ============================================================
-    // ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ
+    // ПЕРЕМЕННЫЕ
     // ============================================================
     let currentUser = null;
     let products = [];
-    let userProducts = [];
     let cart = [];
     let favorites = [];
     let allUsers = [];
-    let allPromos = [];
     let selectedProduct = null;
     let avatarImage = null;
     let chatMessages = JSON.parse(localStorage.getItem('rubi_chat')) || [
         { text: '👋 Добро пожаловать в Rubi!', time: '12:30', type: 'incoming' },
         { text: 'Здесь вы можете купить игровые предметы', time: '12:31', type: 'incoming' },
     ];
+    let allPromos = [];
+    let userProducts = [];
 
     // ============================================================
     // ЗАГРУЗКА ДАННЫХ
@@ -2170,47 +1463,76 @@
         }
     }
 
-    // ============================================================
-    // BALANCE
-    // ============================================================
     function getUserBalance() {
         return currentUser ? currentUser.balance : 0;
     }
 
     // ============================================================
-    // ПОПОЛНЕНИЕ БАЛАНСА
+    // ПОКУПКА
     // ============================================================
-    async function createTopupRequest() {
-        const username = document.getElementById('topupUsername').value.trim();
-        const amount = parseInt(document.getElementById('topupAmount').value);
+    function openProduct(id, name, sub, emoji, price) {
+        selectedProduct = { id, name, sub, emoji, price };
+        document.getElementById('modalEmoji').textContent = emoji;
+        document.getElementById('modalName').textContent = name;
+        document.getElementById('modalPrice').textContent = price + ' ★';
+        document.getElementById('productModal').classList.add('show');
+    }
 
-        if (!username || !amount) {
-            alert('❌ Введите логин и сумму');
+    function closeModal() {
+        document.getElementById('productModal').classList.remove('show');
+    }
+
+    async function buyProduct() {
+        if (!selectedProduct) {
+            alert('❌ Товар не выбран');
+            return;
+        }
+        if (!currentUser) {
+            alert('❌ Войдите в аккаунт');
             return;
         }
 
         try {
-            const response = await fetch(`${API_URL}/topup`, {
+            const response = await fetch(`${API_URL}/buy`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ username, amount })
+                body: JSON.stringify({
+                    userId: currentUser.id,
+                    productId: selectedProduct.id,
+                    productName: selectedProduct.name,
+                    price: selectedProduct.price
+                })
             });
 
             const data = await response.json();
 
             if (!response.ok) {
-                alert(data.error || 'Ошибка');
+                alert(data.error || 'Ошибка покупки');
                 return;
             }
 
-            alert(`✅ Заявка на пополнение ${amount} ★ отправлена!\nОжидайте подтверждения от администратора.`);
-            document.getElementById('topupUsername').value = '';
-            document.getElementById('topupAmount').value = '';
+            currentUser = data.user;
+            localStorage.setItem('rubi_user', JSON.stringify(currentUser));
+            await loadData();
+            updateUI();
+            renderCart();
+            updateBalanceDisplay();
+            alert(`✅ Товар "${selectedProduct.name}" успешно куплен!`);
+            closeModal();
 
         } catch (error) {
             alert('❌ Ошибка подключения к серверу');
         }
     }
+
+    function contactSeller() {
+        alert('📩 Связь с продавцом: @vmvmvq\n\nИнструкция:\n1. Напишите сумму пополнения\n2. После оплаты получите код\n3. Введите код при покупке');
+        window.open('https://t.me/vmvmvq', '_blank');
+    }
+
+    document.getElementById('productModal').addEventListener('click', function(e) {
+        if (e.target === this) closeModal();
+    });
 
     // ============================================================
     // ПРОМОКОДЫ
@@ -2250,61 +1572,33 @@
     }
 
     // ============================================================
-    // ПОКУПКА ТОВАРА
+    // ИЗБРАННОЕ
     // ============================================================
-    async function buyProduct() {
-        if (!selectedProduct) return;
-        const code = document.getElementById('modalCode').value.trim();
-
-        if (!code) {
-            alert('⚠️ Введите код для подтверждения покупки');
-            return;
-        }
+    async function toggleFavorite(productId) {
+        const isFav = favorites.includes(productId);
+        const action = isFav ? 'remove' : 'add';
 
         try {
-            const response = await fetch(`${API_URL}/buy`, {
+            const response = await fetch(`${API_URL}/favorites`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    userId: currentUser.id,
-                    productId: selectedProduct.id,
-                    productName: selectedProduct.name,
-                    price: selectedProduct.price
-                })
+                body: JSON.stringify({ userId: currentUser.id, productId, action })
             });
 
-            const data = await response.json();
+            if (!response.ok) throw new Error('Ошибка');
 
-            if (!response.ok) {
-                alert(data.error || 'Ошибка покупки');
-                return;
+            if (isFav) {
+                favorites = favorites.filter(id => id !== productId);
+            } else {
+                favorites.push(productId);
             }
 
-            currentUser = data.user;
-            localStorage.setItem('rubi_user', JSON.stringify(currentUser));
-            await loadData();
-            updateUI();
-            renderCart();
-            updateBalanceDisplay();
-            alert(`✅ Товар "${selectedProduct.name}" успешно куплен!`);
-            closeModal();
+            renderProducts();
 
         } catch (error) {
-            alert('❌ Ошибка подключения к серверу');
+            console.error('Ошибка избранного:', error);
         }
     }
-
-    function contactSeller() {
-        alert('📩 Связь с продавцом: напишите в чат');
-    }
-
-    function closeModal() {
-        document.getElementById('productModal').classList.remove('show');
-    }
-
-    document.getElementById('productModal').addEventListener('click', function(e) {
-        if (e.target === this) closeModal();
-    });
 
     // ============================================================
     // ПРОДАЖА ТОВАРА
@@ -2356,7 +1650,6 @@
 
             await loadData();
             renderProducts();
-            renderUserProducts();
             renderMyProducts();
 
         } catch (error) {
@@ -2364,42 +1657,42 @@
         }
     }
 
-    // ============================================================
-    // TOGGLE FAVORITE
-    // ============================================================
-    async function toggleFavorite(productId) {
-        const isFav = favorites.includes(productId);
-        const action = isFav ? 'remove' : 'add';
+    function renderMyProducts() {
+        const container = document.getElementById('myProductsList');
+        if (!currentUser) {
+            container.innerHTML = '<div style="color:rgba(255,255,255,0.3);font-size:13px;">Войдите, чтобы видеть свои объявления</div>';
+            return;
+        }
+        const myProducts = userProducts.filter(p => p.userId === currentUser.id);
+        if (myProducts.length === 0) {
+            container.innerHTML = '<div style="color:rgba(255,255,255,0.3);font-size:13px;">У вас нет активных объявлений</div>';
+            return;
+        }
+        container.innerHTML = myProducts.map(p => `
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:13px;">
+                <span>${p.emoji || '📦'} ${p.name} — ${p.price} ★</span>
+                <button onclick="deleteMyProduct(${p.id})" style="padding:2px 12px;border:none;border-radius:4px;background:#ef4444;color:white;font-size:10px;cursor:pointer;">✕</button>
+            </div>
+        `).join('');
+    }
 
+    async function deleteMyProduct(id) {
+        if (!confirm('Удалить объявление?')) return;
         try {
-            const response = await fetch(`${API_URL}/favorites`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ userId: currentUser.id, productId, action })
+            const response = await fetch(`${API_URL}/user_products/${id}`, {
+                method: 'DELETE'
             });
-
             if (!response.ok) throw new Error('Ошибка');
-
-            if (isFav) {
-                favorites = favorites.filter(id => id !== productId);
-            } else {
-                favorites.push(productId);
-            }
-
-            renderProducts();
-            renderFavorites();
-            updateFavBadge();
-            if (document.getElementById('pageFavorites').classList.contains('active')) {
-                renderFavoritesPage();
-            }
-
+            await loadData();
+            renderMyProducts();
+            alert('✅ Объявление удалено!');
         } catch (error) {
-            console.error('Ошибка избранного:', error);
+            alert('❌ Ошибка удаления');
         }
     }
 
     // ============================================================
-    // АДМИН ФУНКЦИИ
+    // АДМИН
     // ============================================================
     async function addProduct() {
         const name = document.getElementById('adminProductName').value.trim();
@@ -2574,45 +1867,14 @@
         }
     }
 
-    // ===== ЗАЯВКИ НА ПОПОЛНЕНИЕ (АДМИН) =====
-    async function approveTopup(id) {
-        if (!confirm('Подтвердить пополнение?')) return;
-        try {
-            const response = await fetch(`${API_URL}/topup/${id}/approve`, {
-                method: 'POST'
-            });
-            if (!response.ok) throw new Error('Ошибка');
-            await loadData();
-            renderAdmin();
-            alert('✅ Пополнение подтверждено!');
-        } catch (error) {
-            alert('❌ Ошибка');
-        }
-    }
-
-    async function rejectTopup(id) {
-        if (!confirm('Отклонить пополнение?')) return;
-        try {
-            const response = await fetch(`${API_URL}/topup/${id}/reject`, {
-                method: 'POST'
-            });
-            if (!response.ok) throw new Error('Ошибка');
-            await loadData();
-            renderAdmin();
-            alert('✅ Пополнение отклонено');
-        } catch (error) {
-            alert('❌ Ошибка');
-        }
-    }
-
     // ============================================================
-    // NAVIGATION
+    // НАВИГАЦИЯ
     // ============================================================
     function navigateTo(page) {
         document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
         const target = document.getElementById('page' + page.charAt(0).toUpperCase() + page.slice(1));
         if (target) target.classList.add('active');
-        
+
         document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
         const navMap = { main: 0, search: 1, sell: 2, chat: 3, profile: 4 };
         if (navMap[page] !== undefined) {
@@ -2624,12 +1886,11 @@
         if (page === 'profile') updateProfile();
         if (page === 'chat') renderChat();
         if (page === 'admin') renderAdmin();
-        if (page === 'favorites') renderFavoritesPage();
         if (page === 'sell') renderMyProducts();
     }
 
     // ============================================================
-    // THEME
+    // ТЕМА
     // ============================================================
     function toggleTheme() {
         const current = document.documentElement.getAttribute('data-theme');
@@ -2637,202 +1898,22 @@
     }
 
     // ============================================================
-    // OPEN PRODUCT
-    // ============================================================
-    function openProduct(id, name, sub, emoji, price, isUserProduct = false) {
-        selectedProduct = { id, name, sub, emoji, price, isUserProduct };
-        document.getElementById('modalEmoji').textContent = emoji;
-        document.getElementById('modalName').textContent = name;
-        document.getElementById('modalPrice').textContent = price + ' ★';
-        document.getElementById('modalCode').value = '';
-        document.getElementById('productModal').classList.add('show');
-    }
-
-    // ============================================================
-    // RENDER PRODUCTS
+    // ОТОБРАЖЕНИЕ ТОВАРОВ
     // ============================================================
     function renderProducts() {
-        const container = document.getElementById('productsContainer');
+        const grid = document.getElementById('productGrid');
         if (!products || products.length === 0) {
-            container.innerHTML = '<div style="color:rgba(255,255,255,0.3);padding:20px;">Загрузка...</div>';
+            grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:20px;color:rgba(255,255,255,0.3);">Загрузка...</div>';
             return;
         }
-        container.innerHTML = products.map(p => {
-            const isFav = favorites ? favorites.includes(p.id) : false;
+        grid.innerHTML = products.map(p => {
             const discount = p.discount || 0;
             const finalPrice = discount > 0 ? Math.round(p.price * (1 - discount / 100)) : p.price;
             return `
-                <div class="product-card" onclick="openProduct('${p.id}','${p.name}','${p.sub}','${p.emoji}',${finalPrice})">
+                <div class="product-item" onclick="openProduct('${p.id}','${p.name}','${p.sub}','${p.emoji}',${finalPrice})">
                     ${discount > 0 ? `<span class="discount-badge">-${discount}%</span>` : ''}
                     <span class="emoji">${p.emoji}</span>
-                    <div class="title">${p.name}</div>
-                    <div class="sub">${p.sub}</div>
-                    <div class="price-row">
-                        <div>
-                            <span class="price">${finalPrice} ★</span>
-                            ${discount > 0 ? `<span class="old-price">${p.price} ★</span>` : ''}
-                        </div>
-                        <button class="favorite-btn ${isFav ? 'active' : ''}" onclick="event.stopPropagation();toggleFavorite(${p.id})">
-                            ${isFav ? '❤️' : '🤍'}
-                        </button>
-                    </div>
-                </div>
-            `;
-        }).join('');
-    }
-
-    // ============================================================
-    // RENDER USER PRODUCTS
-    // ============================================================
-    function renderUserProducts() {
-        const container = document.getElementById('userProductsContainer');
-        if (!userProducts || userProducts.length === 0) {
-            container.innerHTML = '<div style="color:rgba(255,255,255,0.3);padding:10px 0;font-size:13px;">Нет товаров пользователей</div>';
-            return;
-        }
-        container.innerHTML = userProducts.slice(0, 5).map(p => {
-            const isFav = favorites ? favorites.includes(p.id) : false;
-            return `
-                <div class="product-card" onclick="openProduct('${p.id}','${p.name}','${p.category || 'Товар'}','${p.emoji || '📦'}',${p.price})">
-                    <span class="emoji">${p.emoji || '📦'}</span>
-                    <div class="title">${p.name}</div>
-                    <div class="sub">${p.category || 'Товар пользователя'}</div>
-                    <div class="price-row">
-                        <div>
-                            <span class="price">${p.price} ★</span>
-                        </div>
-                        <button class="favorite-btn ${isFav ? 'active' : ''}" onclick="event.stopPropagation();toggleFavorite(${p.id})">
-                            ${isFav ? '❤️' : '🤍'}
-                        </button>
-                    </div>
-                </div>
-            `;
-        }).join('');
-    }
-
-    // ============================================================
-    // RENDER MY PRODUCTS (в продаже)
-    // ============================================================
-    function renderMyProducts() {
-        const container = document.getElementById('myProductsList');
-        if (!currentUser) {
-            container.innerHTML = '<div style="color:rgba(255,255,255,0.3);font-size:13px;">Войдите, чтобы видеть свои объявления</div>';
-            return;
-        }
-        const myProducts = userProducts.filter(p => p.userId === currentUser.id);
-        if (myProducts.length === 0) {
-            container.innerHTML = '<div style="color:rgba(255,255,255,0.3);font-size:13px;">У вас нет активных объявлений</div>';
-            return;
-        }
-        container.innerHTML = myProducts.map(p => `
-            <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:13px;">
-                <span>${p.emoji || '📦'} ${p.name} — ${p.price} ★</span>
-                <button onclick="deleteMyProduct(${p.id})" style="padding:2px 12px;border:none;border-radius:4px;background:#ef4444;color:white;font-size:10px;cursor:pointer;">✕</button>
-            </div>
-        `).join('');
-    }
-
-    async function deleteMyProduct(id) {
-        if (!confirm('Удалить объявление?')) return;
-        try {
-            const response = await fetch(`${API_URL}/user_products/${id}`, {
-                method: 'DELETE'
-            });
-            if (!response.ok) throw new Error('Ошибка');
-            await loadData();
-            renderUserProducts();
-            renderMyProducts();
-            alert('✅ Объявление удалено!');
-        } catch (error) {
-            alert('❌ Ошибка удаления');
-        }
-    }
-
-    // ============================================================
-    // FAVORITES
-    // ============================================================
-    function renderFavorites() {
-        const container = document.getElementById('favoritesContainer');
-        if (!favorites || favorites.length === 0 || !products) {
-            container.innerHTML = '<div style="color:rgba(255,255,255,0.3);padding:10px 0;font-size:13px;">Нет избранных товаров</div>';
-            return;
-        }
-        const favProducts = products.filter(p => favorites.includes(p.id));
-        if (favProducts.length === 0) {
-            container.innerHTML = '<div style="color:rgba(255,255,255,0.3);padding:10px 0;font-size:13px;">Нет избранных товаров</div>';
-            return;
-        }
-        container.innerHTML = favProducts.map(p => {
-            const discount = p.discount || 0;
-            const finalPrice = discount > 0 ? Math.round(p.price * (1 - discount / 100)) : p.price;
-            return `
-                <div class="product-card" onclick="openProduct('${p.id}','${p.name}','${p.sub}','${p.emoji}',${finalPrice})">
-                    ${discount > 0 ? `<span class="discount-badge">-${discount}%</span>` : ''}
-                    <span class="emoji">${p.emoji}</span>
-                    <div class="title">${p.name}</div>
-                    <div class="sub">${p.sub}</div>
-                    <div class="price">${finalPrice} ★</div>
-                </div>
-            `;
-        }).join('');
-    }
-
-    function renderFavoritesPage() {
-        const container = document.getElementById('favoritesPageContainer');
-        if (!favorites || favorites.length === 0 || !products) {
-            container.innerHTML = '<div style="color:rgba(255,255,255,0.3);padding:40px 0;text-align:center;">❤️ Нет избранных товаров</div>';
-            return;
-        }
-        const favProducts = products.filter(p => favorites.includes(p.id));
-        if (favProducts.length === 0) {
-            container.innerHTML = '<div style="color:rgba(255,255,255,0.3);padding:40px 0;text-align:center;">❤️ Нет избранных товаров</div>';
-            return;
-        }
-        container.innerHTML = favProducts.map(p => {
-            const discount = p.discount || 0;
-            const finalPrice = discount > 0 ? Math.round(p.price * (1 - discount / 100)) : p.price;
-            return `
-                <div class="product-card" onclick="openProduct('${p.id}','${p.name}','${p.sub}','${p.emoji}',${finalPrice})" style="min-width:130px;">
-                    ${discount > 0 ? `<span class="discount-badge">-${discount}%</span>` : ''}
-                    <span class="emoji">${p.emoji}</span>
-                    <div class="title">${p.name}</div>
-                    <div class="sub">${p.sub}</div>
-                    <div class="price">${finalPrice} ★</div>
-                </div>
-            `;
-        }).join('');
-    }
-
-    function updateFavBadge() {
-        document.getElementById('favBadgeNav').textContent = favorites ? favorites.length : 0;
-    }
-
-    // ============================================================
-    // RECOMMENDATIONS
-    // ============================================================
-    function renderRecommendations() {
-        const container = document.getElementById('recommendationsContainer');
-        if (!products || products.length === 0) {
-            container.innerHTML = '<div style="color:rgba(255,255,255,0.3);padding:10px 0;font-size:13px;">Нет рекомендаций</div>';
-            return;
-        }
-        const notFav = products.filter(p => !favorites || !favorites.includes(p.id));
-        const shuffled = notFav.sort(() => 0.5 - Math.random());
-        const recs = shuffled.slice(0, 3);
-        
-        if (recs.length === 0) {
-            container.innerHTML = '<div style="color:rgba(255,255,255,0.3);padding:10px 0;font-size:13px;">Нет рекомендаций</div>';
-            return;
-        }
-        container.innerHTML = recs.map(p => {
-            const discount = p.discount || 0;
-            const finalPrice = discount > 0 ? Math.round(p.price * (1 - discount / 100)) : p.price;
-            return `
-                <div class="product-card" onclick="openProduct('${p.id}','${p.name}','${p.sub}','${p.emoji}',${finalPrice})">
-                    ${discount > 0 ? `<span class="discount-badge">-${discount}%</span>` : ''}
-                    <span class="emoji">${p.emoji}</span>
-                    <div class="title">${p.name}</div>
-                    <div class="sub">${p.sub}</div>
+                    <div class="name">${p.name}</div>
                     <div class="price">${finalPrice} ★</div>
                 </div>
             `;
@@ -2840,59 +1921,7 @@
     }
 
     // ============================================================
-    // COUNTDOWN
-    // ============================================================
-    function startCountdown() {
-        let hours = 62;
-        const timer = document.getElementById('countdownTimer');
-        setInterval(() => {
-            if (hours <= 0) {
-                timer.textContent = '⏳ Акция завершена!';
-                return;
-            }
-            hours--;
-            const days = Math.floor(hours / 24);
-            const h = hours % 24;
-            timer.textContent = `⏳ ${days}д ${h}ч`;
-        }, 3600000);
-    }
-
-    // ============================================================
-    // SEARCH
-    // ============================================================
-    function setupSearch() {
-        const input = document.getElementById('searchInput');
-        const results = document.getElementById('searchResults');
-        if (!input) return;
-        input.addEventListener('input', function() {
-            const query = this.value.toLowerCase().trim();
-            if (!products) return;
-            const filtered = products.filter(p => 
-                p.name.toLowerCase().includes(query) || 
-                p.sub.toLowerCase().includes(query)
-            );
-            if (filtered.length === 0) {
-                results.innerHTML = '<div style="color:rgba(255,255,255,0.3);padding:20px;text-align:center;">Ничего не найдено</div>';
-            } else {
-                results.innerHTML = filtered.map(p => {
-                    const discount = p.discount || 0;
-                    const finalPrice = discount > 0 ? Math.round(p.price * (1 - discount / 100)) : p.price;
-                    return `
-                        <div class="product-card" onclick="openProduct('${p.id}','${p.name}','${p.sub}','${p.emoji}',${finalPrice})" style="min-width:100px;">
-                            ${discount > 0 ? `<span class="discount-badge">-${discount}%</span>` : ''}
-                            <span class="emoji">${p.emoji}</span>
-                            <div class="title">${p.name}</div>
-                            <div class="sub">${p.sub}</div>
-                            <div class="price">${finalPrice} ★</div>
-                        </div>
-                    `;
-                }).join('');
-            }
-        });
-    }
-
-    // ============================================================
-    // CART
+    // КОРЗИНА
     // ============================================================
     function renderCart() {
         const list = document.getElementById('cartList');
@@ -2919,7 +1948,7 @@
     }
 
     // ============================================================
-    // CHAT
+    // ЧАТ
     // ============================================================
     function renderChat() {
         const container = document.getElementById('chatMessages');
@@ -2960,7 +1989,7 @@
     }
 
     // ============================================================
-    // PROFILE
+    // ПРОФИЛЬ
     // ============================================================
     function updateProfile() {
         if (!currentUser) return;
@@ -3013,6 +2042,14 @@
         window.open('https://t.me/rubishopgame', '_blank');
     }
 
+    function topUpBalance() {
+        alert('⭐ Пополнение баланса через Telegram Stars\n\n' +
+              '1. Напишите @vmvmvq сумму пополнения\n' +
+              '2. После оплаты получите код\n' +
+              '3. Введите код при покупке товара');
+        window.open('https://t.me/vmvmvq', '_blank');
+    }
+
     function logout() {
         if (confirm('Выйти из аккаунта?')) {
             localStorage.removeItem('rubi_user');
@@ -3021,17 +2058,13 @@
         }
     }
 
-    // ============================================================
-    // UPDATE BALANCE
-    // ============================================================
     function updateBalanceDisplay() {
         const balance = getUserBalance();
-        document.getElementById('balanceDisplay').textContent = balance + ' ★';
         document.getElementById('profileBalance').textContent = '$' + balance;
     }
 
     // ============================================================
-    // ADMIN PANEL
+    // АДМИН-ПАНЕЛЬ
     // ============================================================
     function renderAdmin() {
         if (!currentUser || !currentUser.isAdmin) {
@@ -3044,76 +2077,51 @@
         const totalRevenue = cart ? cart.reduce((sum, item) => sum + (item.price || 0), 0) : 0;
         const totalProducts = products ? products.length : 0;
 
-        // Промокоды
         const promoList = allPromos || [];
         const promoHtml = promoList.map(p => `
             <div class="admin-promo-item">
-                <span class="promo-code">${p.code}</span>
-                <span class="promo-bonus">+${p.bonus} ★</span>
-                <span class="promo-uses">${p.used || 0}${p.max_uses > 0 ? '/' + p.max_uses : '/∞'}</span>
-                <button onclick="deletePromoCode('${p.code}')">✕</button>
+                <span style="color:#facc15;font-weight:600;">${p.code}</span>
+                <span style="color:rgba(255,255,255,0.5);">+${p.bonus} ★</span>
+                <span style="color:rgba(255,255,255,0.3);font-size:10px;">${p.used || 0}${p.max_uses > 0 ? '/' + p.max_uses : '/∞'}</span>
+                <button onclick="deletePromoCode('${p.code}')" style="padding:2px 10px;border:none;border-radius:4px;background:#ef4444;color:white;font-size:10px;cursor:pointer;">✕</button>
             </div>
         `).join('');
-
-        // Заявки на пополнение
-        let topupRequests = [];
-        fetch(`${API_URL}/topup/requests`).then(r => r.json()).then(data => {
-            topupRequests = data;
-        }).catch(() => {});
-
-        let topupHtml = '';
-        // Загружаем заявки отдельно
-        fetch(`${API_URL}/topup/requests`)
-            .then(r => r.json())
-            .then(data => {
-                const container = document.getElementById('topupRequestsContainer');
-                if (container) {
-                    if (data.length === 0) {
-                        container.innerHTML = '<div style="color:rgba(255,255,255,0.3);font-size:13px;">Нет заявок на пополнение</div>';
-                    } else {
-                        container.innerHTML = data.map(req => `
-                            <div class="admin-topup-item">
-                                <span class="topup-user">${req.username}</span>
-                                <span class="topup-amount">+${req.amount} ★</span>
-                                <span class="topup-status ${req.status}">${req.status === 'pending' ? '⏳ Ожидает' : req.status === 'approved' ? '✅ Подтверждено' : '❌ Отклонено'}</span>
-                                ${req.status === 'pending' ? `
-                                    <button class="approve" onclick="approveTopup(${req.id})">✅</button>
-                                    <button class="reject" onclick="rejectTopup(${req.id})">❌</button>
-                                ` : ''}
-                            </div>
-                        `).join('');
-                    }
-                }
-            });
 
         let html = `
             <div class="admin-card">
                 <h4>📊 Статистика</h4>
-                <div class="admin-stats">
-                    <div class="admin-stat-item"><div class="num">${totalUsers}</div><div class="label">Пользователей</div></div>
-                    <div class="admin-stat-item"><div class="num">${totalPurchases}</div><div class="label">Покупок</div></div>
-                    <div class="admin-stat-item"><div class="num">${totalRevenue} ★</div><div class="label">Выручка</div></div>
-                    <div class="admin-stat-item"><div class="num">${totalProducts}</div><div class="label">Товаров</div></div>
-                    <div class="admin-stat-item"><div class="num">${favorites ? favorites.length : 0}</div><div class="label">В избранном</div></div>
+                <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;">
+                    <div style="background:rgba(255,255,255,0.03);padding:10px;border-radius:12px;text-align:center;">
+                        <div style="font-size:20px;font-weight:700;color:#8b5cf6;">${totalUsers}</div>
+                        <div style="font-size:10px;color:rgba(255,255,255,0.4);">Пользователей</div>
+                    </div>
+                    <div style="background:rgba(255,255,255,0.03);padding:10px;border-radius:12px;text-align:center;">
+                        <div style="font-size:20px;font-weight:700;color:#8b5cf6;">${totalPurchases}</div>
+                        <div style="font-size:10px;color:rgba(255,255,255,0.4);">Покупок</div>
+                    </div>
+                    <div style="background:rgba(255,255,255,0.03);padding:10px;border-radius:12px;text-align:center;">
+                        <div style="font-size:20px;font-weight:700;color:#8b5cf6;">${totalRevenue} ★</div>
+                        <div style="font-size:10px;color:rgba(255,255,255,0.4);">Выручка</div>
+                    </div>
                 </div>
             </div>
 
             <div class="admin-card">
                 <h4>📦 Управление товарами</h4>
-                <div class="admin-row">
-                    <input id="adminProductName" placeholder="Название">
-                    <input id="adminProductSub" placeholder="Категория">
-                    <input id="adminProductEmoji" placeholder="😀" style="max-width:50px;">
-                    <input id="adminProductPrice" placeholder="Цена" type="number" style="max-width:70px;">
-                    <input id="adminProductDiscount" placeholder="Скидка %" type="number" style="max-width:60px;">
-                    <button onclick="addProduct()" class="success">➕</button>
+                <div style="display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap;">
+                    <input id="adminProductName" placeholder="Название" style="flex:1;min-width:60px;padding:8px 12px;border-radius:10px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.05);color:#f0eeff;font-size:13px;">
+                    <input id="adminProductSub" placeholder="Категория" style="flex:1;min-width:60px;padding:8px 12px;border-radius:10px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.05);color:#f0eeff;font-size:13px;">
+                    <input id="adminProductEmoji" placeholder="😀" style="max-width:50px;padding:8px 12px;border-radius:10px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.05);color:#f0eeff;font-size:13px;">
+                    <input id="adminProductPrice" placeholder="Цена" type="number" style="max-width:70px;padding:8px 12px;border-radius:10px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.05);color:#f0eeff;font-size:13px;">
+                    <input id="adminProductDiscount" placeholder="Скидка %" type="number" style="max-width:60px;padding:8px 12px;border-radius:10px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.05);color:#f0eeff;font-size:13px;">
+                    <button onclick="addProduct()" style="padding:8px 14px;border:none;border-radius:10px;background:#22c55e;color:white;font-weight:600;cursor:pointer;">➕</button>
                 </div>
-                <div class="admin-products-list">
+                <div style="max-height:150px;overflow-y:auto;">
                     ${products && products.map(p => `
-                        <div class="product-row">
-                            <span class="p-name">${p.emoji} ${p.name} ${p.discount > 0 ? `🔻-${p.discount}%` : ''}</span>
-                            <span class="p-price">${p.price} ★</span>
-                            <button onclick="deleteProduct(${p.id})">✕</button>
+                        <div style="display:flex;justify-content:space-between;align-items:center;padding:4px 0;border-bottom:1px solid rgba(255,255,255,0.03);font-size:12px;">
+                            <span style="color:#f0eeff;">${p.emoji} ${p.name} ${p.discount > 0 ? `🔻-${p.discount}%` : ''}</span>
+                            <span style="color:#facc15;">${p.price} ★</span>
+                            <button onclick="deleteProduct(${p.id})" style="padding:2px 10px;border:none;border-radius:4px;background:#ef4444;color:white;font-size:10px;cursor:pointer;">✕</button>
                         </div>
                     `).join('') || 'Нет товаров'}
                 </div>
@@ -3123,92 +2131,54 @@
                 <h4>👥 Пользователи (${totalUsers})</h4>
                 ${allUsers && allUsers.length === 0 ? '<div style="color:rgba(255,255,255,0.3);font-size:13px;">Нет пользователей</div>' : ''}
                 ${allUsers && allUsers.map(u => `
-                    <div class="admin-user-item">
-                        <span class="user-name">${u.name || u.login}</span>
+                    <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:13px;">
+                        <span style="color:#f0eeff;">${u.name || u.login}</span>
                         <span style="color:rgba(255,255,255,0.3);font-size:11px;">${u.login}</span>
-                        <span class="user-bal">${u.balance || 0} ★</span>
-                        ${u.login !== 'admin' ? `<button onclick="deleteUser('${u.login}')">✕</button>` : '<span style="color:rgba(255,255,255,0.2);font-size:10px;">админ</span>'}
+                        <span style="color:#facc15;">${u.balance || 0} ★</span>
+                        ${u.login !== 'admin' ? `<button onclick="deleteUser('${u.login}')" style="padding:2px 12px;border:none;border-radius:6px;background:#ef4444;color:white;font-size:11px;cursor:pointer;">✕</button>` : '<span style="color:rgba(255,255,255,0.2);font-size:10px;">админ</span>'}
                     </div>
                 `).join('')}
             </div>
 
             <div class="admin-card">
                 <h4>🎫 Промокоды (${promoList.length})</h4>
-                <div class="admin-row">
-                    <input id="adminPromoCode" placeholder="Код">
-                    <input id="adminPromoBonus" placeholder="Бонус ★" type="number" style="max-width:80px;">
-                    <input id="adminPromoMaxUses" placeholder="Лимит (0=∞)" type="number" style="max-width:80px;">
-                    <button onclick="addPromoCode()" class="success">➕</button>
+                <div style="display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap;">
+                    <input id="adminPromoCode" placeholder="Код" style="flex:1;min-width:60px;padding:8px 12px;border-radius:10px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.05);color:#f0eeff;font-size:13px;">
+                    <input id="adminPromoBonus" placeholder="Бонус ★" type="number" style="max-width:80px;padding:8px 12px;border-radius:10px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.05);color:#f0eeff;font-size:13px;">
+                    <input id="adminPromoMaxUses" placeholder="Лимит (0=∞)" type="number" style="max-width:80px;padding:8px 12px;border-radius:10px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.05);color:#f0eeff;font-size:13px;">
+                    <button onclick="addPromoCode()" style="padding:8px 14px;border:none;border-radius:10px;background:#22c55e;color:white;font-weight:600;cursor:pointer;">➕</button>
                 </div>
-                <div class="admin-promo-list">
+                <div style="display:flex;flex-direction:column;gap:4px;padding:4px 0;">
                     ${promoHtml || '<div style="color:rgba(255,255,255,0.3);font-size:13px;">Нет промокодов</div>'}
                 </div>
-                <div class="admin-hint">0 = бесконечное количество активаций</div>
-            </div>
-
-            <div class="admin-card">
-                <h4>💰 Заявки на пополнение</h4>
-                <div id="topupRequestsContainer">
-                    <div style="color:rgba(255,255,255,0.3);font-size:13px;">Загрузка...</div>
-                </div>
+                <div style="font-size:11px;color:rgba(255,255,255,0.2);margin-top:4px;">0 = бесконечное количество активаций</div>
             </div>
 
             <div class="admin-card">
                 <h4>💰 Управление балансом</h4>
-                <div class="admin-row">
-                    <input id="adminUserBalance" placeholder="Имя пользователя">
-                    <input id="adminNewBalance" placeholder="Новый баланс ★" type="number">
-                    <button onclick="setUserBalanceAdmin()">Установить</button>
+                <div style="display:flex;gap:6px;flex-wrap:wrap;">
+                    <input id="adminUserBalance" placeholder="Имя пользователя" style="flex:1;min-width:60px;padding:8px 12px;border-radius:10px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.05);color:#f0eeff;font-size:13px;">
+                    <input id="adminNewBalance" placeholder="Новый баланс ★" type="number" style="flex:1;min-width:60px;padding:8px 12px;border-radius:10px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.05);color:#f0eeff;font-size:13px;">
+                    <button onclick="setUserBalanceAdmin()" style="padding:8px 14px;border:none;border-radius:10px;background:#8b5cf6;color:white;font-weight:600;cursor:pointer;">Установить</button>
                 </div>
             </div>
         `;
 
         document.getElementById('adminContent').innerHTML = html;
-        
-        // Подгружаем заявки
-        fetch(`${API_URL}/topup/requests`)
-            .then(r => r.json())
-            .then(data => {
-                const container = document.getElementById('topupRequestsContainer');
-                if (container) {
-                    if (data.length === 0) {
-                        container.innerHTML = '<div style="color:rgba(255,255,255,0.3);font-size:13px;">Нет заявок на пополнение</div>';
-                    } else {
-                        container.innerHTML = data.map(req => `
-                            <div class="admin-topup-item">
-                                <span class="topup-user">${req.username}</span>
-                                <span class="topup-amount">+${req.amount} ★</span>
-                                <span class="topup-status ${req.status}">${req.status === 'pending' ? '⏳ Ожидает' : req.status === 'approved' ? '✅ Подтверждено' : '❌ Отклонено'}</span>
-                                ${req.status === 'pending' ? `
-                                    <button class="approve" onclick="approveTopup(${req.id})">✅</button>
-                                    <button class="reject" onclick="rejectTopup(${req.id})">❌</button>
-                                ` : ''}
-                            </div>
-                        `).join('');
-                    }
-                }
-            });
     }
 
     // ============================================================
-    // UPDATE UI
+    // ОБНОВЛЕНИЕ UI
     // ============================================================
     function updateUI() {
         updateProfile();
         renderCart();
         renderChat();
         updateBalanceDisplay();
-        renderFavorites();
-        renderRecommendations();
-        renderUserProducts();
-        updateFavBadge();
-        if (currentUser && currentUser.isAdmin) {
-            renderAdmin();
-        }
     }
 
     // ============================================================
-    // INIT
+    // ЗАПУСК
     // ============================================================
     function initApp() {
         if (currentUser && currentUser.isAdmin) {
@@ -3218,26 +2188,16 @@
         }
         updateUI();
         renderProducts();
-        renderFavorites();
-        renderRecommendations();
-        renderUserProducts();
         renderCart();
         renderChat();
-        setupSearch();
-        updateBalanceDisplay();
-        updateFavBadge();
         if (currentUser && currentUser.isAdmin) {
             renderAdmin();
         }
-        startCountdown();
         if (currentUser) {
             renderMyProducts();
         }
     }
 
-    // ============================================================
-    // START
-    // ============================================================
     const savedUser = localStorage.getItem('rubi_user');
     if (savedUser) {
         try {
@@ -3258,17 +2218,39 @@
         initApp();
     }
 
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
-        document.documentElement.setAttribute('data-theme', 'light');
-    }
+    // Категории
+    document.querySelectorAll('.category-item').forEach(el => {
+        el.addEventListener('click', function() {
+            document.querySelectorAll('.category-item').forEach(c => c.classList.remove('active'));
+            this.classList.add('active');
+            const cat = this.dataset.cat;
+            if (cat && products.length > 0) {
+                const filtered = products.filter(p => p.sub && p.sub.toLowerCase().includes(cat));
+                const grid = document.getElementById('productGrid');
+                if (filtered.length === 0) {
+                    grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:20px;color:rgba(255,255,255,0.3);">Нет товаров в этой категории</div>';
+                } else {
+                    grid.innerHTML = filtered.map(p => {
+                        const discount = p.discount || 0;
+                        const finalPrice = discount > 0 ? Math.round(p.price * (1 - discount / 100)) : p.price;
+                        return `
+                            <div class="product-item" onclick="openProduct('${p.id}','${p.name}','${p.sub}','${p.emoji}',${finalPrice})">
+                                ${discount > 0 ? `<span class="discount-badge">-${discount}%</span>` : ''}
+                                <span class="emoji">${p.emoji}</span>
+                                <div class="name">${p.name}</div>
+                                <div class="price">${finalPrice} ★</div>
+                            </div>
+                        `;
+                    }).join('');
+                }
+            }
+        });
+    });
 
     console.log('🔮 Rubi Market запущен!');
     console.log('👤 Админ: admin / 123456');
     console.log('📢 Канал: https://t.me/rubishopgame');
-    console.log('⭐ Пополнение: через форму на главной');
-    console.log('📤 Продажа: вкладка "Продать" внизу');
-    console.log('✅ Промокоды с лимитом активаций');
-    console.log('✅ Сессия сохраняется при закрытии');
+    console.log('⭐ Пополнение: @vmvmvq');
 </script>
 </body>
     </html>
