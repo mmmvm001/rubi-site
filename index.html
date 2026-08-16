@@ -1236,9 +1236,7 @@
             margin-top: 4px;
         }
 
-        /* ============================================================ */
-        /* ===== СВЕТЛАЯ ТЕМА — ВСЁ ЧЁТКО ВИДНО ===== */
-        /* ============================================================ */
+        /* Light Theme */
         [data-theme="light"] .app-screen {
             background: #f5f0fa;
         }
@@ -1255,7 +1253,6 @@
 
         [data-theme="light"] .section-header h2 {
             color: #1a1428;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.05);
         }
 
         [data-theme="light"] .section-header a {
@@ -1401,7 +1398,6 @@
             border-color: #6d28d9;
         }
 
-        /* ===== СТРЕЛКА НАЗАД — ЧЁТКО ВИДНА ===== */
         [data-theme="light"] .page-header .back {
             background: #ffffff;
             border: 1px solid #d5cce0;
@@ -1960,6 +1956,7 @@
     let allUsers = [];
     let selectedProduct = null;
     let avatarImage = null;
+    let allPromos = [];
     let chatMessages = JSON.parse(localStorage.getItem('rubi_chat')) || [
         { text: '👋 Добро пожаловать в Rubi!', time: '12:30', type: 'incoming' },
         { text: 'Здесь вы можете купить игровые предметы', time: '12:31', type: 'incoming' },
@@ -1984,6 +1981,12 @@
             if (currentUser && currentUser.isAdmin) {
                 const usersRes = await fetch(`${API_URL}/users`);
                 allUsers = await usersRes.json();
+            }
+
+            // Загружаем промокоды
+            const promosRes = await fetch(`${API_URL}/promocodes`);
+            if (promosRes.ok) {
+                allPromos = await promosRes.json();
             }
 
         } catch (error) {
@@ -2225,8 +2228,13 @@
                 body: JSON.stringify({ code, bonus })
             });
 
-            if (!response.ok) throw new Error('Ошибка');
+            if (!response.ok) {
+                const data = await response.json();
+                alert(data.error || 'Ошибка добавления');
+                return;
+            }
 
+            await loadData();
             alert(`✅ Промокод ${code} добавлен! (+${bonus} ★)`);
             document.getElementById('adminPromoCode').value = '';
             document.getElementById('adminPromoBonus').value = '';
@@ -2237,6 +2245,7 @@
         }
     }
 
+    // ===== ТЕПЕРЬ МОЖНО УДАЛЯТЬ ЛЮБЫЕ ПРОМОКОДЫ =====
     async function deletePromoCode(code) {
         if (!confirm(`Удалить промокод "${code}"?`)) return;
 
@@ -2247,8 +2256,9 @@
 
             if (!response.ok) throw new Error('Ошибка');
 
-            alert(`✅ Промокод "${code}" удалён!`);
+            await loadData();
             renderAdmin();
+            alert(`✅ Промокод "${code}" удалён!`);
 
         } catch (error) {
             alert('❌ Ошибка удаления промокода');
@@ -2660,7 +2670,7 @@
     }
 
     // ============================================================
-    // ADMIN PANEL
+    // ADMIN PANEL (ОБНОВЛЁННАЯ — можно удалять ВСЕ промокоды)
     // ============================================================
     function renderAdmin() {
         if (!currentUser || !currentUser.isAdmin) {
@@ -2672,6 +2682,16 @@
         const totalPurchases = cart ? cart.length : 0;
         const totalRevenue = cart ? cart.reduce((sum, item) => sum + (item.price || 0), 0) : 0;
         const totalProducts = products ? products.length : 0;
+
+        // Получаем список промокодов
+        const promoList = allPromos || [];
+        const promoHtml = promoList.map(p => `
+            <div class="admin-promo-item">
+                <span class="promo-code">${p.code}</span>
+                <span class="promo-bonus">+${p.bonus} ★</span>
+                <button onclick="deletePromoCode('${p.code}')">✕</button>
+            </div>
+        `).join('');
 
         let html = `
             <div class="admin-card">
@@ -2727,12 +2747,9 @@
                     <button onclick="addPromoCode()" class="success">➕</button>
                 </div>
                 <div class="admin-promo-list">
-                    <div class="admin-promo-item"><span class="promo-code">RUBI2026</span><span class="promo-bonus">+100 ★</span><span style="color:rgba(255,255,255,0.2);font-size:10px;">встроенный</span></div>
-                    <div class="admin-promo-item"><span class="promo-code">GAMEON</span><span class="promo-bonus">+100 ★</span><span style="color:rgba(255,255,255,0.2);font-size:10px;">встроенный</span></div>
-                    <div class="admin-promo-item"><span class="promo-code">STARTER</span><span class="promo-bonus">+100 ★</span><span style="color:rgba(255,255,255,0.2);font-size:10px;">встроенный</span></div>
-                    <div class="admin-promo-item"><span class="promo-code">ADMIN1000</span><span class="promo-bonus">+1000 ★</span><span style="color:rgba(255,255,255,0.2);font-size:10px;">встроенный</span></div>
+                    ${promoHtml || '<div style="color:rgba(255,255,255,0.3);font-size:13px;">Нет промокодов</div>'}
                 </div>
-                <div class="admin-hint">Встроенные промокоды нельзя удалить</div>
+                <div class="admin-hint">✅ Можно удалять ЛЮБЫЕ промокоды — даже встроенные</div>
             </div>
 
             <div class="admin-card">
@@ -2810,6 +2827,7 @@
     console.log('👤 Админ: admin / 123456');
     console.log('📢 Канал: https://t.me/rubishopgame');
     console.log('⭐ Пополнение: @vmvmvq');
+    console.log('✅ Теперь можно удалять ЛЮБЫЕ промокоды!');
 </script>
 </body>
-                </html>
+                        </html>
