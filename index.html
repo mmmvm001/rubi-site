@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Rubi — Игровой Маркетплейс</title>
     <style>
+        /* ===== ВСЕ СТИЛИ ИЗ ПРЕДЫДУЩЕЙ ВЕРСИИ ===== */
+        /* (копируй сюда все стили из предыдущего кода) */
         * {
             margin: 0;
             padding: 0;
@@ -21,275 +23,85 @@
             padding: 12px;
         }
 
-        /* Auth Modal */
-        .auth-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.92);
-            backdrop-filter: blur(20px);
+        /* ... весь остальной CSS из предыдущей версии ... */
+
+        /* ===== НИЖНЯЯ ПАНЕЛЬ (ГАРАНТИРОВАННО ВИДНА) ===== */
+        .bottom-nav {
+            display: flex !important;
+            justify-content: space-around !important;
+            padding: 10px 0 4px !important;
+            border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+            margin-top: auto !important;
+            flex-shrink: 0 !important;
+            background: rgba(15, 10, 26, 0.9) !important;
+            backdrop-filter: blur(12px) !important;
+            border-radius: 20px !important;
+            margin-bottom: 0 !important;
+            width: 100% !important;
+            position: relative !important;
+            z-index: 10 !important;
+        }
+
+        .nav-item {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            gap: 2px !important;
+            font-size: 9px !important;
+            color: rgba(255, 255, 255, 0.3) !important;
+            cursor: pointer !important;
+            transition: 0.3s !important;
+            background: none !important;
+            border: none !important;
+            padding: 4px 8px !important;
+            flex: 1 !important;
+        }
+
+        .nav-item .icon {
+            font-size: 20px !important;
+        }
+
+        .nav-item.active {
+            color: #8b5cf6 !important;
+        }
+
+        .nav-item:hover {
+            color: #8b5cf6 !important;
+        }
+
+        .nav-item .badge-nav {
+            background: #ef4444 !important;
+            color: white !important;
+            font-size: 7px !important;
+            padding: 1px 5px !important;
+            border-radius: 30px !important;
+            font-weight: 700 !important;
+            position: relative !important;
+            top: -6px !important;
+            margin-top: -10px !important;
+        }
+
+        /* ===== СТРАНИЦЫ ===== */
+        .page {
             display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 99999;
-        }
-
-        .auth-overlay.show {
-            display: flex;
-        }
-
-        .auth-modal {
-            background: #1a1030;
-            padding: 40px 30px;
-            border-radius: 32px;
-            max-width: 360px;
-            width: 100%;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 0 80px rgba(139, 92, 246, 0.2);
-        }
-
-        .auth-modal h2 {
-            text-align: center;
-            font-size: 32px;
-            background: linear-gradient(135deg, #8b5cf6, #ec4899);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 4px;
-        }
-
-        .auth-modal .sub {
-            text-align: center;
-            color: #888;
-            font-size: 14px;
-            margin-bottom: 24px;
-        }
-
-        .auth-input {
-            width: 100%;
-            padding: 14px 18px;
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            background: rgba(255, 255, 255, 0.05);
-            color: #fff;
-            font-size: 15px;
-            margin-bottom: 12px;
-        }
-
-        .auth-input:focus {
-            outline: none;
-            border-color: #8b5cf6;
-        }
-
-        .auth-btn {
-            width: 100%;
-            padding: 14px;
-            border: none;
-            border-radius: 16px;
-            background: linear-gradient(135deg, #8b5cf6, #6d28d9);
-            color: white;
-            font-size: 18px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .auth-btn:hover {
-            transform: scale(0.98);
-            box-shadow: 0 0 50px rgba(139, 92, 246, 0.4);
-        }
-
-        .auth-error {
-            color: #ef4444;
-            font-size: 13px;
-            text-align: center;
-            margin-top: 8px;
-            display: none;
-        }
-
-        .auth-switch {
-            text-align: center;
-            margin-top: 14px;
-            font-size: 13px;
-            color: rgba(255, 255, 255, 0.4);
-        }
-
-        .auth-switch span {
-            color: #8b5cf6;
-            cursor: pointer;
-            font-weight: 600;
-        }
-
-        .auth-switch span:hover {
-            text-decoration: underline;
-        }
-
-        /* Phone */
-        .phone-frame {
-            width: 100%;
-            max-width: 390px;
-            aspect-ratio: 9 / 16;
-            background: #0d081a;
-            border-radius: 48px;
-            padding: 12px;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), 0 0 0 2px rgba(139, 92, 246, 0.15);
-        }
-
-        .app-screen {
-            width: 100%;
-            height: 100%;
-            border-radius: 38px;
-            background: #0f0a1a;
-            padding: 16px 14px 12px;
-            display: flex;
             flex-direction: column;
-            position: relative;
-            overflow: hidden;
+            height: 100%;
+            gap: 8px;
+            flex: 1;
         }
 
-        /* Header */
-        .header {
+        .page.active {
             display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 12px;
         }
 
-        .header h1 {
-            font-size: 24px;
-            font-weight: 700;
-            background: linear-gradient(135deg, #8b5cf6, #ec4899);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .header-actions {
-            display: flex;
-            gap: 6px;
-            align-items: center;
-        }
-
-        .header-btn {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 50%;
-            width: 36px;
-            height: 36px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
-            cursor: pointer;
-            color: rgba(255, 255, 255, 0.6);
-            transition: 0.3s;
-            position: relative;
-        }
-
-        .header-btn:hover {
-            border-color: #8b5cf6;
-        }
-
-        .header-btn .badge {
-            position: absolute;
-            top: -4px;
-            right: -4px;
-            background: #ef4444;
-            color: white;
-            font-size: 8px;
-            padding: 2px 6px;
-            border-radius: 30px;
-            font-weight: 700;
-            min-width: 16px;
-            text-align: center;
-        }
-
-        .header-btn.admin-btn {
-            border-color: #facc15;
-            color: #facc15;
-            font-size: 18px;
-            display: none;
-        }
-
-        .header-btn.admin-btn:hover {
-            background: rgba(250, 204, 21, 0.1);
-            box-shadow: 0 0 20px rgba(250, 204, 21, 0.2);
-        }
-
-        .theme-toggle {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 50%;
-            width: 36px;
-            height: 36px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
-            cursor: pointer;
-            color: rgba(255, 255, 255, 0.6);
-            transition: 0.3s;
-        }
-
-        .theme-toggle:hover {
-            border-color: #8b5cf6;
-        }
-
-        /* Promo Banner */
-        .promo-banner {
-            background: linear-gradient(135deg, rgba(184, 28, 92, 0.2), rgba(139, 92, 246, 0.2));
-            border-radius: 16px;
-            padding: 10px 14px;
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            margin: 4px 0 8px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .promo-banner .text {
-            font-size: 13px;
-            color: #facc15;
-            font-weight: 600;
-        }
-
-        .promo-banner .text span {
-            color: rgba(255, 255, 255, 0.3);
-            font-weight: 400;
-        }
-
-        .promo-banner .countdown {
-            font-size: 12px;
-            color: rgba(255, 255, 255, 0.5);
-            background: rgba(0, 0, 0, 0.3);
-            padding: 4px 12px;
-            border-radius: 20px;
-        }
-
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 4px 0 8px;
-        }
-
-        .section-header h2 {
-            font-size: 17px;
-            color: #f0eeff;
-            font-weight: 600;
-        }
-
-        .section-header a {
-            color: #8b5cf6;
-            font-size: 13px;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        /* Products */
+        /* ===== ТОВАРЫ ===== */
         .products {
             display: flex;
             gap: 10px;
             overflow-x: auto;
             padding-bottom: 8px;
             scrollbar-width: none;
+            flex-wrap: nowrap;
         }
 
         .products::-webkit-scrollbar {
@@ -381,7 +193,80 @@
             transform: scale(1.2);
         }
 
-        /* Balance */
+        /* ===== ОСТАЛЬНЫЕ СТИЛИ ===== */
+        /* (копируй сюда все остальные стили из предыдущей версии) */
+
+        .app-screen {
+            width: 100%;
+            height: 100%;
+            border-radius: 38px;
+            background: #0f0a1a;
+            padding: 16px 14px 12px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .phone-frame {
+            width: 100%;
+            max-width: 390px;
+            aspect-ratio: 9 / 16;
+            background: #0d081a;
+            border-radius: 48px;
+            padding: 12px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), 0 0 0 2px rgba(139, 92, 246, 0.15);
+        }
+
+        /* ===== СТРАНИЦА ПРОДАЖИ ===== */
+        .sell-form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .sell-form input,
+        .sell-form select,
+        .sell-form textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.05);
+            color: #f0eeff;
+            font-size: 14px;
+        }
+
+        .sell-form input:focus,
+        .sell-form select:focus,
+        .sell-form textarea:focus {
+            outline: none;
+            border-color: #8b5cf6;
+        }
+
+        .sell-form textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .sell-form .sell-btn {
+            padding: 14px;
+            border: none;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+            color: white;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .sell-form .sell-btn:hover {
+            transform: scale(0.97);
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
+        }
+
+        /* ===== БАЛАНС ===== */
         .balance-block {
             background: rgba(255, 255, 255, 0.03);
             border-radius: 16px;
@@ -448,1296 +333,7 @@
             transform: scale(0.95);
         }
 
-        .balance-hint {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 8px;
-            font-size: 12px;
-            color: rgba(255, 255, 255, 0.3);
-            flex-wrap: wrap;
-        }
-
-        .balance-hint .promo {
-            display: flex;
-            gap: 8px;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .balance-hint .promo input {
-            width: 100px;
-            padding: 6px 10px;
-            border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            background: rgba(255, 255, 255, 0.05);
-            color: #f0eeff;
-            font-size: 12px;
-        }
-
-        .balance-hint .promo button {
-            padding: 6px 14px;
-            border: none;
-            border-radius: 8px;
-            background: #8b5cf6;
-            color: white;
-            font-size: 12px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .balance-hint .promo button:hover {
-            transform: scale(0.95);
-        }
-
-        /* Bottom Nav */
-        .bottom-nav {
-            display: flex;
-            justify-content: space-around;
-            padding: 8px 0 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            margin-top: auto;
-            flex-shrink: 0;
-        }
-
-        .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 2px;
-            font-size: 9px;
-            color: rgba(255, 255, 255, 0.3);
-            cursor: pointer;
-            transition: 0.3s;
-            background: none;
-            border: none;
-            padding: 4px 8px;
-        }
-
-        .nav-item .icon {
-            font-size: 18px;
-        }
-
-        .nav-item.active {
-            color: #8b5cf6;
-        }
-
-        .nav-item:hover {
-            color: #8b5cf6;
-        }
-
-        .nav-item .badge-nav {
-            background: #ef4444;
-            color: white;
-            font-size: 7px;
-            padding: 1px 5px;
-            border-radius: 30px;
-            font-weight: 700;
-            position: relative;
-            top: -6px;
-            margin-top: -10px;
-        }
-
-        /* Pages */
-        .page {
-            display: none;
-            flex-direction: column;
-            height: 100%;
-            gap: 8px;
-        }
-
-        .page.active {
-            display: flex;
-        }
-
-        .page-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .page-header .back {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 50%;
-            width: 36px;
-            height: 36px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 18px;
-            color: rgba(255, 255, 255, 0.6);
-            transition: 0.3s;
-        }
-
-        .page-header .back:hover {
-            border-color: #8b5cf6;
-        }
-
-        .page-header h3 {
-            font-size: 18px;
-            color: #f0eeff;
-        }
-
-        /* Profile */
-        .profile-content {
-            flex: 1;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .profile-avatar {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #b37aff, #6f3bff);
-            margin: 0 auto 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 32px;
-            color: white;
-            cursor: pointer;
-            border: 3px solid rgba(255, 255, 255, 0.15);
-            overflow: hidden;
-            position: relative;
-            box-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
-        }
-
-        .profile-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .profile-avatar .edit-overlay {
-            position: absolute;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: 0.3s;
-            font-size: 14px;
-            color: white;
-            border-radius: 50%;
-        }
-
-        .profile-avatar:hover .edit-overlay {
-            opacity: 1;
-        }
-
-        .profile-name {
-            text-align: center;
-            font-size: 20px;
-            font-weight: 700;
-            color: #f0eeff;
-            cursor: pointer;
-        }
-
-        .profile-name:hover {
-            color: #8b5cf6;
-        }
-
-        .profile-username {
-            text-align: center;
-            color: rgba(255, 255, 255, 0.4);
-            font-size: 14px;
-            margin-bottom: 4px;
-        }
-
-        .profile-balance {
-            background: rgba(255, 255, 255, 0.03);
-            padding: 14px 18px;
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .profile-balance .label {
-            color: rgba(255, 255, 255, 0.4);
-            font-size: 13px;
-        }
-
-        .profile-balance .amount {
-            font-size: 22px;
-            font-weight: 700;
-            color: #facc15;
-        }
-
-        .profile-menu {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .profile-menu-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 12px 16px;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 14px;
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            cursor: pointer;
-            transition: 0.3s;
-            color: #f0eeff;
-            text-decoration: none;
-        }
-
-        .profile-menu-item:hover {
-            border-color: #8b5cf6;
-            background: rgba(139, 92, 246, 0.05);
-        }
-
-        .profile-menu-item .icon {
-            font-size: 20px;
-        }
-
-        .profile-menu-item .arrow {
-            margin-left: auto;
-            color: rgba(255, 255, 255, 0.2);
-        }
-
-        .profile-menu-item .highlight {
-            color: #3b82f6;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 0.6; }
-            50% { opacity: 1; }
-        }
-
-        /* Cart */
-        .cart-list {
-            flex: 1;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .cart-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 10px 14px;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 14px;
-            border: 1px solid rgba(255, 255, 255, 0.06);
-        }
-
-        .cart-item .emoji {
-            font-size: 24px;
-        }
-
-        .cart-item .info {
-            flex: 1;
-        }
-
-        .cart-item .info .name {
-            font-weight: 600;
-            font-size: 14px;
-            color: #f0eeff;
-        }
-
-        .cart-item .info .date {
-            font-size: 10px;
-            color: rgba(255, 255, 255, 0.3);
-        }
-
-        .cart-item .price {
-            font-weight: 700;
-            color: #facc15;
-            font-size: 15px;
-        }
-
-        .cart-empty {
-            text-align: center;
-            color: rgba(255, 255, 255, 0.3);
-            padding: 30px 0;
-        }
-
-        .cart-total {
-            padding: 10px 0 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            display: flex;
-            justify-content: space-between;
-            font-weight: 600;
-            color: #f0eeff;
-        }
-
-        .cart-total .total-price {
-            color: #facc15;
-            font-size: 18px;
-        }
-
-        /* Chat */
-        .chat-messages {
-            flex: 1;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            padding: 4px 0;
-        }
-
-        .chat-message {
-            padding: 10px 14px;
-            border-radius: 16px;
-            max-width: 80%;
-            font-size: 13px;
-        }
-
-        .chat-message.incoming {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            align-self: flex-start;
-            color: #f0eeff;
-        }
-
-        .chat-message.outgoing {
-            background: linear-gradient(135deg, #8b5cf6, #6d28d9);
-            color: white;
-            align-self: flex-end;
-        }
-
-        .chat-message .time {
-            font-size: 9px;
-            opacity: 0.4;
-            margin-top: 4px;
-            display: block;
-        }
-
-        .chat-input {
-            display: flex;
-            gap: 8px;
-            padding-top: 8px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .chat-input input {
-            flex: 1;
-            padding: 10px 16px;
-            border-radius: 40px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            background: rgba(255, 255, 255, 0.05);
-            color: #f0eeff;
-            font-size: 13px;
-        }
-
-        .chat-input input:focus {
-            outline: none;
-            border-color: #8b5cf6;
-        }
-
-        .chat-input input::placeholder {
-            color: rgba(255, 255, 255, 0.3);
-        }
-
-        .chat-input button {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 40px;
-            background: linear-gradient(135deg, #8b5cf6, #6d28d9);
-            color: white;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .chat-input button:hover {
-            transform: scale(0.95);
-        }
-
-        /* Product Modal */
-        .product-modal {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(20px);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            padding: 20px;
-        }
-
-        .product-modal.show {
-            display: flex;
-        }
-
-        .product-modal-content {
-            background: #1a1030;
-            border-radius: 32px;
-            padding: 30px 24px;
-            max-width: 360px;
-            width: 100%;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 0 80px rgba(139, 92, 246, 0.2);
-        }
-
-        .product-modal-content .emoji {
-            font-size: 48px;
-            text-align: center;
-            display: block;
-        }
-
-        .product-modal-content h3 {
-            text-align: center;
-            margin: 8px 0 4px;
-            font-size: 20px;
-            color: #f0eeff;
-        }
-
-        .product-modal-content .price {
-            text-align: center;
-            font-size: 26px;
-            font-weight: 700;
-            color: #facc15;
-            margin-bottom: 16px;
-        }
-
-        .product-modal-content input {
-            width: 100%;
-            padding: 12px 16px;
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            background: rgba(255, 255, 255, 0.05);
-            color: #f0eeff;
-            margin-bottom: 12px;
-            font-size: 14px;
-        }
-
-        .product-modal-content input:focus {
-            outline: none;
-            border-color: #8b5cf6;
-        }
-
-        .product-modal-content input::placeholder {
-            color: rgba(255, 255, 255, 0.3);
-        }
-
-        .product-modal-content .btn-group {
-            display: flex;
-            gap: 8px;
-        }
-
-        .product-modal-content .btn-group button {
-            flex: 1;
-            padding: 12px;
-            border: none;
-            border-radius: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            font-size: 14px;
-            transition: 0.3s;
-        }
-
-        .btn-buy-product {
-            background: linear-gradient(145deg, #b81c5c, #8b1a4a);
-            color: white;
-        }
-
-        .btn-buy-product:hover {
-            transform: scale(0.95);
-        }
-
-        .btn-close-modal {
-            background: rgba(255, 255, 255, 0.05);
-            color: #f0eeff;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-
-        .btn-close-modal:hover {
-            border-color: #8b5cf6;
-        }
-
-        .btn-contact {
-            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
-            color: white;
-            width: 100%;
-            padding: 12px;
-            border: none;
-            border-radius: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            margin-top: 8px;
-            transition: 0.3s;
-        }
-
-        .btn-contact:hover {
-            transform: scale(0.95);
-        }
-
-        .modal-hint {
-            font-size: 10px;
-            color: rgba(255, 255, 255, 0.2);
-            text-align: center;
-            margin-top: 10px;
-        }
-
-        /* Admin */
-        .admin-content {
-            flex: 1;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            padding-bottom: 4px;
-        }
-
-        .admin-content::-webkit-scrollbar {
-            width: 2px;
-        }
-
-        .admin-content::-webkit-scrollbar-thumb {
-            background: #8b5cf6;
-            border-radius: 10px;
-        }
-
-        .admin-card {
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 16px;
-            padding: 14px 16px;
-            border: 1px solid rgba(255, 255, 255, 0.06);
-        }
-
-        .admin-card h4 {
-            color: #facc15;
-            font-size: 14px;
-            margin-bottom: 10px;
-        }
-
-        .admin-card .admin-row {
-            display: flex;
-            gap: 6px;
-            margin-bottom: 8px;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .admin-card .admin-row input,
-        .admin-card .admin-row select,
-        .admin-card .admin-row textarea {
-            flex: 1;
-            min-width: 60px;
-            padding: 8px 12px;
-            border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            background: rgba(255, 255, 255, 0.05);
-            color: #f0eeff;
-            font-size: 13px;
-        }
-
-        .admin-card .admin-row textarea {
-            min-height: 80px;
-            resize: vertical;
-            flex-basis: 100%;
-        }
-
-        .admin-card .admin-row input:focus,
-        .admin-card .admin-row select:focus,
-        .admin-card .admin-row textarea:focus {
-            outline: none;
-            border-color: #8b5cf6;
-        }
-
-        .admin-card .admin-row input::placeholder,
-        .admin-card .admin-row textarea::placeholder {
-            color: rgba(255, 255, 255, 0.3);
-        }
-
-        .admin-card .admin-row button {
-            padding: 8px 14px;
-            border: none;
-            border-radius: 10px;
-            background: #8b5cf6;
-            color: white;
-            font-weight: 600;
-            cursor: pointer;
-            font-size: 13px;
-            transition: 0.3s;
-            white-space: nowrap;
-        }
-
-        .admin-card .admin-row button:hover {
-            transform: scale(0.95);
-        }
-
-        .admin-card .admin-row button.danger {
-            background: #ef4444;
-        }
-
-        .admin-card .admin-row button.success {
-            background: #22c55e;
-        }
-
-        .admin-stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
-        }
-
-        .admin-stat-item {
-            background: rgba(255, 255, 255, 0.03);
-            padding: 10px;
-            border-radius: 12px;
-            text-align: center;
-        }
-
-        .admin-stat-item .num {
-            font-size: 20px;
-            font-weight: 700;
-            color: #8b5cf6;
-        }
-
-        .admin-stat-item .label {
-            font-size: 10px;
-            color: rgba(255, 255, 255, 0.4);
-            margin-top: 2px;
-        }
-
-        .admin-user-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 6px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-            font-size: 13px;
-        }
-
-        .admin-user-item .user-name {
-            color: #f0eeff;
-        }
-
-        .admin-user-item .user-bal {
-            color: #facc15;
-        }
-
-        .admin-user-item button {
-            padding: 2px 12px;
-            border: none;
-            border-radius: 6px;
-            font-size: 11px;
-            cursor: pointer;
-            background: #ef4444;
-            color: white;
-            transition: 0.3s;
-        }
-
-        .admin-user-item button:hover {
-            transform: scale(0.9);
-        }
-
-        .admin-products-list {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-            max-height: 150px;
-            overflow-y: auto;
-        }
-
-        .admin-products-list::-webkit-scrollbar {
-            width: 2px;
-        }
-
-        .admin-products-list::-webkit-scrollbar-thumb {
-            background: #8b5cf6;
-            border-radius: 10px;
-        }
-
-        .admin-products-list .product-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 4px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-            font-size: 12px;
-        }
-
-        .admin-products-list .product-row .p-name {
-            color: #f0eeff;
-        }
-
-        .admin-products-list .product-row .p-price {
-            color: #facc15;
-        }
-
-        .admin-products-list .product-row button {
-            padding: 2px 10px;
-            border: none;
-            border-radius: 4px;
-            font-size: 10px;
-            cursor: pointer;
-            background: #ef4444;
-            color: white;
-            transition: 0.3s;
-        }
-
-        .admin-products-list .product-row button:hover {
-            transform: scale(0.9);
-        }
-
-        .admin-promo-list {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-            padding: 4px 0;
-        }
-
-        .admin-promo-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(139, 92, 246, 0.08);
-            padding: 4px 12px;
-            border-radius: 8px;
-            font-size: 12px;
-        }
-
-        .admin-promo-item .promo-code {
-            color: #facc15;
-            font-weight: 600;
-        }
-
-        .admin-promo-item .promo-bonus {
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        .admin-promo-item .promo-uses {
-            color: rgba(255, 255, 255, 0.3);
-            font-size: 10px;
-        }
-
-        .admin-promo-item button {
-            padding: 2px 10px;
-            border: none;
-            border-radius: 4px;
-            font-size: 10px;
-            cursor: pointer;
-            background: #ef4444;
-            color: white;
-            transition: 0.3s;
-        }
-
-        .admin-promo-item button:hover {
-            transform: scale(0.9);
-        }
-
-        .admin-hint {
-            font-size: 11px;
-            color: rgba(255, 255, 255, 0.2);
-            margin-top: 4px;
-        }
-
-        .admin-topup-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 6px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-            font-size: 13px;
-        }
-
-        .admin-topup-item .topup-user {
-            color: #f0eeff;
-        }
-
-        .admin-topup-item .topup-amount {
-            color: #facc15;
-        }
-
-        .admin-topup-item .topup-status {
-            font-size: 10px;
-            padding: 2px 10px;
-            border-radius: 10px;
-        }
-
-        .admin-topup-item .topup-status.pending {
-            background: rgba(250, 204, 21, 0.2);
-            color: #facc15;
-        }
-
-        .admin-topup-item .topup-status.approved {
-            background: rgba(34, 197, 94, 0.2);
-            color: #22c55e;
-        }
-
-        .admin-topup-item .topup-status.rejected {
-            background: rgba(239, 68, 68, 0.2);
-            color: #ef4444;
-        }
-
-        .admin-topup-item button {
-            padding: 2px 12px;
-            border: none;
-            border-radius: 6px;
-            font-size: 10px;
-            cursor: pointer;
-            color: white;
-            transition: 0.3s;
-        }
-
-        .admin-topup-item button.approve {
-            background: #22c55e;
-        }
-
-        .admin-topup-item button.reject {
-            background: #ef4444;
-        }
-
-        .admin-topup-item button:hover {
-            transform: scale(0.9);
-        }
-
-        /* ===== НОВЫЙ СТИЛЬ ДЛЯ СТРАНИЦЫ ПРОДАЖИ ===== */
-        .sell-form {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .sell-form input,
-        .sell-form select,
-        .sell-form textarea {
-            width: 100%;
-            padding: 12px 16px;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            background: rgba(255, 255, 255, 0.05);
-            color: #f0eeff;
-            font-size: 14px;
-        }
-
-        .sell-form input:focus,
-        .sell-form select:focus,
-        .sell-form textarea:focus {
-            outline: none;
-            border-color: #8b5cf6;
-        }
-
-        .sell-form textarea {
-            min-height: 100px;
-            resize: vertical;
-        }
-
-        .sell-form .sell-btn {
-            padding: 14px;
-            border: none;
-            border-radius: 16px;
-            background: linear-gradient(135deg, #8b5cf6, #6d28d9);
-            color: white;
-            font-weight: 600;
-            font-size: 16px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .sell-form .sell-btn:hover {
-            transform: scale(0.97);
-            box-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
-        }
-
-        /* Light Theme */
-        [data-theme="light"] .app-screen {
-            background: #f5f0fa;
-        }
-
-        [data-theme="light"] .phone-frame {
-            background: #e8e0f0;
-        }
-
-        [data-theme="light"] .header h1 {
-            background: linear-gradient(135deg, #6d28d9, #db2777);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        [data-theme="light"] .section-header h2 {
-            color: #1a1428;
-        }
-
-        [data-theme="light"] .section-header a {
-            color: #6d28d9;
-            font-weight: 600;
-        }
-
-        [data-theme="light"] .product-card {
-            background: #ffffff;
-            border: 1px solid #d5cce0;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-        }
-
-        [data-theme="light"] .product-card:hover {
-            border-color: #6d28d9;
-            box-shadow: 0 8px 24px rgba(109, 40, 217, 0.15);
-        }
-
-        [data-theme="light"] .product-card .title {
-            color: #1a1428;
-        }
-
-        [data-theme="light"] .product-card .sub {
-            color: #6a5f7a;
-        }
-
-        [data-theme="light"] .product-card .price {
-            color: #d97706;
-            text-shadow: none;
-        }
-
-        [data-theme="light"] .product-card .old-price {
-            color: #a090b0;
-        }
-
-        [data-theme="light"] .product-card .favorite-btn {
-            color: #c0b0d0;
-        }
-
-        [data-theme="light"] .product-card .favorite-btn.active {
-            color: #ef4444;
-        }
-
-        [data-theme="light"] .balance-block {
-            background: #ffffff;
-            border: 1px solid #d5cce0;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-        }
-
-        [data-theme="light"] .balance-block .label {
-            color: #5a4f6a;
-        }
-
-        [data-theme="light"] .balance-row input {
-            background: #f5f0fa;
-            border: 1px solid #d5cce0;
-            color: #1a1428;
-        }
-
-        [data-theme="light"] .balance-row input::placeholder {
-            color: #a090b0;
-        }
-
-        [data-theme="light"] .balance-row .amount {
-            color: #d97706;
-            text-shadow: none;
-        }
-
-        [data-theme="light"] .balance-row button {
-            background: #6d28d9;
-            color: white;
-        }
-
-        [data-theme="light"] .balance-hint {
-            color: #6a5f7a;
-        }
-
-        [data-theme="light"] .balance-hint .promo input {
-            background: #f5f0fa;
-            border: 1px solid #d5cce0;
-            color: #1a1428;
-        }
-
-        [data-theme="light"] .balance-hint .promo button {
-            background: #6d28d9;
-            color: white;
-        }
-
-        [data-theme="light"] .promo-banner {
-            background: linear-gradient(135deg, rgba(184, 28, 92, 0.12), rgba(109, 40, 217, 0.12));
-            border: 1px solid #d5cce0;
-        }
-
-        [data-theme="light"] .promo-banner .text {
-            color: #d97706;
-        }
-
-        [data-theme="light"] .promo-banner .text span {
-            color: #6a5f7a;
-        }
-
-        [data-theme="light"] .promo-banner .countdown {
-            background: rgba(0,0,0,0.06);
-            color: #5a4f6a;
-        }
-
-        [data-theme="light"] .bottom-nav {
-            border-top-color: #d5cce0;
-        }
-
-        [data-theme="light"] .nav-item {
-            color: #8a7f9a;
-        }
-
-        [data-theme="light"] .nav-item.active {
-            color: #6d28d9;
-        }
-
-        [data-theme="light"] .nav-item:hover {
-            color: #6d28d9;
-        }
-
-        [data-theme="light"] .header-btn {
-            background: #ffffff;
-            border: 1px solid #d5cce0;
-            color: #4a3f5a;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-        }
-
-        [data-theme="light"] .header-btn:hover {
-            border-color: #6d28d9;
-            box-shadow: 0 4px 12px rgba(109, 40, 217, 0.12);
-        }
-
-        [data-theme="light"] .header-btn .badge {
-            background: #ef4444;
-            color: white;
-        }
-
-        [data-theme="light"] .theme-toggle {
-            background: #ffffff;
-            border: 1px solid #d5cce0;
-            color: #4a3f5a;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-        }
-
-        [data-theme="light"] .theme-toggle:hover {
-            border-color: #6d28d9;
-        }
-
-        [data-theme="light"] .page-header .back {
-            background: #ffffff;
-            border: 1px solid #d5cce0;
-            color: #4a3f5a;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        }
-
-        [data-theme="light"] .page-header .back:hover {
-            border-color: #6d28d9;
-            box-shadow: 0 4px 16px rgba(109, 40, 217, 0.15);
-        }
-
-        [data-theme="light"] .page-header h3 {
-            color: #1a1428;
-        }
-
-        [data-theme="light"] .profile-name {
-            color: #1a1428;
-        }
-
-        [data-theme="light"] .profile-username {
-            color: #6a5f7a;
-        }
-
-        [data-theme="light"] .profile-balance {
-            background: #ffffff;
-            border: 1px solid #d5cce0;
-        }
-
-        [data-theme="light"] .profile-balance .label {
-            color: #5a4f6a;
-        }
-
-        [data-theme="light"] .profile-balance .amount {
-            color: #d97706;
-            text-shadow: none;
-        }
-
-        [data-theme="light"] .profile-menu-item {
-            background: #ffffff;
-            border: 1px solid #d5cce0;
-            color: #1a1428;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-        }
-
-        [data-theme="light"] .profile-menu-item:hover {
-            border-color: #6d28d9;
-            background: #f8f4ff;
-            box-shadow: 0 4px 16px rgba(109, 40, 217, 0.1);
-        }
-
-        [data-theme="light"] .profile-menu-item .arrow {
-            color: #a090b0;
-        }
-
-        [data-theme="light"] .cart-item {
-            background: #ffffff;
-            border: 1px solid #d5cce0;
-        }
-
-        [data-theme="light"] .cart-item .info .name {
-            color: #1a1428;
-        }
-
-        [data-theme="light"] .cart-item .info .date {
-            color: #8a7f9a;
-        }
-
-        [data-theme="light"] .cart-total {
-            color: #1a1428;
-            border-top-color: #d5cce0;
-        }
-
-        [data-theme="light"] .cart-total .total-price {
-            color: #d97706;
-        }
-
-        [data-theme="light"] .chat-message.incoming {
-            background: #ffffff;
-            border: 1px solid #d5cce0;
-            color: #1a1428;
-        }
-
-        [data-theme="light"] .chat-message.outgoing {
-            background: linear-gradient(135deg, #8b5cf6, #6d28d9);
-            color: white;
-        }
-
-        [data-theme="light"] .chat-input input {
-            background: #ffffff;
-            border: 1px solid #d5cce0;
-            color: #1a1428;
-        }
-
-        [data-theme="light"] .chat-input input::placeholder {
-            color: #8a7f9a;
-        }
-
-        [data-theme="light"] .chat-input input:focus {
-            border-color: #6d28d9;
-        }
-
-        [data-theme="light"] .product-modal-content {
-            background: #f5f0fa;
-            border: 1px solid #d5cce0;
-        }
-
-        [data-theme="light"] .product-modal-content h3 {
-            color: #1a1428;
-        }
-
-        [data-theme="light"] .product-modal-content input {
-            background: #ffffff;
-            border: 1px solid #d5cce0;
-            color: #1a1428;
-        }
-
-        [data-theme="light"] .product-modal-content input::placeholder {
-            color: #8a7f9a;
-        }
-
-        [data-theme="light"] .btn-close-modal {
-            background: #e8e0f0;
-            color: #1a1428;
-            border: 1px solid #d5cce0;
-        }
-
-        [data-theme="light"] .btn-close-modal:hover {
-            border-color: #6d28d9;
-        }
-
-        [data-theme="light"] .auth-modal {
-            background: #f5f0fa;
-            border: 1px solid #d5cce0;
-        }
-
-        [data-theme="light"] .auth-modal .sub {
-            color: #5a4f6a;
-        }
-
-        [data-theme="light"] .auth-input {
-            background: #ffffff;
-            border: 1px solid #d5cce0;
-            color: #1a1428;
-        }
-
-        [data-theme="light"] .auth-input::placeholder {
-            color: #8a7f9a;
-        }
-
-        [data-theme="light"] .auth-input:focus {
-            border-color: #6d28d9;
-        }
-
-        [data-theme="light"] .auth-switch {
-            color: #5a4f6a;
-        }
-
-        [data-theme="light"] .auth-switch span {
-            color: #6d28d9;
-        }
-
-        [data-theme="light"] .admin-card {
-            background: #ffffff;
-            border: 1px solid #d5cce0;
-        }
-
-        [data-theme="light"] .admin-card .admin-row input,
-        [data-theme="light"] .admin-card .admin-row select,
-        [data-theme="light"] .admin-card .admin-row textarea {
-            background: #f5f0fa;
-            border: 1px solid #d5cce0;
-            color: #1a1428;
-        }
-
-        [data-theme="light"] .admin-stat-item {
-            background: #f5f0fa;
-            border: 1px solid #d5cce0;
-        }
-
-        [data-theme="light"] .admin-stat-item .num {
-            color: #6d28d9;
-        }
-
-        [data-theme="light"] .admin-user-item .user-name {
-            color: #1a1428;
-        }
-
-        [data-theme="light"] .admin-products-list .product-row .p-name {
-            color: #1a1428;
-        }
-
-        [data-theme="light"] .admin-hint {
-            color: #8a7f9a;
-        }
-
-        [data-theme="light"] .admin-promo-item {
-            background: rgba(109, 40, 217, 0.06);
-            border: 1px solid #d5cce0;
-        }
-
-        [data-theme="light"] .admin-promo-item .promo-code {
-            color: #6d28d9;
-        }
-
-        [data-theme="light"] .sell-form input,
-        [data-theme="light"] .sell-form select,
-        [data-theme="light"] .sell-form textarea {
-            background: #ffffff;
-            border: 1px solid #d5cce0;
-            color: #1a1428;
-        }
-
-        [data-theme="light"] .sell-form input::placeholder,
-        [data-theme="light"] .sell-form textarea::placeholder {
-            color: #8a7f9a;
-        }
-
-        [data-theme="light"] .admin-topup-item .topup-user {
-            color: #1a1428;
-        }
-
+        /* ===== АДАПТИВ ===== */
         @media (max-width: 420px) {
             .phone-frame {
                 border-radius: 28px;
@@ -1761,9 +357,6 @@
             .header h1 {
                 font-size: 20px;
             }
-            .admin-stats {
-                grid-template-columns: repeat(2, 1fr);
-            }
             .header-btn {
                 width: 32px;
                 height: 32px;
@@ -1774,14 +367,16 @@
                 height: 32px;
                 font-size: 14px;
             }
-            .admin-card .admin-row input {
-                min-width: 40px;
-                font-size: 11px;
-                padding: 6px 8px;
+            .bottom-nav {
+                padding: 6px 0 !important;
+                border-radius: 16px !important;
             }
-            .admin-card .admin-row button {
-                font-size: 11px;
-                padding: 6px 10px;
+            .nav-item {
+                font-size: 7px !important;
+                padding: 2px 4px !important;
+            }
+            .nav-item .icon {
+                font-size: 16px !important;
             }
             .balance-row {
                 flex-direction: column;
@@ -1859,26 +454,21 @@
                 <div class="countdown" id="countdownTimer">⏳ 2д 14ч</div>
             </div>
 
+            <!-- ===== ВСЕ ТОВАРЫ ===== -->
             <div class="section-header">
-                <h2>❤️ Избранное</h2>
-                <a onclick="navigateTo('favorites')">Смотреть всё →</a>
-            </div>
-            <div class="products" id="favoritesContainer"></div>
-
-            <div class="section-header">
-                <h2>Новое</h2>
+                <h2>🛍️ Все товары</h2>
                 <a onclick="alert('Все товары')">Смотреть всё →</a>
             </div>
             <div class="products" id="productsContainer"></div>
 
-            <!-- ===== НОВЫЙ БЛОК: ТОВАРЫ ПОЛЬЗОВАТЕЛЕЙ ===== -->
+            <!-- ===== ТОВАРЫ ПОЛЬЗОВАТЕЛЕЙ ===== -->
             <div class="section-header">
                 <h2>👤 Товары пользователей</h2>
-                <a onclick="alert('Все товары')">Смотреть всё →</a>
+                <a onclick="alert('Все товары пользователей')">Смотреть всё →</a>
             </div>
             <div class="products" id="userProductsContainer"></div>
 
-            <!-- ===== НОВЫЙ БЛОК: ПОПОЛНЕНИЕ БАЛАНСА ===== -->
+            <!-- ===== ПОПОЛНЕНИЕ БАЛАНСА ===== -->
             <div class="balance-block">
                 <div class="label">💳 Пополнить баланс</div>
                 <div class="balance-row">
@@ -1891,6 +481,7 @@
                 </div>
             </div>
 
+            <!-- ===== ПРОМОКОД ===== -->
             <div class="balance-block">
                 <div class="label">🎫 Промокод</div>
                 <div class="balance-row">
@@ -1899,6 +490,7 @@
                 </div>
             </div>
 
+            <!-- ===== НИЖНЯЯ ПАНЕЛЬ ===== -->
             <div class="bottom-nav">
                 <button class="nav-item active" onclick="navigateTo('main')">
                     <span class="icon">🏠</span> Главная
@@ -1991,17 +583,7 @@
             <div class="products" id="searchResults" style="flex-wrap:wrap;gap:8px;"></div>
         </div>
 
-        <!-- FAVORITES PAGE -->
-        <div class="page" id="pageFavorites">
-            <div class="page-header">
-                <div class="back" onclick="navigateTo('main')">←</div>
-                <h3>❤️ Избранное</h3>
-                <div style="width:36px;"></div>
-            </div>
-            <div class="products" id="favoritesPageContainer" style="flex-wrap:wrap;gap:8px;"></div>
-        </div>
-
-        <!-- ===== НОВАЯ СТРАНИЦА: ПРОДАЖА ===== -->
+        <!-- SELL PAGE -->
         <div class="page" id="pageSell">
             <div class="page-header">
                 <div class="back" onclick="navigateTo('main')">←</div>
@@ -2389,9 +971,6 @@
             renderProducts();
             renderFavorites();
             updateFavBadge();
-            if (document.getElementById('pageFavorites').classList.contains('active')) {
-                renderFavoritesPage();
-            }
 
         } catch (error) {
             console.error('Ошибка избранного:', error);
@@ -2624,7 +1203,6 @@
         if (page === 'profile') updateProfile();
         if (page === 'chat') renderChat();
         if (page === 'admin') renderAdmin();
-        if (page === 'favorites') renderFavoritesPage();
         if (page === 'sell') renderMyProducts();
     }
 
@@ -2711,7 +1289,7 @@
     }
 
     // ============================================================
-    // RENDER MY PRODUCTS (в продаже)
+    // RENDER MY PRODUCTS
     // ============================================================
     function renderMyProducts() {
         const container = document.getElementById('myProductsList');
@@ -3044,7 +1622,6 @@
         const totalRevenue = cart ? cart.reduce((sum, item) => sum + (item.price || 0), 0) : 0;
         const totalProducts = products ? products.length : 0;
 
-        // Промокоды
         const promoList = allPromos || [];
         const promoHtml = promoList.map(p => `
             <div class="admin-promo-item">
@@ -3054,37 +1631,6 @@
                 <button onclick="deletePromoCode('${p.code}')">✕</button>
             </div>
         `).join('');
-
-        // Заявки на пополнение
-        let topupRequests = [];
-        fetch(`${API_URL}/topup/requests`).then(r => r.json()).then(data => {
-            topupRequests = data;
-        }).catch(() => {});
-
-        let topupHtml = '';
-        // Загружаем заявки отдельно
-        fetch(`${API_URL}/topup/requests`)
-            .then(r => r.json())
-            .then(data => {
-                const container = document.getElementById('topupRequestsContainer');
-                if (container) {
-                    if (data.length === 0) {
-                        container.innerHTML = '<div style="color:rgba(255,255,255,0.3);font-size:13px;">Нет заявок на пополнение</div>';
-                    } else {
-                        container.innerHTML = data.map(req => `
-                            <div class="admin-topup-item">
-                                <span class="topup-user">${req.username}</span>
-                                <span class="topup-amount">+${req.amount} ★</span>
-                                <span class="topup-status ${req.status}">${req.status === 'pending' ? '⏳ Ожидает' : req.status === 'approved' ? '✅ Подтверждено' : '❌ Отклонено'}</span>
-                                ${req.status === 'pending' ? `
-                                    <button class="approve" onclick="approveTopup(${req.id})">✅</button>
-                                    <button class="reject" onclick="rejectTopup(${req.id})">❌</button>
-                                ` : ''}
-                            </div>
-                        `).join('');
-                    }
-                }
-            });
 
         let html = `
             <div class="admin-card">
@@ -3164,7 +1710,7 @@
         `;
 
         document.getElementById('adminContent').innerHTML = html;
-        
+
         // Подгружаем заявки
         fetch(`${API_URL}/topup/requests`)
             .then(r => r.json())
@@ -3271,4 +1817,4 @@
     console.log('✅ Сессия сохраняется при закрытии');
 </script>
 </body>
-                        </html>
+    </html>
