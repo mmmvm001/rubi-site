@@ -402,6 +402,7 @@
             gap: 10px;
             margin-top: 8px;
             align-items: center;
+            flex-wrap: wrap;
         }
 
         .balance-row input {
@@ -412,6 +413,7 @@
             background: rgba(255, 255, 255, 0.05);
             color: #f0eeff;
             font-size: 14px;
+            min-width: 60px;
         }
 
         .balance-row input:focus {
@@ -430,6 +432,22 @@
             white-space: nowrap;
         }
 
+        .balance-row button {
+            padding: 10px 16px;
+            border: none;
+            border-radius: 12px;
+            background: #8b5cf6;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 13px;
+            transition: 0.3s;
+        }
+
+        .balance-row button:hover {
+            transform: scale(0.95);
+        }
+
         .balance-hint {
             display: flex;
             justify-content: space-between;
@@ -437,12 +455,14 @@
             margin-top: 8px;
             font-size: 12px;
             color: rgba(255, 255, 255, 0.3);
+            flex-wrap: wrap;
         }
 
         .balance-hint .promo {
             display: flex;
             gap: 8px;
             align-items: center;
+            flex-wrap: wrap;
         }
 
         .balance-hint .promo input {
@@ -1008,7 +1028,8 @@
         }
 
         .admin-card .admin-row input,
-        .admin-card .admin-row select {
+        .admin-card .admin-row select,
+        .admin-card .admin-row textarea {
             flex: 1;
             min-width: 60px;
             padding: 8px 12px;
@@ -1019,13 +1040,21 @@
             font-size: 13px;
         }
 
+        .admin-card .admin-row textarea {
+            min-height: 80px;
+            resize: vertical;
+            flex-basis: 100%;
+        }
+
         .admin-card .admin-row input:focus,
-        .admin-card .admin-row select:focus {
+        .admin-card .admin-row select:focus,
+        .admin-card .admin-row textarea:focus {
             outline: none;
             border-color: #8b5cf6;
         }
 
-        .admin-card .admin-row input::placeholder {
+        .admin-card .admin-row input::placeholder,
+        .admin-card .admin-row textarea::placeholder {
             color: rgba(255, 255, 255, 0.3);
         }
 
@@ -1077,35 +1106,6 @@
             font-size: 10px;
             color: rgba(255, 255, 255, 0.4);
             margin-top: 2px;
-        }
-
-        .admin-top-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 4px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-            font-size: 12px;
-        }
-
-        .admin-top-item .rank {
-            color: #facc15;
-            font-weight: 700;
-            margin-right: 8px;
-        }
-
-        .admin-top-item .name {
-            color: #f0eeff;
-            flex: 1;
-        }
-
-        .admin-top-item .sales {
-            color: rgba(255, 255, 255, 0.4);
-        }
-
-        .admin-top-item .revenue {
-            color: #facc15;
-            font-weight: 600;
         }
 
         .admin-user-item {
@@ -1215,6 +1215,11 @@
             color: rgba(255, 255, 255, 0.5);
         }
 
+        .admin-promo-item .promo-uses {
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 10px;
+        }
+
         .admin-promo-item button {
             padding: 2px 10px;
             border: none;
@@ -1234,6 +1239,114 @@
             font-size: 11px;
             color: rgba(255, 255, 255, 0.2);
             margin-top: 4px;
+        }
+
+        .admin-topup-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            font-size: 13px;
+        }
+
+        .admin-topup-item .topup-user {
+            color: #f0eeff;
+        }
+
+        .admin-topup-item .topup-amount {
+            color: #facc15;
+        }
+
+        .admin-topup-item .topup-status {
+            font-size: 10px;
+            padding: 2px 10px;
+            border-radius: 10px;
+        }
+
+        .admin-topup-item .topup-status.pending {
+            background: rgba(250, 204, 21, 0.2);
+            color: #facc15;
+        }
+
+        .admin-topup-item .topup-status.approved {
+            background: rgba(34, 197, 94, 0.2);
+            color: #22c55e;
+        }
+
+        .admin-topup-item .topup-status.rejected {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+        }
+
+        .admin-topup-item button {
+            padding: 2px 12px;
+            border: none;
+            border-radius: 6px;
+            font-size: 10px;
+            cursor: pointer;
+            color: white;
+            transition: 0.3s;
+        }
+
+        .admin-topup-item button.approve {
+            background: #22c55e;
+        }
+
+        .admin-topup-item button.reject {
+            background: #ef4444;
+        }
+
+        .admin-topup-item button:hover {
+            transform: scale(0.9);
+        }
+
+        /* ===== НОВЫЙ СТИЛЬ ДЛЯ СТРАНИЦЫ ПРОДАЖИ ===== */
+        .sell-form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .sell-form input,
+        .sell-form select,
+        .sell-form textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.05);
+            color: #f0eeff;
+            font-size: 14px;
+        }
+
+        .sell-form input:focus,
+        .sell-form select:focus,
+        .sell-form textarea:focus {
+            outline: none;
+            border-color: #8b5cf6;
+        }
+
+        .sell-form textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .sell-form .sell-btn {
+            padding: 14px;
+            border: none;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+            color: white;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .sell-form .sell-btn:hover {
+            transform: scale(0.97);
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
         }
 
         /* Light Theme */
@@ -1319,6 +1432,11 @@
         [data-theme="light"] .balance-row .amount {
             color: #d97706;
             text-shadow: none;
+        }
+
+        [data-theme="light"] .balance-row button {
+            background: #6d28d9;
+            color: white;
         }
 
         [data-theme="light"] .balance-hint {
@@ -1566,7 +1684,8 @@
         }
 
         [data-theme="light"] .admin-card .admin-row input,
-        [data-theme="light"] .admin-card .admin-row select {
+        [data-theme="light"] .admin-card .admin-row select,
+        [data-theme="light"] .admin-card .admin-row textarea {
             background: #f5f0fa;
             border: 1px solid #d5cce0;
             color: #1a1428;
@@ -1600,6 +1719,23 @@
 
         [data-theme="light"] .admin-promo-item .promo-code {
             color: #6d28d9;
+        }
+
+        [data-theme="light"] .sell-form input,
+        [data-theme="light"] .sell-form select,
+        [data-theme="light"] .sell-form textarea {
+            background: #ffffff;
+            border: 1px solid #d5cce0;
+            color: #1a1428;
+        }
+
+        [data-theme="light"] .sell-form input::placeholder,
+        [data-theme="light"] .sell-form textarea::placeholder {
+            color: #8a7f9a;
+        }
+
+        [data-theme="light"] .admin-topup-item .topup-user {
+            color: #1a1428;
         }
 
         @media (max-width: 420px) {
@@ -1647,6 +1783,15 @@
                 font-size: 11px;
                 padding: 6px 10px;
             }
+            .balance-row {
+                flex-direction: column;
+            }
+            .balance-row input {
+                width: 100%;
+            }
+            .balance-row button {
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -1680,7 +1825,7 @@
             <button class="btn-close-modal" onclick="closeModal()">Закрыть</button>
         </div>
         <button class="btn-contact" onclick="contactSeller()">📩 Связаться с продавцом</button>
-        <div class="modal-hint">Пополнение баланса: @vmvmvq</div>
+        <div class="modal-hint">Пополнение баланса: через форму на главной</div>
     </div>
 </div>
 
@@ -1726,24 +1871,31 @@
             </div>
             <div class="products" id="productsContainer"></div>
 
+            <!-- ===== НОВЫЙ БЛОК: ТОВАРЫ ПОЛЬЗОВАТЕЛЕЙ ===== -->
             <div class="section-header">
-                <h2>🎯 Вам может понравиться</h2>
-                <a onclick="alert('Все рекомендации')">Смотреть всё →</a>
+                <h2>👤 Товары пользователей</h2>
+                <a onclick="alert('Все товары')">Смотреть всё →</a>
             </div>
-            <div class="products" id="recommendationsContainer"></div>
+            <div class="products" id="userProductsContainer"></div>
 
+            <!-- ===== НОВЫЙ БЛОК: ПОПОЛНЕНИЕ БАЛАНСА ===== -->
             <div class="balance-block">
                 <div class="label">💳 Пополнить баланс</div>
                 <div class="balance-row">
-                    <input id="balanceInput" placeholder="Сумма">
-                    <span class="amount" id="balanceDisplay">0 ★</span>
+                    <input id="topupUsername" placeholder="Ваш логин">
+                    <input id="topupAmount" placeholder="Сумма ★" type="number">
+                    <button onclick="createTopupRequest()">Пополнить</button>
                 </div>
                 <div class="balance-hint">
-                    <span>Комиссия 5%</span>
-                    <div class="promo">
-                        <input id="promoInput" placeholder="Промокод">
-                        <button onclick="applyPromo()">Применить</button>
-                    </div>
+                    <span>После оплаты на ваш баланс поступят средства</span>
+                </div>
+            </div>
+
+            <div class="balance-block">
+                <div class="label">🎫 Промокод</div>
+                <div class="balance-row">
+                    <input id="promoInput" placeholder="Введите промокод">
+                    <button onclick="applyPromo()">Применить</button>
                 </div>
             </div>
 
@@ -1754,13 +1906,11 @@
                 <button class="nav-item" onclick="navigateTo('search')">
                     <span class="icon">🔍</span> Поиск
                 </button>
-                <button class="nav-item" onclick="navigateTo('favorites')">
-                    <span class="icon">❤️</span> Избранное
-                    <span class="badge-nav" id="favBadgeNav">0</span>
+                <button class="nav-item" onclick="navigateTo('sell')">
+                    <span class="icon">📤</span> Продать
                 </button>
                 <button class="nav-item" onclick="navigateTo('chat')">
                     <span class="icon">💬</span> Чаты
-                    <span class="badge-nav" id="chatBadgeNav">0</span>
                 </button>
                 <button class="nav-item" onclick="navigateTo('profile')">
                     <span class="icon">👤</span> Профиль
@@ -1793,9 +1943,6 @@
                     <a class="profile-menu-item" href="https://t.me/rubishopgame" target="_blank">
                         <span class="icon">📢</span> Telegram-канал <span class="arrow highlight">✦</span>
                     </a>
-                    <div class="profile-menu-item" onclick="topUpBalance()">
-                        <span class="icon">⭐</span> Пополнить баланс <span class="arrow">→</span>
-                    </div>
                     <div class="profile-menu-item" onclick="logout()">
                         <span class="icon">🚪</span> Выйти <span class="arrow">→</span>
                     </div>
@@ -1852,6 +1999,32 @@
                 <div style="width:36px;"></div>
             </div>
             <div class="products" id="favoritesPageContainer" style="flex-wrap:wrap;gap:8px;"></div>
+        </div>
+
+        <!-- ===== НОВАЯ СТРАНИЦА: ПРОДАЖА ===== -->
+        <div class="page" id="pageSell">
+            <div class="page-header">
+                <div class="back" onclick="navigateTo('main')">←</div>
+                <h3>📤 Продать товар</h3>
+                <div style="width:36px;"></div>
+            </div>
+            <div class="profile-content">
+                <div class="admin-card">
+                    <h4>📦 Создать объявление</h4>
+                    <div class="sell-form">
+                        <input id="sellCategory" placeholder="Категория (CS2, Dota, Rust, и т.д.)">
+                        <input id="sellName" placeholder="Название товара*">
+                        <input id="sellEmoji" placeholder="Эмодзи (например, 🔫)" style="max-width:80px;">
+                        <input id="sellPrice" placeholder="Цена ★*" type="number">
+                        <textarea id="sellDescription" placeholder="Описание товара..."></textarea>
+                        <button class="sell-btn" onclick="sellProduct()">📤 Опубликовать товар</button>
+                    </div>
+                </div>
+                <div class="admin-card">
+                    <h4>📋 Мои объявления</h4>
+                    <div id="myProductsList" style="color:rgba(255,255,255,0.4);font-size:13px;">Загрузка...</div>
+                </div>
+            </div>
         </div>
 
         <!-- ADMIN PAGE -->
@@ -1951,6 +2124,7 @@
     // ============================================================
     let currentUser = null;
     let products = [];
+    let userProducts = [];
     let cart = [];
     let favorites = [];
     let allUsers = [];
@@ -1970,6 +2144,9 @@
             const productsRes = await fetch(`${API_URL}/products`);
             products = await productsRes.json();
 
+            const userProductsRes = await fetch(`${API_URL}/user_products`);
+            userProducts = await userProductsRes.json();
+
             if (currentUser) {
                 const cartRes = await fetch(`${API_URL}/cart/${currentUser.id}`);
                 cart = await cartRes.json();
@@ -1982,7 +2159,6 @@
                 const usersRes = await fetch(`${API_URL}/users`);
                 allUsers = await usersRes.json();
 
-                // ===== ЗАГРУЖАЕМ ПРОМОКОДЫ =====
                 const promosRes = await fetch(`${API_URL}/promocodes`);
                 if (promosRes.ok) {
                     allPromos = await promosRes.json();
@@ -2002,14 +2178,86 @@
     }
 
     // ============================================================
-    // BUY PRODUCT
+    // ПОПОЛНЕНИЕ БАЛАНСА
+    // ============================================================
+    async function createTopupRequest() {
+        const username = document.getElementById('topupUsername').value.trim();
+        const amount = parseInt(document.getElementById('topupAmount').value);
+
+        if (!username || !amount) {
+            alert('❌ Введите логин и сумму');
+            return;
+        }
+
+        try {
+            const response = await fetch(`${API_URL}/topup`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, amount })
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                alert(data.error || 'Ошибка');
+                return;
+            }
+
+            alert(`✅ Заявка на пополнение ${amount} ★ отправлена!\nОжидайте подтверждения от администратора.`);
+            document.getElementById('topupUsername').value = '';
+            document.getElementById('topupAmount').value = '';
+
+        } catch (error) {
+            alert('❌ Ошибка подключения к серверу');
+        }
+    }
+
+    // ============================================================
+    // ПРОМОКОДЫ
+    // ============================================================
+    async function applyPromo() {
+        const input = document.getElementById('promoInput');
+        const code = input.value.trim().toUpperCase();
+
+        if (!code) {
+            alert('❌ Введите промокод');
+            return;
+        }
+
+        try {
+            const response = await fetch(`${API_URL}/apply-promo`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ userId: currentUser.id, code })
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                alert(data.error || 'Ошибка');
+                return;
+            }
+
+            currentUser = data.user;
+            localStorage.setItem('rubi_user', JSON.stringify(currentUser));
+            updateBalanceDisplay();
+            alert(`🎉 Промокод активирован! +${data.bonus} ★`);
+            input.value = '';
+
+        } catch (error) {
+            alert('❌ Ошибка подключения к серверу');
+        }
+    }
+
+    // ============================================================
+    // ПОКУПКА ТОВАРА
     // ============================================================
     async function buyProduct() {
         if (!selectedProduct) return;
         const code = document.getElementById('modalCode').value.trim();
 
         if (!code) {
-            alert('⚠️ Введите код, полученный после оплаты через @vmvmvq');
+            alert('⚠️ Введите код для подтверждения покупки');
             return;
         }
 
@@ -2047,8 +2295,7 @@
     }
 
     function contactSeller() {
-        alert('📩 Связь с продавцом: @vmvmvq\n\nИнструкция:\n1. Напишите сумму пополнения\n2. После оплаты получите код\n3. Введите код при покупке');
-        window.open('https://t.me/vmvmvq', '_blank');
+        alert('📩 Связь с продавцом: напишите в чат');
     }
 
     function closeModal() {
@@ -2060,22 +2307,37 @@
     });
 
     // ============================================================
-    // APPLY PROMO
+    // ПРОДАЖА ТОВАРА
     // ============================================================
-    async function applyPromo() {
-        const input = document.getElementById('promoInput');
-        const code = input.value.trim().toUpperCase();
+    async function sellProduct() {
+        if (!currentUser) {
+            alert('❌ Войдите в аккаунт');
+            return;
+        }
 
-        if (!code) {
-            alert('❌ Введите промокод');
+        const category = document.getElementById('sellCategory').value.trim();
+        const name = document.getElementById('sellName').value.trim();
+        const emoji = document.getElementById('sellEmoji').value.trim() || '📦';
+        const price = parseInt(document.getElementById('sellPrice').value);
+        const description = document.getElementById('sellDescription').value.trim();
+
+        if (!name || !price) {
+            alert('❌ Введите название и цену');
             return;
         }
 
         try {
-            const response = await fetch(`${API_URL}/apply-promo`, {
+            const response = await fetch(`${API_URL}/user_products`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ userId: currentUser.id, code })
+                body: JSON.stringify({
+                    userId: currentUser.id,
+                    category,
+                    name,
+                    description,
+                    price,
+                    emoji
+                })
             });
 
             const data = await response.json();
@@ -2085,11 +2347,17 @@
                 return;
             }
 
-            currentUser = data.user;
-            localStorage.setItem('rubi_user', JSON.stringify(currentUser));
-            updateBalanceDisplay();
-            alert(`🎉 Промокод активирован! +${data.bonus} ★`);
-            input.value = '';
+            alert(`✅ Товар "${name}" опубликован!`);
+            document.getElementById('sellCategory').value = '';
+            document.getElementById('sellName').value = '';
+            document.getElementById('sellEmoji').value = '';
+            document.getElementById('sellPrice').value = '';
+            document.getElementById('sellDescription').value = '';
+
+            await loadData();
+            renderProducts();
+            renderUserProducts();
+            renderMyProducts();
 
         } catch (error) {
             alert('❌ Ошибка подключения к серверу');
@@ -2131,7 +2399,7 @@
     }
 
     // ============================================================
-    // ADMIN FUNCTIONS
+    // АДМИН ФУНКЦИИ
     // ============================================================
     async function addProduct() {
         const name = document.getElementById('adminProductName').value.trim();
@@ -2215,6 +2483,7 @@
     async function addPromoCode() {
         const code = document.getElementById('adminPromoCode').value.trim().toUpperCase();
         const bonus = parseInt(document.getElementById('adminPromoBonus').value);
+        const maxUses = parseInt(document.getElementById('adminPromoMaxUses').value) || 0;
         
         if (!code || !bonus) {
             alert('❌ Введите код и бонус');
@@ -2225,19 +2494,21 @@
             const response = await fetch(`${API_URL}/promocodes`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ code, bonus })
+                body: JSON.stringify({ code, bonus, max_uses: maxUses })
             });
 
+            const data = await response.json();
+
             if (!response.ok) {
-                const data = await response.json();
                 alert(data.error || 'Ошибка добавления');
                 return;
             }
 
             await loadData();
-            alert(`✅ Промокод ${code} добавлен! (+${bonus} ★)`);
+            alert(`✅ Промокод ${code} добавлен! (+${bonus} ★, лимит: ${maxUses === 0 ? '∞' : maxUses})`);
             document.getElementById('adminPromoCode').value = '';
             document.getElementById('adminPromoBonus').value = '';
+            document.getElementById('adminPromoMaxUses').value = '';
             renderAdmin();
 
         } catch (error) {
@@ -2245,7 +2516,6 @@
         }
     }
 
-    // ===== УДАЛЕНИЕ ЛЮБЫХ ПРОМОКОДОВ =====
     async function deletePromoCode(code) {
         if (!confirm(`Удалить промокод "${code}"?`)) return;
 
@@ -2304,6 +2574,37 @@
         }
     }
 
+    // ===== ЗАЯВКИ НА ПОПОЛНЕНИЕ (АДМИН) =====
+    async function approveTopup(id) {
+        if (!confirm('Подтвердить пополнение?')) return;
+        try {
+            const response = await fetch(`${API_URL}/topup/${id}/approve`, {
+                method: 'POST'
+            });
+            if (!response.ok) throw new Error('Ошибка');
+            await loadData();
+            renderAdmin();
+            alert('✅ Пополнение подтверждено!');
+        } catch (error) {
+            alert('❌ Ошибка');
+        }
+    }
+
+    async function rejectTopup(id) {
+        if (!confirm('Отклонить пополнение?')) return;
+        try {
+            const response = await fetch(`${API_URL}/topup/${id}/reject`, {
+                method: 'POST'
+            });
+            if (!response.ok) throw new Error('Ошибка');
+            await loadData();
+            renderAdmin();
+            alert('✅ Пополнение отклонено');
+        } catch (error) {
+            alert('❌ Ошибка');
+        }
+    }
+
     // ============================================================
     // NAVIGATION
     // ============================================================
@@ -2313,7 +2614,7 @@
         if (target) target.classList.add('active');
         
         document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-        const navMap = { main: 0, search: 1, favorites: 2, chat: 3, profile: 4 };
+        const navMap = { main: 0, search: 1, sell: 2, chat: 3, profile: 4 };
         if (navMap[page] !== undefined) {
             const items = document.querySelectorAll('.nav-item');
             if (items[navMap[page]]) items[navMap[page]].classList.add('active');
@@ -2324,6 +2625,7 @@
         if (page === 'chat') renderChat();
         if (page === 'admin') renderAdmin();
         if (page === 'favorites') renderFavoritesPage();
+        if (page === 'sell') renderMyProducts();
     }
 
     // ============================================================
@@ -2337,8 +2639,8 @@
     // ============================================================
     // OPEN PRODUCT
     // ============================================================
-    function openProduct(id, name, sub, emoji, price) {
-        selectedProduct = { id, name, sub, emoji, price };
+    function openProduct(id, name, sub, emoji, price, isUserProduct = false) {
+        selectedProduct = { id, name, sub, emoji, price, isUserProduct };
         document.getElementById('modalEmoji').textContent = emoji;
         document.getElementById('modalName').textContent = name;
         document.getElementById('modalPrice').textContent = price + ' ★';
@@ -2377,6 +2679,73 @@
                 </div>
             `;
         }).join('');
+    }
+
+    // ============================================================
+    // RENDER USER PRODUCTS
+    // ============================================================
+    function renderUserProducts() {
+        const container = document.getElementById('userProductsContainer');
+        if (!userProducts || userProducts.length === 0) {
+            container.innerHTML = '<div style="color:rgba(255,255,255,0.3);padding:10px 0;font-size:13px;">Нет товаров пользователей</div>';
+            return;
+        }
+        container.innerHTML = userProducts.slice(0, 5).map(p => {
+            const isFav = favorites ? favorites.includes(p.id) : false;
+            return `
+                <div class="product-card" onclick="openProduct('${p.id}','${p.name}','${p.category || 'Товар'}','${p.emoji || '📦'}',${p.price})">
+                    <span class="emoji">${p.emoji || '📦'}</span>
+                    <div class="title">${p.name}</div>
+                    <div class="sub">${p.category || 'Товар пользователя'}</div>
+                    <div class="price-row">
+                        <div>
+                            <span class="price">${p.price} ★</span>
+                        </div>
+                        <button class="favorite-btn ${isFav ? 'active' : ''}" onclick="event.stopPropagation();toggleFavorite(${p.id})">
+                            ${isFav ? '❤️' : '🤍'}
+                        </button>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
+
+    // ============================================================
+    // RENDER MY PRODUCTS (в продаже)
+    // ============================================================
+    function renderMyProducts() {
+        const container = document.getElementById('myProductsList');
+        if (!currentUser) {
+            container.innerHTML = '<div style="color:rgba(255,255,255,0.3);font-size:13px;">Войдите, чтобы видеть свои объявления</div>';
+            return;
+        }
+        const myProducts = userProducts.filter(p => p.userId === currentUser.id);
+        if (myProducts.length === 0) {
+            container.innerHTML = '<div style="color:rgba(255,255,255,0.3);font-size:13px;">У вас нет активных объявлений</div>';
+            return;
+        }
+        container.innerHTML = myProducts.map(p => `
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:13px;">
+                <span>${p.emoji || '📦'} ${p.name} — ${p.price} ★</span>
+                <button onclick="deleteMyProduct(${p.id})" style="padding:2px 12px;border:none;border-radius:4px;background:#ef4444;color:white;font-size:10px;cursor:pointer;">✕</button>
+            </div>
+        `).join('');
+    }
+
+    async function deleteMyProduct(id) {
+        if (!confirm('Удалить объявление?')) return;
+        try {
+            const response = await fetch(`${API_URL}/user_products/${id}`, {
+                method: 'DELETE'
+            });
+            if (!response.ok) throw new Error('Ошибка');
+            await loadData();
+            renderUserProducts();
+            renderMyProducts();
+            alert('✅ Объявление удалено!');
+        } catch (error) {
+            alert('❌ Ошибка удаления');
+        }
     }
 
     // ============================================================
@@ -2644,14 +3013,6 @@
         window.open('https://t.me/rubishopgame', '_blank');
     }
 
-    function topUpBalance() {
-        alert('⭐ Пополнение баланса через Telegram Stars\n\n' +
-              '1. Напишите @vmvmvq сумму пополнения\n' +
-              '2. После оплаты получите код\n' +
-              '3. Введите код при покупке товара');
-        window.open('https://t.me/vmvmvq', '_blank');
-    }
-
     function logout() {
         if (confirm('Выйти из аккаунта?')) {
             localStorage.removeItem('rubi_user');
@@ -2670,7 +3031,7 @@
     }
 
     // ============================================================
-    // ADMIN PANEL (ОБНОВЛЁННАЯ)
+    // ADMIN PANEL
     // ============================================================
     function renderAdmin() {
         if (!currentUser || !currentUser.isAdmin) {
@@ -2683,14 +3044,47 @@
         const totalRevenue = cart ? cart.reduce((sum, item) => sum + (item.price || 0), 0) : 0;
         const totalProducts = products ? products.length : 0;
 
+        // Промокоды
         const promoList = allPromos || [];
         const promoHtml = promoList.map(p => `
             <div class="admin-promo-item">
                 <span class="promo-code">${p.code}</span>
                 <span class="promo-bonus">+${p.bonus} ★</span>
+                <span class="promo-uses">${p.used || 0}${p.max_uses > 0 ? '/' + p.max_uses : '/∞'}</span>
                 <button onclick="deletePromoCode('${p.code}')">✕</button>
             </div>
         `).join('');
+
+        // Заявки на пополнение
+        let topupRequests = [];
+        fetch(`${API_URL}/topup/requests`).then(r => r.json()).then(data => {
+            topupRequests = data;
+        }).catch(() => {});
+
+        let topupHtml = '';
+        // Загружаем заявки отдельно
+        fetch(`${API_URL}/topup/requests`)
+            .then(r => r.json())
+            .then(data => {
+                const container = document.getElementById('topupRequestsContainer');
+                if (container) {
+                    if (data.length === 0) {
+                        container.innerHTML = '<div style="color:rgba(255,255,255,0.3);font-size:13px;">Нет заявок на пополнение</div>';
+                    } else {
+                        container.innerHTML = data.map(req => `
+                            <div class="admin-topup-item">
+                                <span class="topup-user">${req.username}</span>
+                                <span class="topup-amount">+${req.amount} ★</span>
+                                <span class="topup-status ${req.status}">${req.status === 'pending' ? '⏳ Ожидает' : req.status === 'approved' ? '✅ Подтверждено' : '❌ Отклонено'}</span>
+                                ${req.status === 'pending' ? `
+                                    <button class="approve" onclick="approveTopup(${req.id})">✅</button>
+                                    <button class="reject" onclick="rejectTopup(${req.id})">❌</button>
+                                ` : ''}
+                            </div>
+                        `).join('');
+                    }
+                }
+            });
 
         let html = `
             <div class="admin-card">
@@ -2739,16 +3133,24 @@
             </div>
 
             <div class="admin-card">
-                <h4>🎫 Промокоды</h4>
+                <h4>🎫 Промокоды (${promoList.length})</h4>
                 <div class="admin-row">
                     <input id="adminPromoCode" placeholder="Код">
                     <input id="adminPromoBonus" placeholder="Бонус ★" type="number" style="max-width:80px;">
+                    <input id="adminPromoMaxUses" placeholder="Лимит (0=∞)" type="number" style="max-width:80px;">
                     <button onclick="addPromoCode()" class="success">➕</button>
                 </div>
                 <div class="admin-promo-list">
                     ${promoHtml || '<div style="color:rgba(255,255,255,0.3);font-size:13px;">Нет промокодов</div>'}
                 </div>
-                <div class="admin-hint">✅ Можно удалять ЛЮБЫЕ промокоды</div>
+                <div class="admin-hint">0 = бесконечное количество активаций</div>
+            </div>
+
+            <div class="admin-card">
+                <h4>💰 Заявки на пополнение</h4>
+                <div id="topupRequestsContainer">
+                    <div style="color:rgba(255,255,255,0.3);font-size:13px;">Загрузка...</div>
+                </div>
             </div>
 
             <div class="admin-card">
@@ -2762,6 +3164,30 @@
         `;
 
         document.getElementById('adminContent').innerHTML = html;
+        
+        // Подгружаем заявки
+        fetch(`${API_URL}/topup/requests`)
+            .then(r => r.json())
+            .then(data => {
+                const container = document.getElementById('topupRequestsContainer');
+                if (container) {
+                    if (data.length === 0) {
+                        container.innerHTML = '<div style="color:rgba(255,255,255,0.3);font-size:13px;">Нет заявок на пополнение</div>';
+                    } else {
+                        container.innerHTML = data.map(req => `
+                            <div class="admin-topup-item">
+                                <span class="topup-user">${req.username}</span>
+                                <span class="topup-amount">+${req.amount} ★</span>
+                                <span class="topup-status ${req.status}">${req.status === 'pending' ? '⏳ Ожидает' : req.status === 'approved' ? '✅ Подтверждено' : '❌ Отклонено'}</span>
+                                ${req.status === 'pending' ? `
+                                    <button class="approve" onclick="approveTopup(${req.id})">✅</button>
+                                    <button class="reject" onclick="rejectTopup(${req.id})">❌</button>
+                                ` : ''}
+                            </div>
+                        `).join('');
+                    }
+                }
+            });
     }
 
     // ============================================================
@@ -2774,6 +3200,7 @@
         updateBalanceDisplay();
         renderFavorites();
         renderRecommendations();
+        renderUserProducts();
         updateFavBadge();
         if (currentUser && currentUser.isAdmin) {
             renderAdmin();
@@ -2793,6 +3220,7 @@
         renderProducts();
         renderFavorites();
         renderRecommendations();
+        renderUserProducts();
         renderCart();
         renderChat();
         setupSearch();
@@ -2802,10 +3230,13 @@
             renderAdmin();
         }
         startCountdown();
+        if (currentUser) {
+            renderMyProducts();
+        }
     }
 
     // ============================================================
-    // START (с восстановлением сессии)
+    // START
     // ============================================================
     const savedUser = localStorage.getItem('rubi_user');
     if (savedUser) {
@@ -2834,9 +3265,10 @@
     console.log('🔮 Rubi Market запущен!');
     console.log('👤 Админ: admin / 123456');
     console.log('📢 Канал: https://t.me/rubishopgame');
-    console.log('⭐ Пополнение: @vmvmvq');
-    console.log('✅ Сессия сохраняется при закрытии!');
-    console.log('✅ Промокоды отображаются в админ-панели');
+    console.log('⭐ Пополнение: через форму на главной');
+    console.log('📤 Продажа: вкладка "Продать" внизу');
+    console.log('✅ Промокоды с лимитом активаций');
+    console.log('✅ Сессия сохраняется при закрытии');
 </script>
 </body>
-            </html>
+                        </html>
