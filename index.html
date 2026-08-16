@@ -1954,9 +1954,9 @@
     let cart = [];
     let favorites = [];
     let allUsers = [];
+    let allPromos = [];
     let selectedProduct = null;
     let avatarImage = null;
-    let allPromos = [];
     let chatMessages = JSON.parse(localStorage.getItem('rubi_chat')) || [
         { text: '👋 Добро пожаловать в Rubi!', time: '12:30', type: 'incoming' },
         { text: 'Здесь вы можете купить игровые предметы', time: '12:31', type: 'incoming' },
@@ -1981,12 +1981,12 @@
             if (currentUser && currentUser.isAdmin) {
                 const usersRes = await fetch(`${API_URL}/users`);
                 allUsers = await usersRes.json();
-            }
 
-            // Загружаем промокоды
-            const promosRes = await fetch(`${API_URL}/promocodes`);
-            if (promosRes.ok) {
-                allPromos = await promosRes.json();
+                // ===== ЗАГРУЖАЕМ ПРОМОКОДЫ =====
+                const promosRes = await fetch(`${API_URL}/promocodes`);
+                if (promosRes.ok) {
+                    allPromos = await promosRes.json();
+                }
             }
 
         } catch (error) {
@@ -2245,7 +2245,7 @@
         }
     }
 
-    // ===== ТЕПЕРЬ МОЖНО УДАЛЯТЬ ЛЮБЫЕ ПРОМОКОДЫ =====
+    // ===== УДАЛЕНИЕ ЛЮБЫХ ПРОМОКОДОВ =====
     async function deletePromoCode(code) {
         if (!confirm(`Удалить промокод "${code}"?`)) return;
 
@@ -2670,7 +2670,7 @@
     }
 
     // ============================================================
-    // ADMIN PANEL (ОБНОВЛЁННАЯ — можно удалять ВСЕ промокоды)
+    // ADMIN PANEL (ОБНОВЛЁННАЯ)
     // ============================================================
     function renderAdmin() {
         if (!currentUser || !currentUser.isAdmin) {
@@ -2683,7 +2683,6 @@
         const totalRevenue = cart ? cart.reduce((sum, item) => sum + (item.price || 0), 0) : 0;
         const totalProducts = products ? products.length : 0;
 
-        // Получаем список промокодов
         const promoList = allPromos || [];
         const promoHtml = promoList.map(p => `
             <div class="admin-promo-item">
@@ -2749,7 +2748,7 @@
                 <div class="admin-promo-list">
                     ${promoHtml || '<div style="color:rgba(255,255,255,0.3);font-size:13px;">Нет промокодов</div>'}
                 </div>
-                <div class="admin-hint">✅ Можно удалять ЛЮБЫЕ промокоды — даже встроенные</div>
+                <div class="admin-hint">✅ Можно удалять ЛЮБЫЕ промокоды</div>
             </div>
 
             <div class="admin-card">
@@ -2806,14 +2805,23 @@
     }
 
     // ============================================================
-    // START
+    // START (с восстановлением сессии)
     // ============================================================
-    if (currentUser) {
-        document.getElementById('authOverlay').classList.remove('show');
-        if (currentUser.isAdmin) {
-            document.getElementById('adminBtn').style.display = 'flex';
+    const savedUser = localStorage.getItem('rubi_user');
+    if (savedUser) {
+        try {
+            currentUser = JSON.parse(savedUser);
+            document.getElementById('authOverlay').classList.remove('show');
+            if (currentUser.isAdmin) {
+                document.getElementById('adminBtn').style.display = 'flex';
+            }
+            loadData().then(() => initApp());
+        } catch (e) {
+            console.error('Ошибка загрузки пользователя:', e);
+            localStorage.removeItem('rubi_user');
+            document.getElementById('authOverlay').classList.add('show');
+            initApp();
         }
-        loadData().then(() => initApp());
     } else {
         document.getElementById('authOverlay').classList.add('show');
         initApp();
@@ -2827,7 +2835,8 @@
     console.log('👤 Админ: admin / 123456');
     console.log('📢 Канал: https://t.me/rubishopgame');
     console.log('⭐ Пополнение: @vmvmvq');
-    console.log('✅ Теперь можно удалять ЛЮБЫЕ промокоды!');
+    console.log('✅ Сессия сохраняется при закрытии!');
+    console.log('✅ Промокоды отображаются в админ-панели');
 </script>
 </body>
-                        </html>
+            </html>
