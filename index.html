@@ -74,6 +74,7 @@
             100% { transform: translateY(-25px) rotate(8deg) scale(1.2); opacity: 1; }
         }
 
+        /* ===== Auth ===== */
         .auth-overlay {
             position: fixed;
             inset: 0;
@@ -495,6 +496,7 @@
             border-radius: 10px;
         }
 
+        /* ===== НИЖНЯЯ ПАНЕЛЬ ===== */
         .bottom-nav {
             display: flex;
             justify-content: space-around;
@@ -629,7 +631,7 @@
             font-weight: 700;
         }
 
-        /* ===== МОДАЛКА (без поля для кода) ===== */
+        /* ===== МОДАЛКА ===== */
         .product-modal {
             position: fixed;
             inset: 0;
@@ -724,7 +726,7 @@
             margin-top: 12px;
         }
 
-        /* Profile */
+        /* ===== PROFILE ===== */
         .profile-content {
             flex: 1;
             overflow-y: auto;
@@ -844,7 +846,7 @@
             50% { opacity: 1; }
         }
 
-        /* Cart */
+        /* ===== CART ===== */
         .cart-list {
             flex: 1;
             overflow-y: auto;
@@ -899,7 +901,7 @@
             font-size: 20px;
         }
 
-        /* Chat */
+        /* ===== CHAT ===== */
         .chat-messages {
             flex: 1;
             overflow-y: auto;
@@ -970,7 +972,7 @@
             box-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
         }
 
-        /* Admin */
+        /* ===== ADMIN ===== */
         .admin-content {
             flex: 1;
             overflow-y: auto;
@@ -1041,7 +1043,7 @@
             margin-bottom: 4px;
         }
 
-        /* Sell page */
+        /* ===== SELL PAGE ===== */
         .sell-form {
             display: flex;
             flex-direction: column;
@@ -1080,6 +1082,327 @@
         .sell-form .sell-btn:hover {
             transform: scale(0.97);
             box-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
+        }
+
+        /* ============================================================ */
+        /* ===== СВЕТЛАЯ ТЕМА (ЧИНЕНА) ===== */
+        /* ============================================================ */
+        [data-theme="light"] .app-screen {
+            background: #f5f0fa;
+        }
+        [data-theme="light"] .phone-frame {
+            background: #e8e0f0;
+        }
+        [data-theme="light"] .header h1 {
+            background: linear-gradient(135deg, #6d28d9, #db2777);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        [data-theme="light"] .section-header h2 {
+            color: #1a1428;
+        }
+        [data-theme="light"] .section-header a {
+            color: #6d28d9;
+            font-weight: 600;
+        }
+
+        [data-theme="light"] .product-item {
+            background: #ffffff;
+            border: 1px solid #d5cce0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        [data-theme="light"] .product-item:hover {
+            border-color: #6d28d9;
+            box-shadow: 0 8px 24px rgba(109, 40, 217, 0.15);
+        }
+        [data-theme="light"] .product-item .name {
+            color: #1a1428;
+        }
+        [data-theme="light"] .product-item .price {
+            color: #d97706;
+            text-shadow: none;
+        }
+
+        [data-theme="light"] .balance-block {
+            background: #ffffff;
+            border: 1px solid #d5cce0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+        [data-theme="light"] .balance-block .label {
+            color: #5a4f6a;
+        }
+        [data-theme="light"] .balance-row input {
+            background: #f5f0fa;
+            border: 1px solid #d5cce0;
+            color: #1a1428;
+        }
+        [data-theme="light"] .balance-row input::placeholder {
+            color: #a090b0;
+        }
+        [data-theme="light"] .balance-row .amount {
+            color: #d97706;
+            text-shadow: none;
+        }
+        [data-theme="light"] .balance-row button {
+            background: #6d28d9;
+            color: white;
+        }
+        [data-theme="light"] .balance-hint {
+            color: #6a5f7a;
+        }
+        [data-theme="light"] .balance-hint .promo input {
+            background: #f5f0fa;
+            border: 1px solid #d5cce0;
+            color: #1a1428;
+        }
+        [data-theme="light"] .balance-hint .promo button {
+            background: #6d28d9;
+            color: white;
+        }
+
+        [data-theme="light"] .promo-banner {
+            background: linear-gradient(135deg, rgba(184, 28, 92, 0.12), rgba(109, 40, 217, 0.12));
+            border: 1px solid #d5cce0;
+        }
+        [data-theme="light"] .promo-banner .text {
+            color: #d97706;
+        }
+        [data-theme="light"] .promo-banner .text span {
+            color: #6a5f7a;
+        }
+        [data-theme="light"] .promo-banner .countdown {
+            background: rgba(0,0,0,0.06);
+            color: #5a4f6a;
+        }
+
+        [data-theme="light"] .bottom-nav {
+            background: rgba(255, 255, 255, 0.85);
+            border-top-color: #d5cce0;
+        }
+        [data-theme="light"] .nav-item {
+            color: #8a7f9a;
+        }
+        [data-theme="light"] .nav-item.active {
+            color: #6d28d9;
+        }
+        [data-theme="light"] .nav-item:hover {
+            color: #6d28d9;
+        }
+
+        [data-theme="light"] .theme-toggle {
+            background: #ffffff;
+            border: 1px solid #d5cce0;
+            color: #4a3f5a;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        [data-theme="light"] .theme-toggle:hover {
+            border-color: #6d28d9;
+        }
+
+        [data-theme="light"] .icon-btn {
+            background: #ffffff;
+            border: 1px solid #d5cce0;
+            color: #4a3f5a;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        [data-theme="light"] .icon-btn:hover {
+            border-color: #6d28d9;
+            box-shadow: 0 4px 12px rgba(109, 40, 217, 0.12);
+        }
+        [data-theme="light"] .icon-btn .badge {
+            background: #ef4444;
+            color: white;
+        }
+
+        [data-theme="light"] .page-header .back {
+            background: #ffffff;
+            border: 1px solid #d5cce0;
+            color: #4a3f5a;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        [data-theme="light"] .page-header .back:hover {
+            border-color: #6d28d9;
+            box-shadow: 0 4px 16px rgba(109, 40, 217, 0.15);
+        }
+        [data-theme="light"] .page-header h3 {
+            color: #1a1428;
+        }
+
+        [data-theme="light"] .profile-name {
+            color: #1a1428;
+        }
+        [data-theme="light"] .profile-username {
+            color: #6a5f7a;
+        }
+        [data-theme="light"] .profile-balance {
+            background: #ffffff;
+            border: 1px solid #d5cce0;
+        }
+        [data-theme="light"] .profile-balance .label {
+            color: #5a4f6a;
+        }
+        [data-theme="light"] .profile-balance .amount {
+            color: #d97706;
+            text-shadow: none;
+        }
+        [data-theme="light"] .profile-menu-item {
+            background: #ffffff;
+            border: 1px solid #d5cce0;
+            color: #1a1428;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        [data-theme="light"] .profile-menu-item:hover {
+            border-color: #6d28d9;
+            background: #f8f4ff;
+            box-shadow: 0 4px 16px rgba(109, 40, 217, 0.1);
+        }
+
+        [data-theme="light"] .cart-item {
+            background: #ffffff;
+            border: 1px solid #d5cce0;
+        }
+        [data-theme="light"] .cart-item .info .name {
+            color: #1a1428;
+        }
+        [data-theme="light"] .cart-item .info .date {
+            color: #8a7f9a;
+        }
+        [data-theme="light"] .cart-total {
+            color: #1a1428;
+            border-top-color: #d5cce0;
+        }
+
+        [data-theme="light"] .chat-message.incoming {
+            background: #ffffff;
+            border: 1px solid #d5cce0;
+            color: #1a1428;
+        }
+        [data-theme="light"] .chat-message.outgoing {
+            background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+            color: white;
+        }
+        [data-theme="light"] .chat-input input {
+            background: #ffffff;
+            border: 1px solid #d5cce0;
+            color: #1a1428;
+        }
+        [data-theme="light"] .chat-input input::placeholder {
+            color: #8a7f9a;
+        }
+        [data-theme="light"] .chat-input input:focus {
+            border-color: #6d28d9;
+        }
+
+        [data-theme="light"] .admin-card {
+            background: #ffffff;
+            border: 1px solid #d5cce0;
+        }
+        [data-theme="light"] .admin-card .admin-row input,
+        [data-theme="light"] .admin-card .admin-row select {
+            background: #f5f0fa;
+            border: 1px solid #d5cce0;
+            color: #1a1428;
+        }
+        [data-theme="light"] .admin-stat-item {
+            background: #f5f0fa;
+            border: 1px solid #d5cce0;
+        }
+        [data-theme="light"] .admin-stat-item .num {
+            color: #6d28d9;
+        }
+        [data-theme="light"] .admin-user-item .user-name {
+            color: #1a1428;
+        }
+        [data-theme="light"] .admin-products-list .product-row .p-name {
+            color: #1a1428;
+        }
+        [data-theme="light"] .admin-hint {
+            color: #8a7f9a;
+        }
+        [data-theme="light"] .admin-promo-item {
+            background: rgba(109, 40, 217, 0.06);
+            border: 1px solid #d5cce0;
+        }
+        [data-theme="light"] .admin-promo-item .promo-code {
+            color: #6d28d9;
+        }
+
+        [data-theme="light"] .auth-modal {
+            background: #f5f0fa;
+            border: 1px solid #d5cce0;
+        }
+        [data-theme="light"] .auth-modal .sub {
+            color: #5a4f6a;
+        }
+        [data-theme="light"] .auth-input {
+            background: #ffffff;
+            border: 1px solid #d5cce0;
+            color: #1a1428;
+        }
+        [data-theme="light"] .auth-input::placeholder {
+            color: #8a7f9a;
+        }
+        [data-theme="light"] .auth-input:focus {
+            border-color: #6d28d9;
+        }
+        [data-theme="light"] .auth-switch {
+            color: #5a4f6a;
+        }
+        [data-theme="light"] .auth-switch span {
+            color: #6d28d9;
+        }
+
+        [data-theme="light"] .product-modal-content {
+            background: #f5f0fa;
+            border: 1px solid #d5cce0;
+        }
+        [data-theme="light"] .product-modal-content h3 {
+            color: #1a1428;
+        }
+        [data-theme="light"] .product-modal-content input {
+            background: #ffffff;
+            border: 1px solid #d5cce0;
+            color: #1a1428;
+        }
+        [data-theme="light"] .product-modal-content input::placeholder {
+            color: #8a7f9a;
+        }
+        [data-theme="light"] .btn-close-modal {
+            background: #e8e0f0;
+            color: #1a1428;
+            border: 1px solid #d5cce0;
+        }
+        [data-theme="light"] .btn-close-modal:hover {
+            border-color: #6d28d9;
+        }
+
+        [data-theme="light"] .glass-card {
+            background: rgba(255, 255, 255, 0.5);
+            border: 1px solid #d5cce0;
+        }
+        [data-theme="light"] .glass-title {
+            color: #6a5f7a;
+        }
+
+        [data-theme="light"] .sell-form input,
+        [data-theme="light"] .sell-form textarea {
+            background: #ffffff;
+            border: 1px solid #d5cce0;
+            color: #1a1428;
+        }
+
+        [data-theme="light"] .bottom-bar {
+            border-top-color: #d5cce0;
+        }
+        [data-theme="light"] .bottom-stat {
+            color: #6a5f7a;
+        }
+        [data-theme="light"] .bottom-stat span {
+            color: #1a1428;
+            text-shadow: none;
+        }
+        [data-theme="light"] .appstore-badge {
+            color: rgba(0, 0, 0, 0.12);
         }
 
         @media (max-width: 420px) {
@@ -1144,9 +1467,9 @@
     <div class="app-screen">
         <!-- Floating Items -->
         <div class="floating-items">
-            <div class="float-icon">🔫</div>
-            <div class="float-icon">🗡️</div>
-            <div class="float-icon">📦</div>
+            <div class="float-icon">🎮</div>
+            <div class="float-icon">⭐️</div>
+            <div class="float-icon">🔥</div>
             <div class="float-icon">🪙</div>
             <div class="float-icon">💎</div>
         </div>
@@ -1191,11 +1514,11 @@
             </div>
 
             <div class="glass-card">
-                <div class="glass-title">✦ ПОПУЛЯРНЫЕ ЛОТЫ</div>
+                <div class="glass-title">✦ ПОПУЛЯРНЫЕ ИГРЫ И ПРИЛОЖЕНИЯ</div>
                 <div class="product-grid" id="productGrid"></div>
             </div>
 
-            <!-- ===== НОВАЯ НИЖНЯЯ ПАНЕЛЬ ===== -->
+            <!-- ===== НИЖНЯЯ ПАНЕЛЬ ===== -->
             <div class="bottom-nav">
                 <button class="nav-item active" onclick="navigateTo('main')">
                     <span class="icon">🏠</span>
@@ -1238,7 +1561,7 @@
                     <div class="profile-username" id="profileUsername">@telegram_user</div>
                     <div class="profile-balance">
                         <span class="label">💰 Баланс</span>
-                        <span class="amount" id="profileBalance">$0</span>
+                        <span class="amount" id="profileBalance">0 ★</span>
                     </div>
                 </div>
                 <div class="profile-menu">
@@ -1270,7 +1593,7 @@
             </div>
             <div class="cart-total">
                 <span>Итого:</span>
-                <span class="total-price" id="cartTotal">$0</span>
+                <span class="total-price" id="cartTotal">0 ★</span>
             </div>
         </div>
 
@@ -1928,7 +2251,7 @@
         const total = document.getElementById('cartTotal');
         if (!cart || cart.length === 0) {
             list.innerHTML = '<div class="cart-empty">🛒 Корзина пуста</div>';
-            total.textContent = '$0';
+            total.textContent = '0 ★';
             document.getElementById('cartBadge').textContent = '0';
             return;
         }
@@ -1943,7 +2266,7 @@
             </div>
         `).join('');
         const sum = cart.reduce((acc, i) => acc + i.price, 0);
-        total.textContent = '$' + sum;
+        total.textContent = sum + ' ★';
         document.getElementById('cartBadge').textContent = cart.length;
     }
 
@@ -1996,7 +2319,7 @@
         document.getElementById('profileNameDisplay').textContent = currentUser.name || 'Rubi User';
         document.getElementById('profileUsername').textContent = currentUser.username || '@user';
         const balance = getUserBalance();
-        document.getElementById('profileBalance').textContent = '$' + balance;
+        document.getElementById('profileBalance').textContent = balance + ' ★';
         const initial = currentUser.name ? currentUser.name[0].toUpperCase() : 'R';
         document.getElementById('profileAvatarText').textContent = avatarImage ? '' : initial;
     }
@@ -2060,7 +2383,7 @@
 
     function updateBalanceDisplay() {
         const balance = getUserBalance();
-        document.getElementById('profileBalance').textContent = '$' + balance;
+        document.getElementById('profileBalance').textContent = balance + ' ★';
     }
 
     // ============================================================
@@ -2253,4 +2576,4 @@
     console.log('⭐ Пополнение: @vmvmvq');
 </script>
 </body>
-    </html>
+            </html>
