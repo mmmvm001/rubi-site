@@ -1462,7 +1462,7 @@
                 <div class="btn-sell" onclick="alert('📤 Продажа предметов на Rubi')">⚡ ПРОДАТЬ</div>
             </div>
 
-            <!-- ===== НОВЫЕ КАТЕГОРИИ ===== -->
+            <!-- ===== КАТЕГОРИИ ===== -->
             <div class="categories-wrap">
                 <div class="categories" id="categoriesContainer">
                     <span class="category-item active" data-cat="all">📋 Все</span>
@@ -1630,6 +1630,7 @@
     // ============================================================
     const API_URL = 'http://localhost:5000/api';
     let isLoginMode = true;
+    let currentCategory = 'all';
 
     // ============================================================
     // AUTH
@@ -1880,7 +1881,7 @@
                 favorites.push(productId);
             }
 
-            renderProducts();
+            renderProducts(currentCategory);
 
         } catch (error) {
             console.error('Ошибка избранного:', error);
@@ -1936,7 +1937,7 @@
             document.getElementById('sellDescription').value = '';
 
             await loadData();
-            renderProducts();
+            renderProducts(currentCategory);
             renderMyProducts();
 
         } catch (error) {
@@ -2003,7 +2004,7 @@
             if (!response.ok) throw new Error('Ошибка');
 
             await loadData();
-            renderProducts();
+            renderProducts(currentCategory);
             renderAdmin();
             alert('✅ Товар добавлен!');
             
@@ -2029,7 +2030,7 @@
             if (!response.ok) throw new Error('Ошибка');
 
             await loadData();
-            renderProducts();
+            renderProducts(currentCategory);
             renderAdmin();
 
         } catch (error) {
@@ -2185,24 +2186,27 @@
     }
 
     // ============================================================
-    // ОТОБРАЖЕНИЕ ТОВАРОВ (С ФИЛЬТРОМ ПО КАТЕГОРИЯМ)
+    // ОТОБРАЖЕНИЕ ТОВАРОВ С ФИЛЬТРОМ
     // ============================================================
-    function renderProducts(filterCategory = 'all') {
+    function renderProducts(category) {
         const grid = document.getElementById('productGrid');
         if (!products || products.length === 0) {
             grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:20px;color:rgba(255,255,255,0.3);">Загрузка...</div>';
             return;
         }
+
         let filtered = [];
-        if (filterCategory === 'all') {
+        if (category === 'all') {
             filtered = products;
         } else {
-            filtered = products.filter(p => p.sub && p.sub.toLowerCase() === filterCategory.toLowerCase());
+            filtered = products.filter(p => p.sub && p.sub.toLowerCase() === category.toLowerCase());
         }
+
         if (filtered.length === 0) {
             grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:20px;color:rgba(255,255,255,0.3);">Нет товаров в этой категории</div>';
             return;
         }
+
         grid.innerHTML = filtered.map(p => {
             const discount = p.discount || 0;
             const finalPrice = discount > 0 ? Math.round(p.price * (1 - discount / 100)) : p.price;
@@ -2475,8 +2479,6 @@
         renderProducts(currentCategory);
     }
 
-    let currentCategory = 'all';
-
     // ============================================================
     // ЗАПУСК
     // ============================================================
@@ -2531,7 +2533,7 @@
     console.log('👤 Админ: admin / 123456');
     console.log('📢 Канал: https://t.me/rubishopgame');
     console.log('⭐ Пополнение: @vmvmvq');
-    console.log('📋 Категории: Все, CS2, Brawl Stars, Roblox, GTA, Standoff, Telegram, Instagram, TikTok');
+    console.log('📋 Категории работают!');
 </script>
 </body>
-    </html>
+                                                                        </html>
